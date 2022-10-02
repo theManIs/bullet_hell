@@ -7,37 +7,72 @@ using Color = UnityEngine.Color;
 public class HealthBarFade : MonoBehaviour
 {
     public string HealthBarName = "HealthBar";
-    
-    
-    private Image _healthBar;
-    private Color _healthInitialColor;
-    private HealthSystem _healthSystem;
+    public string DamageBarName = "DamageBar";
+    public float DamageFadeTimerMax = 1f;
+    public float DamageFadeTimer = 0;
+    public float FadeSpeed = 1f;
+//    public float FlashTimer;
+//    public float FlashTimerMax = .3f;
+    public float FlashSpeed = .3f;
 
 
-    public void Awake()
+    protected Image _healthBar;
+    protected Image _damageBar;
+    protected Color _healthInitialColor;
+    protected Color _damagedColor;
+    protected HealthSystem _healthSystem;
+
+
+    public virtual void Awake()
     {
         _healthBar = transform.Find(HealthBarName).GetComponent<Image>();
         _healthInitialColor = _healthBar.color;
-        InvokeRepeating(nameof(FlashHp), 0, .03f);
-        _healthSystem = new HealthSystem(100);
 
+        _damageBar = transform.Find(DamageBarName).GetComponent<Image>();
+        _damagedColor = _damageBar.color;
+        _damagedColor.a = 0f;
+        _damageBar.color = _damagedColor;
+
+        InvokeRepeating(nameof(FlashHp), 0, FlashSpeed);
+        _healthSystem = new HealthSystem(100);
         _healthSystem.OnHealthChanged += OnHealthChanged;
+        _healthBar.fillAmount = _healthSystem.GetHealthPercent;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
+//        FlashTimer = FlashTimerMax;
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
+        if (_damagedColor.a > 0f)
+        {
+            DamageFadeTimer -= Time.deltaTime;
 
+            if (DamageFadeTimer < 0)
+            {
+                _damagedColor.a -= FadeSpeed * Time.deltaTime;
+                _damageBar.color = _damagedColor;
+            }
+        }
     }
 
-    private void OnHealthChanged(object sender, System.EventArgs args)
+    public virtual void OnHealthChanged(object sender, System.EventArgs args)
     {
+//        Debug.Log("virtual method");
+
+        if (_damagedColor.a <= 0)
+        {
+            _damageBar.fillAmount = _healthBar.fillAmount;
+        }
+ 
+        _damagedColor.a = 1;
+        _damageBar.color = _damagedColor;
+        DamageFadeTimer = DamageFadeTimerMax;
+
         _healthBar.fillAmount = _healthSystem.GetHealthPercent;
     }
 
@@ -72,16 +107,14 @@ public class HealthBarFade : MonoBehaviour
 
             if (_healthBar.fillAmount <= .3f)
             {
+//                FlashTimer -= Time.deltaTime + FlashSpeed;
 //                Debug.Log(Time.frameCount % 3);
 //                if ((int)(_healthBar.fillAmount * 1000) % 3 == 0)
-                if ((int)(Random.value * 1000) % 2 == 0)
-                {
-                    _healthBar.color = Color.white;
-                }
-                else
-                {
-                    _healthBar.color = _healthInitialColor;
-                }
+//                if (FlashTimer <= 0)
+//                {
+//                FlashTimer = FlashTimerMax;
+                _healthBar.color = _healthBar.color == Color.gray ? _healthInitialColor : Color.gray;
+//                }
             }
         }
 
