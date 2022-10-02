@@ -9,31 +9,31 @@ public class HealthSystem
     public event EventHandler OnHealthChanged ;
 
     private int _health;
-    private int _healtMax;
+    private readonly int _healthMax;
 
     public int GetHealth => _health;
-    public float GetHealthPercent => (float)_health / _healtMax;
+    public float GetHealthPercent => (float)_health / _healthMax;
 
     public HealthSystem(int health)
     {
         _health = health;
-        _healtMax = health;
+        _healthMax = health;
     }
 
     public void Damage(int damageAmount)
     {
         _health -= damageAmount;
-        _health = Mathf.Clamp(_health, 0, _healtMax);
+        _health = Mathf.Clamp(_health, 0, _healthMax);
 
-        OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        OnHealthChanged?.Invoke(this, new HealthSystemEventArguments() { EventType = EventTypeSet.Damage });
     }
 
     public void Heal(int healAmount)
     {
         _health += healAmount;
-        _health = Mathf.Clamp(_health, 0, _healtMax);
+        _health = Mathf.Clamp(_health, 0, _healthMax);
 
-        OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        OnHealthChanged?.Invoke(this, new HealthSystemEventArguments() { EventType = EventTypeSet.Heal});
     }
 
 
