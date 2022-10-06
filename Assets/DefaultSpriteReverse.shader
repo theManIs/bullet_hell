@@ -4,8 +4,8 @@ Shader "Custom/Default-Black"
 {
 	Properties
 	{
-		[PerRendererData] _MainTex("Sprite Texture", 2D) = "black" {}
-		_Color("Tint", Color) = (0,0,0,1)
+		[PerRendererData] _MainTex("Sprite Texture", 2D) = "white" {}
+		_Color("Tint", Color) = (1,1,1,1)
 		[MaterialToggle] PixelSnap("Pixel snap", Float) = 0
 	}
 
@@ -55,7 +55,7 @@ Shader "Custom/Default-Black"
 					v2f OUT;
 					OUT.vertex = UnityObjectToClipPos(IN.vertex);
 					OUT.texcoord = IN.texcoord;
-					OUT.color = IN.color * _Color;
+					OUT.color = _Color;
 					#ifdef PIXELSNAP_ON
 					OUT.vertex = UnityPixelSnap(OUT.vertex);
 					#endif

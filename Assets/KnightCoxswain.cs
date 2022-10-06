@@ -12,6 +12,16 @@ public class KnightCoxswain : MonoBehaviour
     private GameObject _swordSwipe;
     private SpriteRenderer _knightSp;
     private SpriteRenderer _swipeSp;
+    private Collider2D _mainCol;
+    private Vector3 _lastColliderPosition;
+    private Vector2 _defaultColliderOffset;
+
+    public void Awake()
+    {
+        _mainCol = GetComponent<Collider2D>();
+        _lastColliderPosition = transform.position;
+        _defaultColliderOffset = _mainCol.offset;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +61,11 @@ public class KnightCoxswain : MonoBehaviour
         {
             _swordSwipe.SetActive(true);
 
+            if (_lastColliderPosition != transform.position)
+            {
+                _mainCol.offset += Vector2.right * .01f;
+            }
+
             Invoke(nameof(DisableEffect), EffectDuration);
         }
     }
@@ -58,5 +73,10 @@ public class KnightCoxswain : MonoBehaviour
     public void DisableEffect()
     {
         _swordSwipe.SetActive(false);
+
+        if (_mainCol.offset != _defaultColliderOffset)
+        {
+            _mainCol.offset = _defaultColliderOffset;
+        }
     }
 }
