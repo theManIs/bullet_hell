@@ -7,10 +7,19 @@ using Random = UnityEngine.Random;
 
 public class SplitToPixels : MonoBehaviour
 {
+    [Range(0, 100)]
     public float CrumbleSpeed = 5;
+    [Range(0, 1)]
     public float CrumbleLuft = .2f;
+    public bool StartDisappearing = false;
+    [Range(0, 10)]
+    public float DestructTime = 1f;
+    [Range(0, 10)]
+    public float DisappearanceSpeed = 1f;
 
     private Dictionary<Transform, Vector2> _movingPoints = new Dictionary<Transform, Vector2>();
+    private Color _tmpCol;
+    private List<SpriteRenderer> _renderers = new List<SpriteRenderer>();
 
     // Start is called before the first frame update
     public void SplitByPixel()
@@ -113,6 +122,7 @@ public class SplitToPixels : MonoBehaviour
                     if (!_movingPoints.ContainsKey(grain.transform))
                     {
                         _movingPoints.Add(grain.transform, newPosition * ptpv2 - shiftY);
+                        _renderers.Add(grain.GetComponent<SpriteRenderer>());
                     }
                     
                 }
@@ -219,7 +229,7 @@ public class SplitToPixels : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         //GameObject hostGm = transform.Find("HostSandEffect").gameObject;
         //Debug.Log(hostGm.transform.localPosition);
@@ -228,5 +238,29 @@ public class SplitToPixels : MonoBehaviour
         {
             point.localPosition += ((Vector3)pos - point.localPosition) * Time.deltaTime * CrumbleSpeed * Random.Range(.8f, 1.2f);
         }
+
+        if (StartDisappearing)
+        {
+            foreach (SpriteRenderer spriteRenderer in _renderers)
+            {
+                if (spriteRenderer.color.a > 0)
+                {
+                    _tmpCol = spriteRenderer.color;
+                    _tmpCol.a -= Time.deltaTime * DisappearanceSpeed;
+                    spriteRenderer.color = _tmpCol;
+                }
+                else
+                {
+                    Destroy(gameObject, DestructTime);
+                }
+            }
+        }
+
+
+    }
+
+    public void Disappear()
+    {
+        StartDisappearing = true;
     }
 }

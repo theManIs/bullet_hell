@@ -310,6 +310,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrumbleSpeed: 4
   CrumbleLuft: 0.2
+  StartDisappearing: 0
+  DestructTime: 1
+  DisappearanceSpeed: 1
 --- !u!114 &115790743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,12 +326,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8005730}
-  RotateRight: 1
-  TiltSpeed: 25
-  Tiltmagnitude: 10
   ClosingSpeed: 0.4
   ClosingError: 0
-  IsDead: 0
+  HealthAmount: 2
 --- !u!114 &115790744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,6 +355,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RepelLevel: 0.2
+  TiltMagnitude: 10
+  TiltSpeed: 1
+  RotateRight: 1
 --- !u!58 &115790746
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3023,6 +3026,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RepelLevel: 0.2
+  TiltMagnitude: 10
+  TiltSpeed: 1
+  RotateRight: 1
 --- !u!114 &481618629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3049,12 +3055,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8005730}
-  RotateRight: 1
-  TiltSpeed: 25
-  Tiltmagnitude: 10
   ClosingSpeed: 0.4
   ClosingError: 0
-  IsDead: 0
+  HealthAmount: 2
 --- !u!114 &481618631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3069,6 +3072,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrumbleSpeed: 4
   CrumbleLuft: 0.2
+  StartDisappearing: 0
+  DestructTime: 1
+  DisappearanceSpeed: 1
 --- !u!1 &489096204
 GameObject:
   m_ObjectHideFlags: 0
@@ -3248,6 +3254,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrumbleSpeed: 4
   CrumbleLuft: 0.2
+  StartDisappearing: 0
+  DestructTime: 1
+  DisappearanceSpeed: 1
 --- !u!114 &531939793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3261,12 +3270,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8005730}
-  RotateRight: 1
-  TiltSpeed: 25
-  Tiltmagnitude: 10
   ClosingSpeed: 0.4
   ClosingError: 0
-  IsDead: 0
+  HealthAmount: 2
 --- !u!114 &531939794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3293,6 +3299,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RepelLevel: 0.2
+  TiltMagnitude: 10
+  TiltSpeed: 1
+  RotateRight: 1
 --- !u!58 &531939796
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3940,6 +3949,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrumbleSpeed: 4
   CrumbleLuft: 0.2
+  StartDisappearing: 0
+  DestructTime: 1
+  DisappearanceSpeed: 1
 --- !u!114 &1599178731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3953,12 +3965,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8005730}
-  RotateRight: 1
-  TiltSpeed: 25
-  Tiltmagnitude: 10
   ClosingSpeed: 0.4
   ClosingError: 0
-  IsDead: 0
+  HealthAmount: 2
 --- !u!114 &1599178732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3985,6 +3994,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RepelLevel: 0.2
+  TiltMagnitude: 10
+  TiltSpeed: 1
+  RotateRight: 1
 --- !u!58 &1599178734
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4277,6 +4289,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrumbleSpeed: 4
   CrumbleLuft: 0.2
+  StartDisappearing: 0
+  DestructTime: 1
+  DisappearanceSpeed: 1
 --- !u!114 &1727470435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4290,12 +4305,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8005730}
-  RotateRight: 1
-  TiltSpeed: 25
-  Tiltmagnitude: 10
   ClosingSpeed: 0.4
   ClosingError: 0
-  IsDead: 0
+  HealthAmount: 2
 --- !u!114 &1727470436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4322,6 +4334,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RepelLevel: 0.2
+  TiltMagnitude: 10
+  TiltSpeed: 1
+  RotateRight: 1
 --- !u!58 &1727470438
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4555,6 +4570,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CrumbleSpeed: 4
   CrumbleLuft: 0.2
+  StartDisappearing: 0
+  DestructTime: 1
+  DisappearanceSpeed: 1
 --- !u!114 &1994143945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4568,12 +4586,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8005730}
-  RotateRight: 1
-  TiltSpeed: 25
-  Tiltmagnitude: 10
   ClosingSpeed: 0.4
   ClosingError: 0
-  IsDead: 0
+  HealthAmount: 2
 --- !u!114 &1994143946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4600,6 +4615,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RepelLevel: 0.2
+  TiltMagnitude: 10
+  TiltSpeed: 1
+  RotateRight: 1
 --- !u!58 &1994143948
 CircleCollider2D:
   m_ObjectHideFlags: 0

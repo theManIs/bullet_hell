@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class SpriteRendererEffectAdder : MonoBehaviour
 {
+    private const int Pi = 180;
+    private const int Pi2 = 360;
+
+    [Range(0, 1)]
     public float RepelLevel = .1f;
+    [Range(0, 180)]
+    public float TiltMagnitude = 10;
+    [Range(0, 10)]
+    public float TiltSpeed = 1f;
+    public bool RotateRight = true;
 
     private SpriteRenderer _affectedSpriteRenderer;
     private Color _initialColor;
@@ -28,7 +37,7 @@ public class SpriteRendererEffectAdder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void BlinkColors()
@@ -58,4 +67,29 @@ public class SpriteRendererEffectAdder : MonoBehaviour
     {
         transform.position += (transform.position - pointOfForce.position).normalized * RepelLevel;
     }
+
+    public void SwingWhenMoving()
+    {
+        if (RotateRight)
+        {
+            transform.Rotate(0, 0, TiltSpeed * Time.deltaTime);
+
+            if (transform.rotation.eulerAngles.z >= TiltMagnitude && transform.rotation.eulerAngles.z < Pi)
+            {
+                RotateRight = false;
+            }
+        }
+        else
+        {
+            transform.Rotate(0, 0, -TiltSpeed * Time.deltaTime);
+
+            //Debug.Log(transform.rotation.eulerAngles.z);
+
+            if (transform.rotation.eulerAngles.z < Pi2 - TiltMagnitude && transform.rotation.eulerAngles.z > Pi)
+            {
+                RotateRight = true;
+            }
+        }
+    }
+
 }

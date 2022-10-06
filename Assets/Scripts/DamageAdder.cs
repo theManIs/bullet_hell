@@ -6,13 +6,14 @@ public class DamageAdder : MonoBehaviour
 {
     public float TriggerEnterLock = .3f;
 
-    private SpriteRendererEffectAdder srea;
-    private EnemyCoxswain ec;
+    // private SpriteRendererEffectAdder srea;
+    private EnemyCoxswain _ec;
     private float _lastTrigger;
 
     public void Awake()
     {
-        srea = GetComponent<SpriteRendererEffectAdder>();
+        _ec = GetComponent<EnemyCoxswain>();
+        // srea = GetComponent<SpriteRendererEffectAdder>();
 
         _lastTrigger = Time.time;
     }
@@ -20,7 +21,7 @@ public class DamageAdder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ec = GetComponent<EnemyCoxswain>();
+        
     }
 
     // Update is called once per frame
@@ -45,11 +46,11 @@ public class DamageAdder : MonoBehaviour
     {
         if (Time.time - _lastTrigger > TriggerEnterLock)
         {
-            if (srea is SpriteRendererEffectAdder)
+            if (_ec != null)
             {
                 // srea.BlinkOnce();
-                ec.Die();
-                srea.RepelOneStepBack(collision.gameObject.transform);
+                _ec.GotHit(collision.gameObject.transform);
+                // srea.RepelOneStepBack(collision.gameObject.transform);
             }
         }
 
