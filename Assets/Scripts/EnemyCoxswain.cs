@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyCoxswain : MonoBehaviour
 {
-    [Header("Rewrite this code")]
+    //todo
     public GameObject target;
 
     [Space]
@@ -14,7 +14,7 @@ public class EnemyCoxswain : MonoBehaviour
     // public float Tiltmagnitude = 10;
     public float ClosingSpeed = .2f;
     public float ClosingError = 0f;
-    public int HealthAmount = 2;
+    public int HealthPoints = 2;
     // public float DisappearTime = 1f;
 
     // private const int _pi = 180;
@@ -30,7 +30,7 @@ public class EnemyCoxswain : MonoBehaviour
     public void Awake()
     {
         stp = GetComponent<SplitToPixels>();
-        _hs = new HealthSystem(HealthAmount);
+        _hs = new HealthSystem(HealthPoints);
         _srea = GetComponent<SpriteRendererEffectAdder>();
         _c2d = GetComponent<Collider2D>();
 
@@ -85,6 +85,10 @@ public class EnemyCoxswain : MonoBehaviour
                 transform.position += (target.transform.position - transform.position).normalized * ClosingSpeed * Time.deltaTime;
 
                 _srea.SwingWhenMoving();
+            }
+            else
+            {
+                target.GetComponent<KnightCoxswain>().SetDamage();
             }
         }
     }

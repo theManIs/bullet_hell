@@ -92,7 +92,7 @@ public class SplitToPixels : MonoBehaviour
         List<Vector2> points = new List<Vector2>();
 
         //Debug.Log(host.GetChild(0).GetComponent<SpriteRenderer>().bounds.size.x);
-        Debug.Log(host.childCount);
+        // Debug.Log(host.childCount);
         // EditorApplication.isPaused = true;
 
         for (int i = 0, k = (int)Mathf.Floor(host.childCount / 2f), j = k + 1; i < host.childCount; i++)

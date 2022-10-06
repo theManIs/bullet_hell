@@ -22,7 +22,6 @@ public class HealthBarFade : MonoBehaviour
     protected Color _damagedColor;
     protected HealthSystem _healthSystem;
 
-
     public virtual void Awake()
     {
         _healthBar = transform.Find(HealthBarName).GetComponent<Image>();
@@ -81,7 +80,7 @@ public class HealthBarFade : MonoBehaviour
         _healthSystem.Damage(damageAmount);
 //        _healthBar.fillAmount -= damageAmount * .01f;
 
-        Debug.Log(_healthSystem.GetHealth);
+        // Debug.Log(_healthSystem.GetHealth);
     }
 
     public void SetHeal(int healAmount)
@@ -117,7 +116,10 @@ public class HealthBarFade : MonoBehaviour
 //                }
             }
         }
+    }
 
-        
+    public HealthSystem GetHealthSystem()
+    {
+        return _healthSystem;
     }
 }

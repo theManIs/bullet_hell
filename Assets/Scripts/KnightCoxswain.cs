@@ -1,13 +1,20 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class KnightCoxswain : MonoBehaviour
 {
+    //todo
     public GameObject SwordSwipeGo;
     public float SwipeFrequency = 1f;
     public float EffectDuration = 1f;
 
+    [Range(0, 10)]
     public float MoveSpeed = 2;
+    [Range(1, 100)]
+    public int HealthPoints = 5;
+    [Range(0, 10)]
+    public float InvulnerabilityTime = 1f;
 
     private GameObject _swordSwipe;
     private SpriteRenderer _knightSp;
@@ -15,18 +22,26 @@ public class KnightCoxswain : MonoBehaviour
     private Collider2D _mainCol;
     private Vector3 _lastColliderPosition;
     private Vector2 _defaultColliderOffset;
+    private HealthSystem _hs;
+    private SpriteRendererEffectAdder _srea;
+    private DisplayControl _dc;
 
     public void Awake()
     {
         _mainCol = GetComponent<Collider2D>();
         _lastColliderPosition = transform.position;
         _defaultColliderOffset = _mainCol.offset;
+        _hs = new HealthSystem(HealthPoints) { InvulnerabilityTime = InvulnerabilityTime };
+        _srea = GetComponent<SpriteRendererEffectAdder>();
+        _dc = FindObjectOfType<DisplayControl>();
+        _knightSp = GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _knightSp = GetComponent<SpriteRenderer>();
+        _dc.HealthBars.HealthBarShrink.gameObject.SetActive(true);
+        // _dc.HealthBars.HealthBarShrink.ResetSystem(HealthPoints);
 
         if (SwordSwipeGo)
         {
@@ -55,6 +70,10 @@ public class KnightCoxswain : MonoBehaviour
         }
     }
 
+    public void OnEnable() => _hs.OnHealthChanged += WhenGetHit;
+
+    public void OnDisable() => _hs.OnHealthChanged -= WhenGetHit;
+
     public void SwipeWithSword()
     {
         if (SwordSwipeGo)
@@ -77,6 +96,45 @@ public class KnightCoxswain : MonoBehaviour
         if (_mainCol.offset != _defaultColliderOffset)
         {
             _mainCol.offset = _defaultColliderOffset;
+        }
+    }
+
+    public void SetDamage()
+    {
+        // int damage = 
+        _hs.ApplyNormalizedDamage();
+
+        // if (damage > 0 && _srea != null)
+        // {
+        //     _srea.BlinkOnce();
+        //     _dc.HealthBars.HealthBarShrink.SetDamage((int)((float)damage / HealthPoints * 100));
+        //     // Debug.Log((float)damage / HealthPoints + " " + ((float)damage / HealthPoints) * 100 + " " + (int)((float)damage / HealthPoints * 100));
+        // }
+
+        // Debug.Log("He has health: " + _hs.GetHealth +  " He is dead: " + _hs.IsDead);
+        // if (_hs.IsDead)
+        // {
+        //     Destroy(gameObject, 0f);
+        // }
+    }
+
+    public void WhenGetHit(object sender, EventArgs args)
+    {
+        // Debug.Log("Hit!");
+        if (args is HealthSystemEventArguments hsea)
+        {
+            // Debug.Log(hsea.EventType);
+            if (hsea.EventType == EventTypeSet.Damage)
+            {
+                // Debug.Log(hsea.DamageAmount);
+                _srea.BlinkOnce();
+                _dc.HealthBars.HealthBarShrink.SetDamage((int)((float)hsea.DamageAmount / HealthPoints * 100));
+
+                if (_hs.IsDead)
+                {
+                    Destroy(gameObject, 0f);
+                }
+            }
         }
     }
 }
