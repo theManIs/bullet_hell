@@ -77,6 +77,12 @@ public class KnightCoxswain : MonoBehaviour
 
             _knightSp.flipX = !(xAxis > 0);
             _swipeSp.flipX = !(xAxis > 0);
+
+            _srea.Move();
+        }
+        else
+        {
+            _srea.Stop();
         }
     }
 

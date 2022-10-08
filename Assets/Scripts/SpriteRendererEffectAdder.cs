@@ -19,6 +19,7 @@ public class SpriteRendererEffectAdder : MonoBehaviour
     private Color _initialColor;
     private Shader shaderGUItext;
     private Shader _defaultSpriteShader;
+    private Animator _animator;
 
     public void Awake()
     {
@@ -26,6 +27,7 @@ public class SpriteRendererEffectAdder : MonoBehaviour
         _initialColor = _affectedSpriteRenderer.color;
         shaderGUItext = Shader.Find("GUI/Text Shader");
         _defaultSpriteShader = _affectedSpriteRenderer.material.shader;
+        _animator = GetComponent<Animator>();
     }
 
     // Start is called before the first frame update
@@ -92,4 +94,22 @@ public class SpriteRendererEffectAdder : MonoBehaviour
         }
     }
 
+    public void Move()
+    {
+        if (_animator)
+        {
+            if (_animator)
+            {
+                _animator.StartPlayback();
+            }
+        }
+    }
+
+    public void Stop()
+    {
+        if (_animator)
+        {
+            _animator.StopPlayback();
+        }
+    }
 }
