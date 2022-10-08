@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarShrink : HealthBarFade
+public class HealthBarShrink : RectangleBar
 {
     public float ShrinkSpeed = .2f;
 
@@ -29,9 +29,9 @@ public class HealthBarShrink : HealthBarFade
         _healthBar = transform.Find(HealthBarName).GetComponent<Image>();
         _damageBar = transform.Find(DamageBarName).GetComponent<Image>();
 
-        _healthSystem = new HealthSystem(100);
-        _healthSystem.OnHealthChanged += OnHealthChanged;
-        _healthBar.fillAmount = _healthSystem.GetHealthPercent;
+        _healthSystem = new HealthSystem(MaxPoints) { Health = StartPoints };
+        // _healthSystem.OnHealthChanged += OnHealthChanged;
+        _healthBar.fillAmount = _healthSystem.HealthPercent;
         _damageBar.fillAmount = _healthBar.fillAmount;
     }
 
@@ -48,6 +48,8 @@ public class HealthBarShrink : HealthBarFade
             _damageBar.fillAmount = _healthBar.fillAmount;
         }
 
-        _healthBar.fillAmount = _healthSystem.GetHealthPercent;
+        _healthBar.fillAmount = _healthSystem.HealthPercent;
+        
+        FlashXTimes();
     }
 }

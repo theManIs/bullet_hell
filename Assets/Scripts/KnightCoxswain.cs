@@ -27,7 +27,7 @@ public class KnightCoxswain : MonoBehaviour
     private HealthSystem _hs;
     private SpriteRendererEffectAdder _srea;
     private DisplayControl _dc;
-    private HealthBarFade _healthBar;
+    private RectangleBar _healthBar;
 
     public void Awake()
     {
@@ -118,7 +118,11 @@ public class KnightCoxswain : MonoBehaviour
     public void SetDamage()
     {
         // int damage = 
-        _hs.ApplyNormalizedDamage();
+
+        if (_hs != null)
+        {
+            _hs.ApplyNormalizedDamage();
+        }
 
         // if (damage > 0 && _srea != null)
         // {
@@ -144,7 +148,8 @@ public class KnightCoxswain : MonoBehaviour
             {
                 // Debug.Log(hsea.DamageAmount);
                 _srea.BlinkOnce();
-                _healthBar.SetDamage((int)((float)hsea.DamageAmount / HealthPoints * 100));
+                // _healthBar.SetDamage((int)((float)hsea.DamageAmount / HealthPoints * 100));
+                _healthBar.SetDamage(hsea.DamageAmount);
 
                 if (_hs.IsDead)
                 {

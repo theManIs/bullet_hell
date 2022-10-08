@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,16 +11,17 @@ public class HealthBarShrinkCustomEditor : Editor
     {
         DrawDefaultInspector();
 
-        HealthBarFade hbf = (HealthBarFade) target;
+        RectangleBar hbf = (RectangleBar) target;
+        int pointValue = Mathf.CeilToInt(hbf.MaxPoints * .1f);
 
         if (GUILayout.Button("Damage"))
         {
-            hbf.SetDamage(10);
+            hbf.SetDamage(pointValue);
         }
         
         if (GUILayout.Button("Heal"))
         {
-            hbf.SetHeal(10);
+            hbf.SetHeal(pointValue);
         }
     }
 }

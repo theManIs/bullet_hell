@@ -328,10 +328,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495b041743e2cc146914ff9a80d4391b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxPoints: 5
+  StartPoints: 5
   HealthBarName: HealthBar
   DamageBarName: DamageBar
   DamageFadeTimerMax: 1
   DamageFadeTimer: 0
-  FadeSpeed: 1
-  FlashSpeed: 0.3
   DamageBarTemplateName: DamagedBarTemplate

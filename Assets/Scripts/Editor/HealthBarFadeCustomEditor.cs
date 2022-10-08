@@ -1,25 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEditor;
 
 [CustomEditor(typeof(HealthBarFade))]
-public class HealthBarCustomEditor : Editor
+public class HealthBarFadeCustomEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
 
         HealthBarFade hbf = (HealthBarFade) target;
+        int pointValue = Mathf.CeilToInt(hbf.MaxPoints * .1f);
 
         if (GUILayout.Button("Damage"))
         {
-            hbf.SetDamage(10);
+            hbf.SetDamage(pointValue);
         }
         
         if (GUILayout.Button("Heal"))
         {
-            hbf.SetHeal(10);
+            hbf.SetHeal(pointValue);
         }
     }
 }

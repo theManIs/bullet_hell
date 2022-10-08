@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEditor;
 
@@ -10,16 +9,17 @@ public class HealthBarCutCustomEditor : Editor
     {
         DrawDefaultInspector();
 
-        HealthBarFade hbf = (HealthBarFade) target;
-
+        HealthBarCut hbf = (HealthBarCut) target;
+        int pointValue = Mathf.CeilToInt(hbf.MaxPoints * .1f);
+        
         if (GUILayout.Button("Damage"))
         {
-            hbf.SetDamage(10);
+            hbf.SetDamage(pointValue);
         }
         
         if (GUILayout.Button("Heal"))
         {
-            hbf.SetHeal(10);
+            hbf.SetHeal(pointValue);
         }
     }
 }

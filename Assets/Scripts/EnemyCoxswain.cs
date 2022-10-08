@@ -25,7 +25,7 @@ public class EnemyCoxswain : MonoBehaviour
     private SpriteRendererEffectAdder _srea;
     private Collider2D _c2d;
     private Collider2D _c2dTarget;
-
+    private OnChangeExperience _oce;
 
 
     public void Awake()
@@ -34,6 +34,7 @@ public class EnemyCoxswain : MonoBehaviour
         _hs = new HealthSystem(HealthPoints);
         _srea = GetComponent<SpriteRendererEffectAdder>();
         _c2d = GetComponent<Collider2D>();
+        _oce = FindObjectOfType<OnChangeExperience>();
 
         if (target != null)
         {
@@ -108,6 +109,7 @@ public class EnemyCoxswain : MonoBehaviour
             stp.SplitByPixel();
             stp.ToAshes();
             stp.Disappear();
+            _oce.InvokeEvent(1);
         }
         else
         {
