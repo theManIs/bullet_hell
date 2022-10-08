@@ -1,4 +1,5 @@
 using System;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class KnightCoxswain : MonoBehaviour
     public GameObject SwordSwipeGo;
     public float SwipeFrequency = 1f;
     public float EffectDuration = 1f;
+    public HealthBarsSet HealthBar;
 
     [Range(0, 10)]
     public float MoveSpeed = 2;
@@ -25,6 +27,7 @@ public class KnightCoxswain : MonoBehaviour
     private HealthSystem _hs;
     private SpriteRendererEffectAdder _srea;
     private DisplayControl _dc;
+    private HealthBarFade _healthBar;
 
     public void Awake()
     {
@@ -40,7 +43,14 @@ public class KnightCoxswain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _dc.HealthBars.HealthBarShrink.gameObject.SetActive(true);
+        _healthBar = HealthBar switch
+        {
+            HealthBarsSet.HealthBarCut => _dc.HealthBars.HealthBarCut,
+            HealthBarsSet.HealthBarShrink => _dc.HealthBars.HealthBarShrink,
+            HealthBarsSet.HealthBarFade => _dc.HealthBars.HealthBarFade,
+            _ => _healthBar
+        };
+        _healthBar.gameObject.SetActive(true);
         // _dc.HealthBars.HealthBarShrink.ResetSystem(HealthPoints);
 
         if (SwordSwipeGo)
@@ -128,7 +138,7 @@ public class KnightCoxswain : MonoBehaviour
             {
                 // Debug.Log(hsea.DamageAmount);
                 _srea.BlinkOnce();
-                _dc.HealthBars.HealthBarShrink.SetDamage((int)((float)hsea.DamageAmount / HealthPoints * 100));
+                _healthBar.SetDamage((int)((float)hsea.DamageAmount / HealthPoints * 100));
 
                 if (_hs.IsDead)
                 {

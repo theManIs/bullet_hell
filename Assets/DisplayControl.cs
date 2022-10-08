@@ -11,6 +11,13 @@ public struct HealthBars
     public HealthBarShrink HealthBarShrink;
 }
 
+public enum HealthBarsSet
+{
+    HealthBarFade,
+    HealthBarCut,
+    HealthBarShrink
+}
+
 public class DisplayControl : MonoBehaviour
 {
     public HealthBars HealthBars;

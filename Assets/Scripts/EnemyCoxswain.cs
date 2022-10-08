@@ -12,7 +12,7 @@ public class EnemyCoxswain : MonoBehaviour
     // public float TiltSpeed = 1f;
     // [Range(0, 360)]
     // public float Tiltmagnitude = 10;
-    public float ClosingSpeed = .2f;
+    public float ClosingSpeed = .5f;
     public float ClosingError = 0f;
     public int HealthPoints = 2;
     // public float DisappearTime = 1f;
@@ -25,6 +25,7 @@ public class EnemyCoxswain : MonoBehaviour
     private SpriteRendererEffectAdder _srea;
     private Collider2D _c2d;
     private Collider2D _c2dTarget;
+
 
 
     public void Awake()
@@ -51,6 +52,7 @@ public class EnemyCoxswain : MonoBehaviour
     {
         if (_hs.IsDead) return;
 
+        _srea.SwingWhenMoving();
         // if (RotateRight)
         // {
         //     transform.Rotate(0, 0, TiltSpeed * Time.deltaTime);
@@ -84,7 +86,6 @@ public class EnemyCoxswain : MonoBehaviour
                 //Debug.Log("Target not reached");
                 transform.position += (target.transform.position - transform.position).normalized * ClosingSpeed * Time.deltaTime;
 
-                _srea.SwingWhenMoving();
             }
             else
             {

@@ -11,7 +11,7 @@ public class SpriteRendererEffectAdder : MonoBehaviour
     public float RepelLevel = .1f;
     [Range(0, 180)]
     public float TiltMagnitude = 10;
-    [Range(0, 10)]
+    [Range(0, 100)]
     public float TiltSpeed = 1f;
     public bool RotateRight = true;
 
