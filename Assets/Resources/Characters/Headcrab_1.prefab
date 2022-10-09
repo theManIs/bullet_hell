@@ -37,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1433817826848751040
 SpriteRenderer:
@@ -107,6 +107,7 @@ MonoBehaviour:
   ClosingSpeed: 0.5
   ClosingError: 0
   HealthPoints: 2
+  SwingInMoving: 0
 --- !u!50 &1433817826848751046
 Rigidbody2D:
   serializedVersion: 4
@@ -167,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TriggerEnterLock: 0.3
+  InteractionLayer: DamageEnemy
 --- !u!114 &1433817826848751045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c56fd2763f8e764da45e982f18878e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RepelLevel: 0.1
+  RepelLevel: 0.4
   TiltMagnitude: 10
   TiltSpeed: 1
   RotateRight: 1

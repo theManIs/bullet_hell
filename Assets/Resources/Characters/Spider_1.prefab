@@ -37,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4901928582601295669
 SpriteRenderer:
@@ -127,6 +127,7 @@ MonoBehaviour:
   ClosingSpeed: 0.5
   ClosingError: 0
   HealthPoints: 2
+  SwingInMoving: 0
 --- !u!50 &4901928582601295624
 Rigidbody2D:
   serializedVersion: 4
@@ -187,6 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TriggerEnterLock: 0.3
+  InteractionLayer: DamageEnemy
 --- !u!114 &4901928582601295631
 MonoBehaviour:
   m_ObjectHideFlags: 0

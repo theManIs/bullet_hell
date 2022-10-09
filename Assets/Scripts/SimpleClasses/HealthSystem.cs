@@ -39,7 +39,7 @@ public class HealthSystem
     {
         Health += healAmount;
         Health = Mathf.Clamp(Health, 0, _healthMax);
-
+        // Debug.Log(Health + " " + _healthMax + " " + healAmount);
         OnHealthChanged?.Invoke(this, new HealthSystemEventArguments{ EventType = EventTypeSet.Heal});
     }
 

@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class OnChangeExperience : MonoBehaviour
 {
-    public event Action<int> AddExperience;
-
     public ExperienceBarFade ExperienceBarFade;
 
     public void Awake()
@@ -29,7 +27,7 @@ public class OnChangeExperience : MonoBehaviour
     // public void OnEnable() => AddExperience += ExperienceBarFade.GetHealthSystem().Heal;
     // public void OnDisable() => AddExperience += ExperienceBarFade.GetHealthSystem().Heal;
 
-    public void InvokeEvent(int amount)
+    public void AddExperience(int amount)
     {
         ExperienceBarFade.SetHeal(amount);
     }

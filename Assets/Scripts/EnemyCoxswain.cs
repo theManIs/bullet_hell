@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class EnemyCoxswain : MonoBehaviour
 {
+    public event Action<int> AddExperience;
+
     //todo
     public GameObject target;
 
@@ -99,6 +100,9 @@ public class EnemyCoxswain : MonoBehaviour
         }
     }
 
+    public void OnEnable() => AddExperience += _oce.AddExperience;
+    public void OnDisable() => AddExperience -= _oce.AddExperience;
+
     public void GotHit(Transform gotHitFrom)
     {
         if (_hs.IsDead) return;
@@ -113,7 +117,7 @@ public class EnemyCoxswain : MonoBehaviour
             stp.SplitByPixel();
             stp.ToAshes();
             stp.Disappear();
-            _oce.InvokeEvent(1);
+            AddExperience?.Invoke(1);
             DropCoin();
         }
         else
@@ -123,10 +127,5 @@ public class EnemyCoxswain : MonoBehaviour
         }
     }
 
-    public void DropCoin()
-    {
-        GameObject coin = Resources.Load<GameObject>("Environment/Coin_1");
-        //Debug.Log(coin);
-        Instantiate(coin.gameObject, transform.position, Quaternion.identity);
-    }
+    public void DropCoin() => CoinOperator.Setup(transform.position);
 }

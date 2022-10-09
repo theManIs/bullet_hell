@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3349329110302144630
 SpriteRenderer:
@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TriggerEnterLock: 0.3
+  InteractionLayer: DamageEnemy
 --- !u!114 &3349329110302144624
 MonoBehaviour:
   m_ObjectHideFlags: 0

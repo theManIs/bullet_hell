@@ -67,23 +67,24 @@ public class DamageText : MonoBehaviour
         }
     }
 
-    public void Setup(Vector3 position, int amount, bool crit, int xSign)
+    public static void Setup(Vector3 position, int amount, bool crit, int xSign)
     {
-        TextMeshPro _textMeshPro = Instantiate(GetComponent<TextMeshPro>(), position, Quaternion.identity);
+        DamageText resource = GameAssets.DamageText;
+        TextMeshPro _textMeshPro = Instantiate(resource.GetComponent<TextMeshPro>(), position, Quaternion.identity);
 
         _textMeshPro.SetText(amount.ToString());
-        _textMeshPro.GetComponent<DamageText>().xSign = xSign;
-        Debug.Log(xSign);
+        DamageText instance = _textMeshPro.GetComponent<DamageText>();
+        instance.xSign = xSign;
 
         if (crit)
         {
-            _textMeshPro.color = CritColor;
-            _textMeshPro.fontSize = CritSize;
-            _textMeshPro.rectTransform.sizeDelta *= CritSize / (float)FontSize;
+            _textMeshPro.color = instance.CritColor;
+            _textMeshPro.fontSize = instance.CritSize;
+            _textMeshPro.rectTransform.sizeDelta *= instance.CritSize / (float)instance.FontSize;
         }
         else
         {
-            _textMeshPro.color = TextColor;
+            _textMeshPro.color = instance.TextColor;
         }
     }
 }

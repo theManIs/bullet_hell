@@ -120,4 +120,11 @@ public abstract class RectangleBar : MonoBehaviour
     {
         return _healthSystem;
     }
+
+    public void ReloadHealthSystem(int maxHealth, int health)
+    {
+        _healthSystem = new HealthSystem(maxHealth) { Health = health };
+        _healthBar.fillAmount = _healthSystem.HealthPercent;
+        _healthSystem.OnHealthChanged += OnHealthChanged;
+    }
 }

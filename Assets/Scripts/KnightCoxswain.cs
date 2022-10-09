@@ -3,7 +3,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KnightCoxswain : MonoBehaviour, CoinTaker
+public class KnightCoxswain : MonoBehaviour
 {
     //todo
     public GameObject SwordSwipeGo;
