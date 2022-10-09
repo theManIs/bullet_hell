@@ -15,6 +15,7 @@ public class EnemyCoxswain : MonoBehaviour
     public float ClosingSpeed = .5f;
     public float ClosingError = 0f;
     public int HealthPoints = 2;
+    public bool SwingInMoving = false;
     // public float DisappearTime = 1f;
 
     // private const int _pi = 180;
@@ -53,7 +54,6 @@ public class EnemyCoxswain : MonoBehaviour
     {
         if (_hs.IsDead) return;
 
-        _srea.SwingWhenMoving();
         // if (RotateRight)
         // {
         //     transform.Rotate(0, 0, TiltSpeed * Time.deltaTime);
@@ -87,6 +87,10 @@ public class EnemyCoxswain : MonoBehaviour
                 //Debug.Log("Target not reached");
                 transform.position += (target.transform.position - transform.position).normalized * ClosingSpeed * Time.deltaTime;
 
+                if (SwingInMoving)
+                {
+                    _srea.SwingWhenMoving();
+                }
             }
             else
             {
@@ -110,11 +114,19 @@ public class EnemyCoxswain : MonoBehaviour
             stp.ToAshes();
             stp.Disappear();
             _oce.InvokeEvent(1);
+            DropCoin();
         }
         else
         {
             _srea.BlinkOnce();
             _srea.RepelOneStepBack(gotHitFrom);
         }
+    }
+
+    public void DropCoin()
+    {
+        GameObject coin = Resources.Load<GameObject>("Environment/Coin_1");
+        //Debug.Log(coin);
+        Instantiate(coin.gameObject, transform.position, Quaternion.identity);
     }
 }

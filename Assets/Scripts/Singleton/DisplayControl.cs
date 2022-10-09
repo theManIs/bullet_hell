@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [Serializable]
@@ -21,6 +22,7 @@ public enum HealthBarsSet
 public class DisplayControl : MonoBehaviour
 {
     public HealthBars HealthBars;
+    public TextMeshProUGUI Treasury;
 
     // Start is called before the first frame update
     void Start()

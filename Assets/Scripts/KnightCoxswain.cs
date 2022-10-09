@@ -3,7 +3,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KnightCoxswain : MonoBehaviour
+public class KnightCoxswain : MonoBehaviour, CoinTaker
 {
     //todo
     public GameObject SwordSwipeGo;
@@ -157,5 +157,13 @@ public class KnightCoxswain : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collider2D)
+    {
+        // if (collider2D.GetComponent<CoinOperator>())
+        // {
+        //     // Destroy(collider2D.gameObject);
+        // }
     }
 }

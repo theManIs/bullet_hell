@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DamageAdder : MonoBehaviour
@@ -9,10 +10,12 @@ public class DamageAdder : MonoBehaviour
     // private SpriteRendererEffectAdder srea;
     private EnemyCoxswain _ec;
     private float _lastTrigger;
+    private DamageText _dm;
 
     public void Awake()
     {
         _ec = GetComponent<EnemyCoxswain>();
+        _dm = Resources.Load<DamageText>("Effects/DamageText");
         // srea = GetComponent<SpriteRendererEffectAdder>();
 
         _lastTrigger = Time.time;
@@ -44,16 +47,23 @@ public class DamageAdder : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (Time.time - _lastTrigger > TriggerEnterLock)
+        // Debug.Log(collision.gameObject.layer + " layer: " + LayerMask.LayerToName(collision.gameObject.layer) + " to layer: " + LayerMask.NameToLayer("DamageEnemy"));
+        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("DamageEnemy"))
         {
-            if (_ec != null)
+            if (Time.time - _lastTrigger > TriggerEnterLock)
             {
-                // srea.BlinkOnce();
-                _ec.GotHit(collision.gameObject.transform);
-                // srea.RepelOneStepBack(collision.gameObject.transform);
+                if (_ec != null)
+                {
+                    // srea.BlinkOnce();
+                    _ec.GotHit(collision.gameObject.transform);
+                    _dm.Setup(transform.position, Mathf.CeilToInt(Random.value * 2), Random.value > .7f, (int)Mathf.Sign(transform.position.x - collision.gameObject.transform.position.x));
+                    // _dm.Setup(transform.position, Mathf.CeilToInt(Random.value * 2), true);
+                    // srea.RepelOneStepBack(collision.gameObject.transform);
+                }
             }
-        }
 
-        _lastTrigger = Time.time;
+            _lastTrigger = Time.time;
+        }
     }
 }
