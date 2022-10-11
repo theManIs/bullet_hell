@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,6 +29,7 @@ public class KnightCoxswain : MonoBehaviour
     private SpriteRendererEffectAdder _srea;
     private DisplayControl _dc;
     private RectangleBar _healthBar;
+    private WeaponFrame _wp;
 
     public void Awake()
     {
@@ -59,7 +61,9 @@ public class KnightCoxswain : MonoBehaviour
             _swordSwipe.SetActive(false);
             _swipeSp = _swordSwipe.GetComponent<SpriteRenderer>();
 
-            InvokeRepeating(nameof(SwipeWithSword), SwipeFrequency, SwipeFrequency);
+            _wp = ArrowShaft.GetArrowShaftAsset().SetTransformOfOrigin(transform);
+            // InvokeRepeating(nameof(GoWeaponGo), 0, 2f);
+            //InvokeRepeating(nameof(SwipeWithSword), SwipeFrequency, SwipeFrequency);
         }
     }
 
@@ -93,6 +97,19 @@ public class KnightCoxswain : MonoBehaviour
     public void OnEnable() => _hs.OnHealthChanged += WhenGetHit;
 
     public void OnDisable() => _hs.OnHealthChanged -= WhenGetHit;
+
+    // public void GoWeaponGo()
+    // {
+    //     List<EnemyCoxswain> lec = new List<EnemyCoxswain>(FindObjectsOfType<EnemyCoxswain>());
+    //     List<Vector3> lv3 = new List<Vector3>();
+    //
+    //     foreach (EnemyCoxswain enemyCoxswain in lec)
+    //     {
+    //         lv3.Add(enemyCoxswain.transform.position);
+    //     }
+    //
+    //     ArrowShaft.Setup(transform.position, lv3.ToArray());
+    // }
 
     public void SwipeWithSword()
     {
