@@ -76,7 +76,11 @@ public class KnightCoxswain : MonoBehaviour
             transform.position += Vector3.right * Time.deltaTime * MoveSpeed * xAxis + Vector3.up * Time.deltaTime * MoveSpeed * yAxis;
 
             _knightSp.flipX = !(xAxis > 0);
-            _swipeSp.flipX = !(xAxis > 0);
+
+            if (_swipeSp)
+            {
+                _swipeSp.flipX = !(xAxis > 0);
+            }
 
             _srea.Move();
         }

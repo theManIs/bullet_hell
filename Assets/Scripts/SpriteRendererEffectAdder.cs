@@ -98,10 +98,7 @@ public class SpriteRendererEffectAdder : MonoBehaviour
     {
         if (_animator)
         {
-            if (_animator)
-            {
-                _animator.StartPlayback();
-            }
+            _animator.SetBool("Moving", true);
         }
     }
 
@@ -109,7 +106,7 @@ public class SpriteRendererEffectAdder : MonoBehaviour
     {
         if (_animator)
         {
-            _animator.StopPlayback();
+            _animator.SetBool("Moving", false);
         }
     }
 }
