@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.WSA;
 
-public class WeaponFrame : MonoBehaviour
+public abstract class WeaponFrame : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float WeaponRange = 5f;
+    public float WeaponCooldown = 2f;
+    public float FlightSpeed = 5f;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    protected Transform TransformOfOrigin;
+
+    public abstract WeaponFrame Launch(Transform transformOfOrigin);
+    public abstract WeaponFrame GetAsset();
 }

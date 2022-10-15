@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Assets.Scripts.Types;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class KnightCoxswain : MonoBehaviour
 {
-    //todo
-    public GameObject SwordSwipeGo;
-    public float SwipeFrequency = 1f;
-    public float EffectDuration = 1f;
+    // //todo
+    // public GameObject SwordSwipeGo;
+    // public float SwipeFrequency = 1f;
+    // public float EffectDuration = 1f;
     public HealthBarsSet HealthBar;
+    public WeaponsSet RightHand;
 
     [Range(0, 10)]
     public float MoveSpeed = 2;
@@ -19,12 +21,12 @@ public class KnightCoxswain : MonoBehaviour
     [Range(0, 10)]
     public float InvulnerabilityTime = 1f;
 
-    private GameObject _swordSwipe;
+    // private GameObject _swordSwipe;
     private SpriteRenderer _knightSp;
     private SpriteRenderer _swipeSp;
     private Collider2D _mainCol;
-    private Vector3 _lastColliderPosition;
-    private Vector2 _defaultColliderOffset;
+    // private Vector3 _lastColliderPosition;
+    // private Vector2 _defaultColliderOffset;
     private HealthSystem _hs;
     private SpriteRendererEffectAdder _srea;
     private DisplayControl _dc;
@@ -34,8 +36,8 @@ public class KnightCoxswain : MonoBehaviour
     public void Awake()
     {
         _mainCol = GetComponent<Collider2D>();
-        _lastColliderPosition = transform.position;
-        _defaultColliderOffset = _mainCol.offset;
+        // _lastColliderPosition = transform.position;
+        // _defaultColliderOffset = _mainCol.offset;
         _hs = new HealthSystem(HealthPoints) { InvulnerabilityTime = InvulnerabilityTime };
         _srea = GetComponent<SpriteRendererEffectAdder>();
         _dc = FindObjectOfType<DisplayControl>();
@@ -55,16 +57,28 @@ public class KnightCoxswain : MonoBehaviour
         _healthBar.gameObject.SetActive(true);
         // _dc.HealthBars.HealthBarShrink.ResetSystem(HealthPoints);
 
-        if (SwordSwipeGo)
-        {
-            _swordSwipe = Instantiate(SwordSwipeGo, transform);
-            _swordSwipe.SetActive(false);
-            _swipeSp = _swordSwipe.GetComponent<SpriteRenderer>();
+        // if (SwordSwipeGo)
+        // {
+        //     _swordSwipe = Instantiate(SwordSwipeGo, transform);
+        //     _swordSwipe.SetActive(false);
+        //     _swipeSp = _swordSwipe.GetComponent<SpriteRenderer>();
 
-            _wp = ArrowShaft.GetArrowShaftAsset().SetTransformOfOrigin(transform);
+        _wp = RightHand switch
+        {
+            WeaponsSet.SwordSwipe => SwordSwipe.Asset,
+            WeaponsSet.ArrowShaft => GameAssets.ArrowShaft,
+            WeaponsSet.FireballBlast => GameAssets.FireballBlast,
+            _ => _wp
+        };
+
+        _wp.Launch(transform);
+            // _wp = SwordSwipe.Asset.Launch(transform);
+            
+
+
             // InvokeRepeating(nameof(GoWeaponGo), 0, 2f);
             //InvokeRepeating(nameof(SwipeWithSword), SwipeFrequency, SwipeFrequency);
-        }
+        // }
     }
 
     // Update is called once per frame
@@ -111,30 +125,30 @@ public class KnightCoxswain : MonoBehaviour
     //     ArrowShaft.Setup(transform.position, lv3.ToArray());
     // }
 
-    public void SwipeWithSword()
-    {
-        if (SwordSwipeGo)
-        {
-            _swordSwipe.SetActive(true);
+    // public void SwipeWithSword()
+    // {
+    //     if (SwordSwipeGo)
+    //     {
+    //         _swordSwipe.SetActive(true);
+    //
+    //         if (_lastColliderPosition != transform.position)
+    //         {
+    //             _mainCol.offset += Vector2.right * .01f;
+    //         }
+    //
+    //         Invoke(nameof(DisableEffect), EffectDuration);
+    //     }
+    // }
 
-            if (_lastColliderPosition != transform.position)
-            {
-                _mainCol.offset += Vector2.right * .01f;
-            }
-
-            Invoke(nameof(DisableEffect), EffectDuration);
-        }
-    }
-
-    public void DisableEffect()
-    {
-        _swordSwipe.SetActive(false);
-
-        if (_mainCol.offset != _defaultColliderOffset)
-        {
-            _mainCol.offset = _defaultColliderOffset;
-        }
-    }
+    // public void DisableEffect()
+    // {
+    //     _swordSwipe.SetActive(false);
+    //
+    //     if (_mainCol.offset != _defaultColliderOffset)
+    //     {
+    //         _mainCol.offset = _defaultColliderOffset;
+    //     }
+    // }
 
     public void SetDamage()
     {
@@ -180,11 +194,11 @@ public class KnightCoxswain : MonoBehaviour
         }
     }
 
-    public void OnTriggerEnter2D(Collider2D collider2D)
-    {
+    // public void OnTriggerEnter2D(Collider2D collider2D)
+    // {
         // if (collider2D.GetComponent<CoinOperator>())
         // {
         //     // Destroy(collider2D.gameObject);
         // }
-    }
+    // }
 }

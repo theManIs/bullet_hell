@@ -227,6 +227,7 @@ MonoBehaviour:
   SwipeFrequency: 1.5
   EffectDuration: 0.5
   HealthBar: 2
+  RightHand: 0
   MoveSpeed: 2
   HealthPoints: 5
   InvulnerabilityTime: 0.5
@@ -4053,6 +4054,7 @@ MonoBehaviour:
   SwipeFrequency: 1
   EffectDuration: 1
   HealthBar: 0
+  RightHand: 0
   MoveSpeed: 2
   HealthPoints: 5
   InvulnerabilityTime: 1
@@ -4574,6 +4576,7 @@ MonoBehaviour:
   SwipeFrequency: 1
   EffectDuration: 0.5
   HealthBar: 0
+  RightHand: 2
   MoveSpeed: 2
   HealthPoints: 5
   InvulnerabilityTime: 1
