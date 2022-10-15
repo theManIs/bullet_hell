@@ -29,6 +29,7 @@ public class EnemyCoxswain : MonoBehaviour
     private Collider2D _c2dTarget;
     private OnChangeExperience _oce;
 
+    public bool IsDead => _hs.IsDead;
 
     public void Awake()
     {
