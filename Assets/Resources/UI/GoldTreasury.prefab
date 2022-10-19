@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 6333772811488058280}
   - component: {fileID: 8947679409888412039}
   m_Layer: 5
-  m_Name: Treasury
+  m_Name: GoldTreasury
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -5,4 +5,14 @@ using UnityEngine;
 public class FireballBlast : RangedWeaponFrame
 {
     public override WeaponFrame GetAsset() => GameAssets.FireballBlast;
+
+    public override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+
+        if (collision.gameObject.layer != LayerMask.NameToLayer(IgnoreDestroyLayer))
+        {
+            Instantiate(GameAssets.FireBang, transform.position, Quaternion.identity);
+        }
+    }
 }

@@ -131,9 +131,13 @@ PrefabInstance:
     - target: {fileID: 7650986088119999485, guid: 5906f1a523c6e0f4599880664d224008, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8700ec65c424b1d4db77a93df9664fc6, type: 3}
+      objectReference: {fileID: 21300000, guid: eb156fe4c61c46046bb96682bc4d5c7e, type: 3}
     - target: {fileID: 7650986088119999485, guid: 5906f1a523c6e0f4599880664d224008, type: 3}
       propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7650986088119999486, guid: 5906f1a523c6e0f4599880664d224008, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
