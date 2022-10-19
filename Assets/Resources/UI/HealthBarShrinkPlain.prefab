@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 9218727170551986301}
   - component: {fileID: 9218727170551986300}
   m_Layer: 5
-  m_Name: HealthBarFadeShrink
+  m_Name: HealthBarShrinkPlain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
@@ -67,8 +69,9 @@ public class CoinOperator : MonoBehaviour
 
             // Destination = new Vector3(-9, transform.position.y);
 
-            Vector2 rect = _dc.Treasury.rectTransform.position;
-            rect.y -= _dc.Treasury.rectTransform.sizeDelta.y / 2;
+            // Vector2 rect = _dc.Treasury.rectTransform.position;
+            // rect.y -= _dc.Treasury.rectTransform.sizeDelta.y / 2;
+            Vector2 rect = _dc.Treasury.GetComponent<GoldTreasury>().GetCoinPosition();
             // Debug.Log(_dc.Treasury.rectTransform.sizeDelta.y + " " + rect);
             Vector3 viewport = Camera.main.ScreenToViewportPoint(rect);
             Vector3 dest = Camera.main.ViewportToWorldPoint(viewport);
