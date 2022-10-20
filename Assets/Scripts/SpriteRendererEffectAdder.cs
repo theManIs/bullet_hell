@@ -42,6 +42,9 @@ public class SpriteRendererEffectAdder : MonoBehaviour
         
     }
 
+    public void SetInitialColor(Color c) => _initialColor = c;
+    public Color GetInitialColor() => _initialColor;
+
     public void BlinkColors()
     {
         if (_affectedSpriteRenderer.material.shader == _defaultSpriteShader)

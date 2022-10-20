@@ -4,6 +4,7 @@
     {
         SwordSwipe,
         ArrowShaft,
-        FireballBlast
+        FireballBlast,
+        FeatheredDart
     }
 }

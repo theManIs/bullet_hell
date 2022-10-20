@@ -24,7 +24,7 @@ public abstract class RangedWeaponFrame : WeaponFrame
     {
         // if (Go)
         // {
-            Debug.Log(gameObject.name + " " + GetInstanceID());
+            // Debug.Log(gameObject.name + " " + GetInstanceID());
             transform.position += DirectionVector3 * Time.deltaTime * FlightSpeed;
             ProjectileLife += Time.deltaTime;
 

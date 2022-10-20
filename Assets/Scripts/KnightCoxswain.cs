@@ -68,6 +68,7 @@ public class KnightCoxswain : MonoBehaviour
             WeaponsSet.SwordSwipe => SwordSwipe.Asset,
             WeaponsSet.ArrowShaft => GameAssets.ArrowShaft,
             WeaponsSet.FireballBlast => GameAssets.FireballBlast,
+            WeaponsSet.FeatheredDart => GameAssets.FeatheredDart,
             _ => _wp
         };
 
