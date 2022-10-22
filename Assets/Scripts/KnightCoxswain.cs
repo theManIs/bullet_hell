@@ -65,10 +65,11 @@ public class KnightCoxswain : MonoBehaviour
 
         _wp = RightHand switch
         {
-            WeaponsSet.SwordSwipe => SwordSwipe.Asset,
+            WeaponsSet.SwordSwipe => GameAssets.SwordSwipe,
             WeaponsSet.ArrowShaft => GameAssets.ArrowShaft,
             WeaponsSet.FireballBlast => GameAssets.FireballBlast,
             WeaponsSet.FeatheredDart => GameAssets.FeatheredDart,
+            WeaponsSet.QiangPoke => GameAssets.QiangPoke,
             _ => _wp
         };
 

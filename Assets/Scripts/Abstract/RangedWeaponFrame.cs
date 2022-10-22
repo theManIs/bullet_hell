@@ -2,22 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider2D))]
 public abstract class RangedWeaponFrame : WeaponFrame
 {
-    public string IgnoreDestroyLayer = "Player";
-    public string WeaponLayer = "DamageEnemy";
-    public Vector3 DirectionVector3;
     public float Lifespan = 3f;
     public float ProjectileLife = 0;
     public bool Go = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameObject.layer = LayerMask.NameToLayer(WeaponLayer);
-        GetComponent<Collider2D>().isTrigger = true;
-    }
+    // // Start is called before the first frame update
+    // void Start()
+    // {
+    //     gameObject.layer = LayerMask.NameToLayer(WeaponLayer);
+    //     GetComponent<Collider2D>().isTrigger = true;
+    // }
 
     // Update is called once per frame
     void Update()

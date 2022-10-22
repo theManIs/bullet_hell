@@ -9,4 +9,5 @@ public class GameAssets
     public static SwordSwipe SwordSwipe => Resources.Load<SwordSwipe>("Weapons/Swipe");
     public static FireballBlast FireballBlast => Resources.Load<FireballBlast>("Weapons/Fireball");
     public static FeatheredDart FeatheredDart => Resources.Load<FeatheredDart>("Weapons/Dart");
+    public static QiangPoke QiangPoke => Resources.Load<QiangPoke>("Weapons/Qiang");
 }

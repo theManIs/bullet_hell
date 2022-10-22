@@ -5,6 +5,7 @@
         SwordSwipe,
         ArrowShaft,
         FireballBlast,
-        FeatheredDart
+        FeatheredDart,
+        QiangPoke
     }
 }

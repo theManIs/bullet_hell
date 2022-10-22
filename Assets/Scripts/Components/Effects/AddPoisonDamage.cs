@@ -5,9 +5,9 @@ using UnityEngine;
 public class AddPoisonDamage : MonoBehaviour
 {
     public Color InitialColor;
+    public Color GreenColor = Color.green;
     public float EffectCooldown = 1f;
     public float EffectDuration = 5f;
-
     public void Start()
     {
         InvokeRepeating(nameof(AddDamage), EffectCooldown, EffectCooldown);
@@ -38,5 +38,28 @@ public class AddPoisonDamage : MonoBehaviour
         }
 
         Destroy(this);
+    }
+
+    public static void Setup(GameObject gm)
+    {
+        if (gm.GetComponent<SpriteRendererEffectAdder>() is { } colSp)
+        {
+            if (gm.GetComponent<AddPoisonDamage>() is { } apd)
+            {
+                AddPoisonDamage apdNew = gm.AddComponent<AddPoisonDamage>();
+
+                apdNew.InitialColor = apd.InitialColor;
+                colSp.SetInitialColor(apdNew.GreenColor);
+
+                Destroy(apd);
+            }
+            else
+            {
+                AddPoisonDamage apdNew = gm.AddComponent<AddPoisonDamage>();
+
+                apdNew.InitialColor = colSp.GetInitialColor();
+                colSp.SetInitialColor(apdNew.GreenColor);
+            }
+        }
     }
 }
