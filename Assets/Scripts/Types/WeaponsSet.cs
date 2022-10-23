@@ -6,6 +6,8 @@
         ArrowShaft,
         FireballBlast,
         FeatheredDart,
-        QiangPoke
+        QiangPoke, 
+        ReaperScythe,
+        ChakramOne,
     }
 }

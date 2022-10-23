@@ -47,7 +47,7 @@ public class FeatheredDart : RangedWeaponFrame
             //     }
             // }
 
-            AddPoisonDamage.Setup(collision.gameObject);
+            AddTimedDamage.Setup<AddPoisonDamage>(collision.gameObject);
        }
     }
 }

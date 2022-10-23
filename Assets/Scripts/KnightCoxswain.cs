@@ -13,6 +13,7 @@ public class KnightCoxswain : MonoBehaviour
     // public float EffectDuration = 1f;
     public HealthBarsSet HealthBar;
     public WeaponsSet RightHand;
+    public bool LastDirectionLeft = false;
 
     [Range(0, 10)]
     public float MoveSpeed = 2;
@@ -70,6 +71,8 @@ public class KnightCoxswain : MonoBehaviour
             WeaponsSet.FireballBlast => GameAssets.FireballBlast,
             WeaponsSet.FeatheredDart => GameAssets.FeatheredDart,
             WeaponsSet.QiangPoke => GameAssets.QiangPoke,
+            WeaponsSet.ReaperScythe => GameAssets.ReaperScythe,
+            WeaponsSet.ChakramOne => GameAssets.ChakramOne,
             _ => _wp
         };
 
@@ -96,6 +99,7 @@ public class KnightCoxswain : MonoBehaviour
             transform.position += Vector3.right * Time.deltaTime * MoveSpeed * xAxis + Vector3.up * Time.deltaTime * MoveSpeed * yAxis;
 
             _knightSp.flipX = !(xAxis > 0);
+            LastDirectionLeft = !(xAxis > 0); 
 
             if (_swipeSp)
             {

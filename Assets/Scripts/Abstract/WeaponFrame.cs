@@ -11,6 +11,7 @@ public abstract class WeaponFrame : MonoBehaviour
     public float WeaponCooldown = 2f;
     public float FlightSpeed = 5f;
     public string WeaponLayer = "DamageEnemy";
+    public string EnvironmentLayer = "Environment";
     public Vector3 DirectionVector3;
     public string IgnoreDestroyLayer = "Player";
 
@@ -70,4 +71,8 @@ public abstract class WeaponFrame : MonoBehaviour
             Destroy(gameObject, after);
         }
     }
+
+    public bool IgnorePlayerL(GameObject gm) => gm.layer != LayerMask.NameToLayer(IgnoreDestroyLayer);
+    public bool IgnoreEnvironmentL(GameObject gm) => gm.layer != LayerMask.NameToLayer(EnvironmentLayer);
+    public bool IgnoreEnvPl(GameObject gm) => IgnorePlayerL(gm) && IgnoreEnvironmentL(gm);
 }

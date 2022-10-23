@@ -10,9 +10,20 @@ public class QiangPoke : MeleeWeaponFrame
     public override WeaponFrame GetAsset() => GameAssets.QiangPoke;
 
     public float MovementStage = 0;
-    public Vector3 EnemyPosition;
-    public Vector3 StartPosition;
+    // public Vector3 EnemyPosition;
+    // public Vector3 StartPosition;
     public float HalfEffectDuration => EffectDuration / 2;
+
+    public override void Start()
+    {
+        base.Start();
+        
+        DirectionVector3 = EnemyPosition - transform.position;
+        transform.rotation = CalculateRotation(DirectionVector3);
+        
+        DestroyIfNoEnemy();
+        Destroy(gameObject, EffectDuration);
+    }
 
     public void Update()
     {
@@ -20,36 +31,38 @@ public class QiangPoke : MeleeWeaponFrame
         // {
         //     transform.position += DirectionVector3 * Time.deltaTime * FlightSpeed * (HalfEffectDuration - MovementStage);
         // }
+
+        // DirectionVector3 = EnemyPosition - transform.position;
         transform.position += DirectionVector3 * Time.deltaTime * FlightSpeed * (HalfEffectDuration - MovementStage);
 
         MovementStage += Time.deltaTime;
-        CalculateRotation(DirectionVector3);
+        transform.rotation = CalculateRotation(DirectionVector3);
 
-        if (MovementStage >= EffectDuration)
-        {
-            Destroy(gameObject);
-        }
+        // if (MovementStage >= EffectDuration)
+        // {
+        //     Destroy(gameObject);
+        // }
     }
 
-    public override void Setup()
-    {
-        Vector3 enemyPosition = PickEnemy(FetchVector3FromEnemyCoxswain(), TransformOfOrigin.position);
-        
-            // DebugEx.LogList(new List<Vector3>(FetchVector3FromEnemyCoxswain()));
-        if (enemyPosition != Vector3.zero)
-        {
-            // Debug.Log(enemyPosition + " " + Vector3.Distance(TransformOfOrigin.position, enemyPosition));
-            if (Instantiate(GetAsset(), TransformOfOrigin) is QiangPoke qiangPoke)
-            {
-                qiangPoke.StartPosition = qiangPoke.transform.position;
-                qiangPoke.EnemyPosition = enemyPosition;
-                qiangPoke.DirectionVector3 = enemyPosition - qiangPoke.transform.position;
-                qiangPoke.transform.rotation = CalculateRotation(qiangPoke.DirectionVector3);
-            
-                // Destroy(qiangPoke.gameObject, EffectDuration);
-            }
-        }
-    }
+    // public override void Setup()
+    // {
+    //     Vector3 enemyPosition = PickEnemy(FetchVector3FromEnemyCoxswain(), TransformOfOrigin.position);
+    //     
+    //         // DebugEx.LogList(new List<Vector3>(FetchVector3FromEnemyCoxswain()));
+    //     if (enemyPosition != Vector3.zero)
+    //     {
+    //         // Debug.Log(enemyPosition + " " + Vector3.Distance(TransformOfOrigin.position, enemyPosition));
+    //         if (Instantiate(GetAsset(), TransformOfOrigin) is QiangPoke qiangPoke)
+    //         {
+    //             // qiangPoke.StartPosition = qiangPoke.transform.position;
+    //             qiangPoke.EnemyPosition = enemyPosition;
+    //             // qiangPoke.DirectionVector3 = enemyPosition - qiangPoke.transform.position;
+    //             // qiangPoke.transform.rotation = CalculateRotation(qiangPoke.DirectionVector3);
+    //         
+    //             // Destroy(qiangPoke.gameObject, EffectDuration);
+    //         }
+    //     }
+    // }
 
     // public void OnDrawGizmos()
     // {

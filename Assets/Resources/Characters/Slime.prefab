@@ -37,7 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2963827021038382321
 SpriteRenderer:
@@ -126,7 +126,7 @@ MonoBehaviour:
   target: {fileID: 0}
   ClosingSpeed: 0.5
   ClosingError: 0
-  HealthPoints: 2
+  HealthPoints: 3
   SwingInMoving: 0
 --- !u!50 &713409848279800509
 Rigidbody2D:

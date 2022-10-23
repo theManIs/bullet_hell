@@ -10,4 +10,10 @@ public class GameAssets
     public static FireballBlast FireballBlast => Resources.Load<FireballBlast>("Weapons/Fireball");
     public static FeatheredDart FeatheredDart => Resources.Load<FeatheredDart>("Weapons/Dart");
     public static QiangPoke QiangPoke => Resources.Load<QiangPoke>("Weapons/Qiang");
+    public static ReaperScythe ReaperScythe => Resources.Load<ReaperScythe>("Weapons/Scythe");
+    public static ChakramOne ChakramOne => Resources.Load<ChakramOne>("Weapons/Chakram");
+
+    public static GameObject SpillingBlood => Resources.Load<GameObject>("Effects/SpillingBlood");
+    public static GameObject SpillingPoison => Resources.Load<GameObject>("Effects/SpillingPoison");
+    public static GameObject GroundFire => Resources.Load<GameObject>("Effects/GroundFire");
 }

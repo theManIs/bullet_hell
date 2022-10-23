@@ -5,7 +5,9 @@ using UnityEngine;
 public abstract class MeleeWeaponFrame : WeaponFrame
 {
     public float EffectDuration = 1f;
-    
+    public Vector3 EnemyPosition;
+    public int LastAxis = -1;
+
     public override WeaponFrame Launch(Transform transformOfOrigin)
     {
         TransformOfOrigin = transformOfOrigin;
@@ -17,8 +19,19 @@ public abstract class MeleeWeaponFrame : WeaponFrame
 
     public virtual void Setup()
     {
-        WeaponFrame swordSwipe = Instantiate(GetAsset(), TransformOfOrigin);
+        if (Instantiate(GetAsset(), TransformOfOrigin) is MeleeWeaponFrame rs)
+        {
+            rs.TransformOfOrigin = TransformOfOrigin;
+            rs.LastAxis = TransformOfOrigin.GetComponent<KnightCoxswain>().LastDirectionLeft ? 1 : -1;
+            rs.EnemyPosition = PickEnemy(FetchVector3FromEnemyCoxswain(), TransformOfOrigin.position);
+        }
+    }
 
-        Destroy(swordSwipe.gameObject, EffectDuration);
+    public void DestroyIfNoEnemy()
+    {
+        if (EnemyPosition == Vector3.zero)
+        {
+            Destroy(gameObject);
+        }
     }
 }

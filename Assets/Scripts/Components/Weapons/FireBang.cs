@@ -11,5 +11,8 @@ public class FireBang : MonoBehaviour
         Destroy(gameObject, EffectDuration);
     }
 
-
+    public void OnTriggerEnter2D(Collider2D collider2d)
+    {
+        AddTimedDamage.Setup<AddFireDamage>(collider2d.gameObject);
+    }
 }
