@@ -5,27 +5,25 @@ using UnityEngine;
 public abstract class MeleeWeaponFrame : WeaponFrame
 {
     public float EffectDuration = 1f;
-    public Vector3 EnemyPosition;
-    public int LastAxis = -1;
 
-    public override WeaponFrame Launch(Transform transformOfOrigin)
-    {
-        TransformOfOrigin = transformOfOrigin;
-
-        InvokeRepeating(nameof(Setup), 0, WeaponCooldown);
-
-        return this;
-    }
-
-    public virtual void Setup()
-    {
-        if (Instantiate(GetAsset(), TransformOfOrigin) is MeleeWeaponFrame rs)
-        {
-            rs.TransformOfOrigin = TransformOfOrigin;
-            rs.LastAxis = TransformOfOrigin.GetComponent<KnightCoxswain>().LastDirectionLeft ? 1 : -1;
-            rs.EnemyPosition = PickEnemy(FetchVector3FromEnemyCoxswain(), TransformOfOrigin.position);
-        }
-    }
+    // public override WeaponFrame Launch(Transform transformOfOrigin)
+    // {
+    //     TransformOfOrigin = transformOfOrigin;
+    //
+    //     InvokeRepeating(nameof(Setup), 0, WeaponCooldown);
+    //
+    //     return this;
+    // }
+    //
+    // public virtual void Setup()
+    // {
+    //     if (Instantiate(GetAsset(), TransformOfOrigin) is MeleeWeaponFrame rs)
+    //     {
+    //         rs.TransformOfOrigin = TransformOfOrigin;
+    //         rs.LastAxis = TransformOfOrigin.GetComponent<KnightCoxswain>().LastDirectionLeft ? 1 : -1;
+    //         rs.EnemyPosition = PickEnemy(FetchVector3FromEnemyCoxswain(), TransformOfOrigin.position);
+    //     }
+    // }
 
     public void DestroyIfNoEnemy()
     {

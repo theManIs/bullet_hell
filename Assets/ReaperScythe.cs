@@ -8,9 +8,9 @@ public class ReaperScythe : MeleeWeaponFrame
     [Range(0, 89)]
     public float RotationAngle = 45;
 
-    public float AnimationDuration = .5f;
-
-    public Color EffectColor = Color.red;
+    // public float AnimationDuration = .5f;
+    //
+    // public Color EffectColor = Color.red;
 
     public override WeaponFrame GetAsset() => GameAssets.ReaperScythe;
 

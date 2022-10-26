@@ -6,7 +6,7 @@ public abstract class RangedWeaponFrame : WeaponFrame
 {
     public float Lifespan = 3f;
     public float ProjectileLife = 0;
-    public bool Go = false;
+    // public bool Go = false;
 
     // // Start is called before the first frame update
     // void Start()
@@ -40,61 +40,87 @@ public abstract class RangedWeaponFrame : WeaponFrame
     public override WeaponFrame Launch(Transform transformOfOrigin)
     {
         TransformOfOrigin = transformOfOrigin;
-        // Go = true;
 
-        InvokeRepeating(nameof(GoWeaponGo), 0, WeaponCooldown);
+        InvokeRepeating(nameof(BeforeSetup), 0, WeaponCooldown);
 
         return this;
     }
 
-    public void GoWeaponGo()
+    public void BeforeSetup()
     {
-        // if (Go)
-        // {
-        List<EnemyCoxswain> lec = new List<EnemyCoxswain>(FindObjectsOfType<EnemyCoxswain>());
-        List<Vector3> lv3 = new List<Vector3>();
-
-        foreach (EnemyCoxswain enemyCoxswain in lec)
+        if (FindEnemyPosition(WeaponRange, null) != Vector3.zero)
         {
-            if (!enemyCoxswain.IsDead)
-            {
-                lv3.Add(enemyCoxswain.transform.position);
-            }
+            WeaponFrame wpf = Setup(Instantiate(GetAsset(), TransformOfOrigin.position, Quaternion.identity));
+
+            wpf.EnemyPosition = FindEnemyPosition(WeaponRange, null);
+            wpf.DirectionVector3 = (wpf.EnemyPosition - wpf.transform.position).normalized;
+            wpf.transform.rotation = wpf.CalculateRotation(wpf.DirectionVector3);
         }
 
-        Setup(TransformOfOrigin.position, lv3.ToArray());
+        // if (wpf.EnemyPosition == Vector3.zero)
+        // {
+        //     Destroy(wpf.gameObject);
         // }
     }
 
-    public void CalculateRotation()
-    {
-        Vector3 rotatedDirection = Quaternion.Euler(0, 0, 90) * DirectionVector3;
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, rotatedDirection);
-    }
-
-    public WeaponFrame Setup(Vector3 position, Vector3[] targetPositions)
-    {
-        // Debug.Log(GetAsset());
-        RangedWeaponFrame ash = (RangedWeaponFrame)Instantiate(GetAsset(), position, Quaternion.identity);
-
-        Vector3 targetPosition =
-            // new List<Vector3>(targetPositions).Find(targetPosition => Vector3.Distance(targetPosition, position) <= ash.WeaponRange);
-            new List<Vector3>(targetPositions).Find(targetPosition => (targetPosition - position).sqrMagnitude <= Mathf.Pow(ash.WeaponRange, 2));
-
-        if (targetPosition != Vector3.zero)
-        {
-            ash.DirectionVector3 = (targetPosition - ash.transform.position).normalized;
-
-            //ash.transform.rotation.SetFromToRotation(Vector3.right, targetPosition);
-            ash.CalculateRotation();
-        }
-        else
-        {
-            Destroy(ash.gameObject);
-        }
-
-        return ash;
-    }
+    // public override WeaponFrame Launch(Transform transformOfOrigin)
+    // {
+    //     TransformOfOrigin = transformOfOrigin;
+    //     // Go = true;
+    //
+    //     InvokeRepeating(nameof(GoWeaponGo), 0, WeaponCooldown);
+    //
+    //     return this;
+    // }
+    //
+    // public void GoWeaponGo()
+    // {
+    //     // if (Go)
+    //     // {
+    //     List<EnemyCoxswain> lec = new List<EnemyCoxswain>(FindObjectsOfType<EnemyCoxswain>());
+    //     List<Vector3> lv3 = new List<Vector3>();
+    //
+    //     foreach (EnemyCoxswain enemyCoxswain in lec)
+    //     {
+    //         if (!enemyCoxswain.IsDead)
+    //         {
+    //             lv3.Add(enemyCoxswain.transform.position);
+    //         }
+    //     }
+    //
+    //     Setup(TransformOfOrigin.position, lv3.ToArray());
+    //     // }
+    // }
+    //
+    // public void CalculateRotation()
+    // {
+    //     Vector3 rotatedDirection = Quaternion.Euler(0, 0, 90) * DirectionVector3;
+    //     transform.rotation = Quaternion.LookRotation(Vector3.forward, rotatedDirection);
+    // }
+    //
+    // public WeaponFrame Setup(Vector3 position, Vector3[] targetPositions)
+    // {
+    //     // Debug.Log(GetAsset());
+    //     RangedWeaponFrame ash = (RangedWeaponFrame)Instantiate(GetAsset(), position, Quaternion.identity);
+    //
+    //     Vector3 targetPosition =
+    //         // new List<Vector3>(targetPositions).Find(targetPosition => Vector3.Distance(targetPosition, position) <= ash.WeaponRange);
+    //         new List<Vector3>(targetPositions).Find(targetPosition => (targetPosition - position).sqrMagnitude <= Mathf.Pow(ash.WeaponRange, 2));
+    //
+    //     if (targetPosition != Vector3.zero)
+    //     {
+    //         ash.DirectionVector3 = (targetPosition - ash.transform.position).normalized;
+    //
+    //         //ash.transform.rotation.SetFromToRotation(Vector3.right, targetPosition);
+    //         ash.CalculateRotation();
+    //     }
+    //     else
+    //     {
+    //         Destroy(ash.gameObject);
+    //     }
+    //
+    //     return ash;
+    // }
 
     // public IEnumerable ShootWithArrows()
     // {
@@ -107,9 +133,11 @@ public abstract class RangedWeaponFrame : WeaponFrame
     //     yield return ;
     // }
 
-    public virtual void OnTriggerEnter2D(Collider2D collision)
+
+
+    public virtual void OnTriggerEnter2D(Collider2D collider2d)
     {
-        if (collision.gameObject.layer != LayerMask.NameToLayer(IgnoreDestroyLayer))
+        if (IgnorePlayerL(collider2d.gameObject))
         {
             Destroy(gameObject);
         }

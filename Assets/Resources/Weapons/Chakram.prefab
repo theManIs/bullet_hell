@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4278557334922267875
 SpriteRenderer:
@@ -100,13 +100,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponRange: 5
   WeaponCooldown: 2
-  FlightSpeed: 5
+  FlightSpeed: 4
   WeaponLayer: DamageEnemy
+  EnvironmentLayer: Environment
   DirectionVector3: {x: 0, y: 0, z: 0}
   IgnoreDestroyLayer: Player
+  EnemyPosition: {x: 0, y: 0, z: 0}
+  TransformOfOrigin: {fileID: 0}
+  LastAxis: -1
   Lifespan: 3
   ProjectileLife: 0
-  Go: 0
+  RecursionDepth: 2
+  IgnoreList: 
+  BounceLength: 0.5
 --- !u!61 &6236755726154983504
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124,12 +130,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.33333334, y: 0.33333334}
     newSize: {x: 0.96, y: 0.96}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.3, y: 0.2}
   m_EdgeRadius: 0
