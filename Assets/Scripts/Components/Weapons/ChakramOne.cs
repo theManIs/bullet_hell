@@ -4,7 +4,6 @@ using UnityEngine;
 public class ChakramOne : RangedWeaponFrame
 {
     public int RecursionDepth = 1;
-    public List<int> IgnoreList;
     public float BounceLength = .5f;
 
     public override WeaponFrame GetAsset() => GameAssets.ChakramOne;

@@ -14,10 +14,11 @@ public abstract class WeaponFrame : MonoBehaviour
     public string WeaponLayer = "DamageEnemy";
     public string EnvironmentLayer = "Environment";
     public Vector3 DirectionVector3;
-    public string IgnoreDestroyLayer = "Player";
+    public string PlayerLayer = "Player";
     public Vector3 EnemyPosition;
     public Transform TransformOfOrigin;
     public int LastAxis = -1;
+    public List<int> IgnoreList = new List<int>();
 
     public virtual void Start()
     {
@@ -107,7 +108,7 @@ public abstract class WeaponFrame : MonoBehaviour
     //     }
     // }
 
-    public bool IgnorePlayerL(GameObject gm) => gm.layer != LayerMask.NameToLayer(IgnoreDestroyLayer);
+    public bool IgnorePlayerL(GameObject gm) => gm.layer != LayerMask.NameToLayer(PlayerLayer);
     public bool IgnoreEnvironmentL(GameObject gm) => gm.layer != LayerMask.NameToLayer(EnvironmentLayer);
     public bool IgnoreEnvPl(GameObject gm) => IgnorePlayerL(gm) && IgnoreEnvironmentL(gm);
 }

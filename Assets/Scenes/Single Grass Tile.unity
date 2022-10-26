@@ -288,7 +288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c56fd2763f8e764da45e982f18878e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RepelLevel: 0.1
   TiltMagnitude: 10
   TiltSpeed: 1
   RotateRight: 1
@@ -4430,7 +4429,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c56fd2763f8e764da45e982f18878e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RepelLevel: 0.1
   TiltMagnitude: 10
   TiltSpeed: 1
   RotateRight: 1
@@ -4763,7 +4761,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c56fd2763f8e764da45e982f18878e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RepelLevel: 0.1
   TiltMagnitude: 10
   TiltSpeed: 1
   RotateRight: 1
@@ -4827,7 +4824,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthBar: 1
-  RightHand: 1
+  RightHand: 7
   LastDirectionLeft: 0
   MoveSpeed: 2
   HealthPoints: 5

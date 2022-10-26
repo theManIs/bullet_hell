@@ -9,5 +9,6 @@
         QiangPoke, 
         ReaperScythe,
         ChakramOne,
+        GuardianShield,
     }
 }

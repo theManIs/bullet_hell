@@ -124,7 +124,7 @@ public class EnemyCoxswain : MonoBehaviour
         else
         {
             _srea.BlinkOnce();
-            _srea.RepelOneStepBack(gotHitFrom);
+            // _srea.RepelOneStepBack(gotHitFrom);
         }
     }
 

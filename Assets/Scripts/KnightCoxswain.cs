@@ -73,6 +73,7 @@ public class KnightCoxswain : MonoBehaviour
             WeaponsSet.QiangPoke => GameAssets.QiangPoke,
             WeaponsSet.ReaperScythe => GameAssets.ReaperScythe,
             WeaponsSet.ChakramOne => GameAssets.ChakramOne,
+            WeaponsSet.GuardianShield => GameAssets.GuardianShield,
             _ => _wp
         };
 

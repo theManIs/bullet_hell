@@ -12,6 +12,7 @@ public class GameAssets
     public static QiangPoke QiangPoke => Resources.Load<QiangPoke>("Weapons/Qiang");
     public static ReaperScythe ReaperScythe => Resources.Load<ReaperScythe>("Weapons/Scythe");
     public static ChakramOne ChakramOne => Resources.Load<ChakramOne>("Weapons/Chakram");
+    public static GuardianShield GuardianShield => Resources.Load<GuardianShield>("Weapons/Shield");
 
     public static GameObject SpillingBlood => Resources.Load<GameObject>("Effects/SpillingBlood");
     public static GameObject SpillingPoison => Resources.Load<GameObject>("Effects/SpillingPoison");

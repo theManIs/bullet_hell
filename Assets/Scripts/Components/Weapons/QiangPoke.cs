@@ -17,7 +17,8 @@ public class QiangPoke : MeleeWeaponFrame
     public override void Start()
     {
         base.Start();
-        
+
+        EnemyPosition = FindEnemyPosition(WeaponRange, null);
         DirectionVector3 = EnemyPosition - transform.position;
         transform.rotation = CalculateRotation(DirectionVector3);
         
@@ -36,7 +37,7 @@ public class QiangPoke : MeleeWeaponFrame
         transform.position += DirectionVector3 * Time.deltaTime * FlightSpeed * (HalfEffectDuration - MovementStage);
 
         MovementStage += Time.deltaTime;
-        transform.rotation = CalculateRotation(DirectionVector3);
+        // transform.rotation = CalculateRotation(DirectionVector3);
 
         // if (MovementStage >= EffectDuration)
         // {

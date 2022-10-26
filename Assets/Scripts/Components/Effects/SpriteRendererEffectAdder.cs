@@ -6,9 +6,9 @@ public class SpriteRendererEffectAdder : MonoBehaviour
 {
     private const int Pi = 180;
     private const int Pi2 = 360;
-
-    [Range(0, 1)]
-    public float RepelLevel = .1f;
+    
+    // [Range(0, 1)]
+    // public float RepelLevel = .1f;
     [Range(0, 180)]
     public float TiltMagnitude = 10;
     [Range(0, 100)]
@@ -68,10 +68,10 @@ public class SpriteRendererEffectAdder : MonoBehaviour
         Invoke(nameof(BlinkColors), .3f);
     }
 
-    public void RepelOneStepBack(Transform pointOfForce)
-    {
-        transform.position += (transform.position - pointOfForce.position).normalized * RepelLevel;
-    }
+    // public void RepelOneStepBack(Transform pointOfForce, float repelLevel)
+    // {
+    //     transform.position += (transform.position - pointOfForce.position).normalized * repelLevel;
+    // }
 
     public void SwingWhenMoving()
     {
