@@ -8,7 +8,7 @@ public class FeatheredDart : RangedWeaponFrame
 
     public override void OnTriggerEnter2D(Collider2D collision)
     {
-       if (collision.gameObject.layer != LayerMask.NameToLayer(PlayerLayer))
+       if (IgnoreEnvPlCl(collision.gameObject))
        {
            Destroy(gameObject);
 

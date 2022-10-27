@@ -10,7 +10,7 @@ public class FireballBlast : RangedWeaponFrame
     {
         base.OnTriggerEnter2D(collision);
 
-        if (collision.gameObject.layer != LayerMask.NameToLayer(PlayerLayer))
+        if (IgnoreEnvPlCl(collision.gameObject))
         {
             Instantiate(GameAssets.FireBang, transform.position, Quaternion.identity);
         }

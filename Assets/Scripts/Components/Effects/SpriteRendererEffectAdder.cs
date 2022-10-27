@@ -112,4 +112,9 @@ public class SpriteRendererEffectAdder : MonoBehaviour
             _animator.SetBool("Moving", false);
         }
     }
+
+    public void FlipX(bool directionLeft)
+    {
+        _affectedSpriteRenderer.flipX = directionLeft;
+    }
 }

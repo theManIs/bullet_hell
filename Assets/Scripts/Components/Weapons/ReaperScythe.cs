@@ -59,7 +59,7 @@ public class ReaperScythe : MeleeWeaponFrame
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (IgnoreEnvPl(collision.gameObject))
+        if (IgnoreEnvPlCl(collision.gameObject))
         {
             // Debug.Log(collision.name);
 

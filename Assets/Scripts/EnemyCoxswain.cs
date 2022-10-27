@@ -1,5 +1,8 @@
 using System;
+using System.Numerics;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class EnemyCoxswain : MonoBehaviour
 {
@@ -17,6 +20,11 @@ public class EnemyCoxswain : MonoBehaviour
     public float ClosingError = 0f;
     public int HealthPoints = 2;
     public bool SwingInMoving = false;
+    public bool DirectionLeft = false;
+    public bool LeftAligned = false;
+    public Vector3 DirectionToPlayer;
+    public float CastDistance = .5f;
+    public string ObstacleLayer = "Environment";
     // public float DisappearTime = 1f;
 
     // private const int _pi = 180;
@@ -83,11 +91,44 @@ public class EnemyCoxswain : MonoBehaviour
             bool targetReachedX = Mathf.Abs(target.transform.position.x - transform.position.x) <= _c2dTarget.bounds.extents.x + _c2d.bounds.extents.x + ClosingError;
             bool targetReachedY = Mathf.Abs(target.transform.position.y - transform.position.y) <= _c2dTarget.bounds.extents.y + _c2d.bounds.extents.y + ClosingError;
 
-            //Debug.Log(Mathf.Abs(target.transform.position.x - transform.position.x) + " " + (c2d.bounds.extents.x + c2dEnemy.bounds.extents.x + ClosingError));
+            // Debug.Log(Mathf.Abs(target.transform.position.x - transform.position.x) + " " + (c2d.bounds.extents.x + c2dEnemy.bounds.extents.x + ClosingError));
             if (!(targetReachedX && targetReachedY))
             {
+                DirectionToPlayer = target.transform.position - transform.position;
+                DirectionLeft = DirectionToPlayer.x < 0;
+                _srea.FlipX(LeftAligned ? !DirectionLeft : DirectionLeft);
+                // RaycastHit2D rhit = Physics2D.Raycast(_c2d.bounds.center, DirectionToPlayer, _c2d.bounds.size.x + .5f, LayerMask.GetMask("Environment"));
+                RaycastHit2D rhit = Physics2D.BoxCast(_c2d.bounds.center, _c2d.bounds.size, 0, DirectionToPlayer, CastDistance, LayerMask.GetMask(ObstacleLayer));
+                
+                Vector3 mulVector3 = Vector3.zero;
+
+                if (rhit)
+                {
+                    Collider2D colObs2d = rhit.transform.GetComponent<Collider2D>();
+                    // // Vector3 directionE = _c2d.bounds.center - rhit.transform.position;
+                    // // Quaternion q = Quaternion.LookRotation(Vector3.forward, Quaternion.Euler(0, 0, 90) * directionE);
+                    // Vector3 directionToObstacle = colObs2d.bounds.center - _c2d.bounds.center;
+                    // float distance = Vector3.Distance(colObs2d.bounds.center, _c2d.bounds.center);
+                    // float angleCos = (colObs2d.bounds.center.y - _c2d.bounds.center.y) / distance;
+                    // float angle = Mathf.Asin((colObs2d.bounds.center.y - _c2d.bounds.center.y) / distance) * Mathf.Rad2Deg;
+                    // mulVector3 = Quaternion.Euler(0, 0, 90) * directionToObstacle;
+                    Vector3 directionToObstacle = colObs2d.bounds.center - _c2d.bounds.center;
+                    Quaternion q = Quaternion.FromToRotation(directionToObstacle, DirectionToPlayer);
+
+
+                    mulVector3 = q.eulerAngles.z > Mathf.PI * Mathf.Rad2Deg
+                        ? Quaternion.Euler(0, 0, -90) * directionToObstacle
+                        : Quaternion.Euler(0, 0, 90) * directionToObstacle;
+
+                    // Debug.DrawRay(_c2d.bounds.center, mulVector3, Color.yellow);
+                    // Debug.DrawLine(transform.position, colObs2d.bounds.center, Color.green);
+                    // Debug.Log(rhit.transform.gameObject.name + " " +  gameObject.name + " " + q.eulerAngles + " " + mulVector3);
+                }
+
                 //Debug.Log("Target not reached");
-                transform.position += (target.transform.position - transform.position).normalized * ClosingSpeed * Time.deltaTime;
+                transform.position += mulVector3 != Vector3.zero 
+                    ? mulVector3.normalized * ClosingSpeed * Time.deltaTime
+                    : (target.transform.position - transform.position).normalized * ClosingSpeed * Time.deltaTime;
 
                 if (SwingInMoving)
                 {

@@ -10,7 +10,7 @@ public class ChakramOne : RangedWeaponFrame
 
     public override void OnTriggerEnter2D(Collider2D collider2d)
     {
-        if (IgnoreEnvPl(collider2d.gameObject))
+        if (IgnoreEnvPlCl(collider2d.gameObject))
         {
             if (!IgnoreList.Contains(collider2d.gameObject.GetInstanceID()))
             {

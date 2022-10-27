@@ -13,6 +13,7 @@ public abstract class WeaponFrame : MonoBehaviour
     public float FlightSpeed = 5f;
     public string WeaponLayer = "DamageEnemy";
     public string EnvironmentLayer = "Environment";
+    public string CollectiblesLayer = "Collectibles";
     public Vector3 DirectionVector3;
     public string PlayerLayer = "Player";
     public Vector3 EnemyPosition;
@@ -110,5 +111,7 @@ public abstract class WeaponFrame : MonoBehaviour
 
     public bool IgnorePlayerL(GameObject gm) => gm.layer != LayerMask.NameToLayer(PlayerLayer);
     public bool IgnoreEnvironmentL(GameObject gm) => gm.layer != LayerMask.NameToLayer(EnvironmentLayer);
+    public bool IgnoreCollectiblesL(GameObject gm) => gm.layer != LayerMask.NameToLayer(CollectiblesLayer);
     public bool IgnoreEnvPl(GameObject gm) => IgnorePlayerL(gm) && IgnoreEnvironmentL(gm);
+    public bool IgnoreEnvPlCl(GameObject gm) => IgnorePlayerL(gm) && IgnoreEnvironmentL(gm) && IgnoreCollectiblesL(gm);
 }

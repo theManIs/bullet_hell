@@ -137,7 +137,7 @@ public abstract class RangedWeaponFrame : WeaponFrame
 
     public virtual void OnTriggerEnter2D(Collider2D collider2d)
     {
-        if (IgnorePlayerL(collider2d.gameObject))
+        if (IgnoreEnvPlCl(collider2d.gameObject))
         {
             Destroy(gameObject);
         }

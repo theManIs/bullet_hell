@@ -22,7 +22,7 @@ public class SwordSwipe : MeleeWeaponFrame
 
     public virtual void OnTriggerEnter2D(Collider2D collider2d)
     {
-        if (IgnoreEnvPl(collider2d.gameObject))
+        if (IgnoreEnvPlCl(collider2d.gameObject))
         {
             if (!IgnoreList.Contains(collider2d.gameObject.GetInstanceID()))
             {
