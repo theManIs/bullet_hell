@@ -14,6 +14,7 @@ public class KnightCoxswain : MonoBehaviour
     public HealthBarsSet HealthBar;
     public WeaponsSet RightHand;
     public bool LastDirectionLeft = false;
+    public PerkProcessor PerkProcessor;
 
     [Range(0, 10)]
     public float MoveSpeed = 2;
@@ -43,6 +44,7 @@ public class KnightCoxswain : MonoBehaviour
         _srea = GetComponent<SpriteRendererEffectAdder>();
         _dc = FindObjectOfType<DisplayControl>();
         _knightSp = GetComponent<SpriteRenderer>();
+        PerkProcessor = new PerkProcessor().Subscribe(FindObjectOfType<PickingPerkPanel>());
     }
 
     // Start is called before the first frame update
