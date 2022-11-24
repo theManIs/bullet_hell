@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 34ccdeda2fec8e044854ef17c1997f9a
+guid: b5ab6c813bf14fa4a91acd8c0f42b247
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Sprite-0006\u043F\u0430\u043D\u0435\u043B\u0438_0"
+      name: Sprite-ALL in One1_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 679
-        width: 311
-        height: 16
+        x: 17
+        y: 210
+        width: 61
+        height: 61
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,8 +121,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 704a5a6d2b8f9464b876cfd7eef37210
-      internalID: -1170070744
+      spriteID: 405bb29cb385e7645b1963897aa46613
+      internalID: 1842833113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-ALL in One1_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 352
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81b5ac43d60596d4293d0786aa5a30f0
+      internalID: -489157043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite-ALL in One1_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 353
+        width: 29
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6126b50c398f779489e14898eb1ff8ba
+      internalID: 1267993155
       vertices: []
       indices: 
       edges: []
@@ -130,7 +172,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 670e98fcfe12b464e93ed975602a8185
+    spriteID: eb8293fd999433540ac15e2623251134
     internalID: 0
     vertices: []
     indices: 
@@ -138,7 +180,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "Sprite-0006\u043F\u0430\u043D\u0435\u043B\u0438_0": -1170070744
+      Sprite-ALL in One1_2: 1267993155
+      Sprite-ALL in One1_0: 1842833113
+      Sprite-ALL in One1_1: -489157043
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
