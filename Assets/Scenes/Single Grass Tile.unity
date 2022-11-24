@@ -5261,6 +5261,14 @@ PrefabInstance:
       propertyPath: m_text
       value: Weapon 2 Damage 999
       objectReference: {fileID: 0}
+    - target: {fileID: 3453892309128194638, guid: eec6109187f0b034a8a7324875b5b13e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 3453892309128194638, guid: eec6109187f0b034a8a7324875b5b13e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 4763655871443328579, guid: eec6109187f0b034a8a7324875b5b13e, type: 3}
       propertyPath: m_text
       value: 'Kills 9999
@@ -5271,6 +5279,10 @@ PrefabInstance:
       propertyPath: m_text
       value: "Summary\n100 \u0445 20 = 2000 gold"
       objectReference: {fileID: 0}
+    - target: {fileID: 6727192636297364400, guid: eec6109187f0b034a8a7324875b5b13e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1980210065, guid: 6f1f73be29f5b164c975f15fafd424dc, type: 3}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: eec6109187f0b034a8a7324875b5b13e, type: 3}
