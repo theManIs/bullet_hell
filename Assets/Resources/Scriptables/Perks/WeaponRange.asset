@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9315d66f3aa88a84b8c83e8162a61751, type: 3}
-  m_Name: WeaponCooldown
+  m_Name: WeaponRange
   m_EditorClassIdentifier: 
-  PerkType: 0
+  PerkImage: {fileID: 21300000, guid: 18b889543d6a06641b04ccd65746fcc4, type: 3}
+  PerkType: 3
   PerkLevel: 0

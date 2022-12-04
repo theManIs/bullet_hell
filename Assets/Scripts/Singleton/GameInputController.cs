@@ -21,9 +21,19 @@ public class GameInputController : MonoBehaviour
     //     Debug.Log("Test went well");
     // }
 
-    public void Pause()
+    public void PausePlay()
     {
         Time.timeScale = Time.timeScale != 0 ? 0 : 1;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+    
+    public void Play()
+    {
+        Time.timeScale = 1;
     }
 
     public bool IsPause()

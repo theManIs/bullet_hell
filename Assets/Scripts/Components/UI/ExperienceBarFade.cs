@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ExperienceBarFade : RectangleBar
 {
+    public event Action LevelUp;
+
     private readonly LevelingLedger _ll = new LevelingLedger();
 
     public override void Awake()
@@ -28,6 +31,7 @@ public class ExperienceBarFade : RectangleBar
             // _healthBar.fillAmount = _healthSystem.HealthPercent;
             // _healthSystem.OnHealthChanged += OnHealthChanged;
             // Debug.Log(_healthSystem.GetHealth);
+            LevelUp?.Invoke();
         }
     }
 }

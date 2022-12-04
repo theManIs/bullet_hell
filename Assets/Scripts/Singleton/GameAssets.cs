@@ -17,4 +17,11 @@ public class GameAssets
     public static GameObject SpillingBlood => Resources.Load<GameObject>("Effects/SpillingBlood");
     public static GameObject SpillingPoison => Resources.Load<GameObject>("Effects/SpillingPoison");
     public static GameObject GroundFire => Resources.Load<GameObject>("Effects/GroundFire");
+
+    public static PerkScriptableObject HealthPoints => Resources.Load<PerkScriptableObject>("Scriptables/Perks/HealthPoints");
+    public static PerkScriptableObject HealthRegeneration => Resources.Load<PerkScriptableObject>("Scriptables/Perks/HealthRegeneration");
+    public static PerkScriptableObject WeaponCooldown => Resources.Load<PerkScriptableObject>("Scriptables/Perks/WeaponCooldown");
+    public static PerkScriptableObject WeaponDamage => Resources.Load<PerkScriptableObject>("Scriptables/Perks/WeaponDamage");
+    public static PerkScriptableObject WeaponRange => Resources.Load<PerkScriptableObject>("Scriptables/Perks/WeaponRange");
+    public static PerkScriptableObject WeaponAoe => Resources.Load<PerkScriptableObject>("Scriptables/Perks/WeaponAoe");
 }
