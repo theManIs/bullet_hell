@@ -15,3 +15,5 @@ MonoBehaviour:
   PerkImage: {fileID: 21300000, guid: 6c965af37625c8748901233f57f0deb3, type: 3}
   PerkType: 0
   PerkLevel: 0
+  PerkDescription: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435
+    \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438 \u043E\u0440\u0443\u0436\u0438\u044F"

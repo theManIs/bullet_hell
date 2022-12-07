@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Types;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,11 +12,11 @@ public abstract class WeaponFrame : MonoBehaviour
     public float WeaponRange = 5f;
     public float WeaponCooldown = 2f;
     public float FlightSpeed = 5f;
-    public string WeaponLayer = "DamageEnemy";
-    public string EnvironmentLayer = "Environment";
-    public string CollectiblesLayer = "Collectibles";
+    public string WeaponLayer = LayerList.DamageEnemy.ToString();
+    public string EnvironmentLayer = LayerList.Environment.ToString();
+    public string CollectiblesLayer = LayerList.Collectibles.ToString();
     public Vector3 DirectionVector3;
-    public string PlayerLayer = "Player";
+    public string PlayerLayer = LayerList.Player.ToString();
     public Vector3 EnemyPosition;
     public Transform TransformOfOrigin;
     public int LastAxis = -1;
