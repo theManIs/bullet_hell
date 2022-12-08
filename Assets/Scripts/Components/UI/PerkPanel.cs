@@ -26,12 +26,22 @@ public class PerkPanel : UIBase
         base.Start();
         gameObject.SetActive(true);
 
-        _ppp = FindObjectOfType<PickingPerkPanel>();
-        _ppp.OnPerkUp += AbilityUp;
+        
 
         FillTheLists();
 
         PerkLimit = GetPerkHud().childCount;
+    }
+
+    public void OnEnable()
+    {
+        _ppp = FindObjectOfType<PickingPerkPanel>();
+        // Debug.Log(FindObjectOfType<PickingPerkPanel>());
+
+        if (_ppp)
+        {
+            _ppp.OnPerkUp += AbilityUp;
+        }
     }
 
     private void FillTheLists()
@@ -39,6 +49,7 @@ public class PerkPanel : UIBase
         for (int i = 0; i < GetPerkHud().childCount; i++)
         {
             _pickedPerks.Add(GetPerkHud().GetChild(i));
+            GetPerkHud().GetChild(i).gameObject.SetActive(false);
             List<Transform> lt = new List<Transform>();
 
             for (int j = 0; j < GetPerkFrame(i).childCount; j++)

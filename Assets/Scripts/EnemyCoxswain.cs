@@ -17,6 +17,7 @@ public class EnemyCoxswain : MonoBehaviour
     // [Range(0, 360)]
     // public float Tiltmagnitude = 10;
     public float ClosingSpeed = .5f;
+    public float DiffractionSpeed = 1f;
     public float ClosingError = 0f;
     public int HealthPoints = 2;
     public bool SwingInMoving = false;
@@ -51,7 +52,7 @@ public class EnemyCoxswain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(target);
+        // Debug.Log(target);
         if (target != null)
         {
             _c2dTarget = target.GetComponent<Collider2D>();
@@ -128,7 +129,7 @@ public class EnemyCoxswain : MonoBehaviour
 
                 //Debug.Log("Target not reached");
                 transform.position += mulVector3 != Vector3.zero 
-                    ? mulVector3.normalized * ClosingSpeed * Time.deltaTime
+                    ? mulVector3.normalized * (rhit ? DiffractionSpeed : ClosingSpeed) * Time.deltaTime
                     : (target.transform.position - transform.position).normalized * ClosingSpeed * Time.deltaTime;
 
                 if (SwingInMoving)

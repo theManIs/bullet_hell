@@ -212,13 +212,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WeaponRange: 5
   WeaponCooldown: 2
-  FlightSpeed: 5
-  IgnoreDestroyLayer: Player
+  FlightSpeed: 10
   WeaponLayer: DamageEnemy
+  EnvironmentLayer: Environment
+  CollectiblesLayer: Collectibles
   DirectionVector3: {x: 0, y: 0, z: 0}
+  PlayerLayer: Player
+  EnemyPosition: {x: 0, y: 0, z: 0}
+  TransformOfOrigin: {fileID: 0}
+  LastAxis: -1
+  IgnoreList: 
   Lifespan: 3
   ProjectileLife: 0
-  Go: 1
 --- !u!61 &6780485096699231864
 BoxCollider2D:
   m_ObjectHideFlags: 0

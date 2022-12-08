@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9315d66f3aa88a84b8c83e8162a61751, type: 3}
   m_Name: WeaponAoe
   m_EditorClassIdentifier: 
-  PerkImage: {fileID: 21300000, guid: bfe4028fb9486834fb5f2af00a8095b7, type: 3}
+  PerkImage: {fileID: -366175724, guid: 4318b2bc3c27a9a4a81f4d3a323ee864, type: 3}
   PerkType: 4
   PerkLevel: 0
   PerkDescription: "\u0423\u0432\u0435\u043B\u0438\u0447\u0435\u043D\u0438\u0435
