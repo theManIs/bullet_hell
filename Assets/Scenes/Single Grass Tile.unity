@@ -396,7 +396,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3225716065019334450, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5268391203614287234, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: RepelLevel
@@ -542,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3225716065019334450, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5268391203614287234, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: RepelLevel
@@ -728,7 +728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1433817826848751032, guid: 0c704eb240c71044b986d3eb51beae01, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1433817826848751034, guid: 0c704eb240c71044b986d3eb51beae01, type: 3}
       propertyPath: RepelLevel
@@ -843,7 +843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3225716065019334450, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5268391203614287234, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: RepelLevel
@@ -883,7 +883,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4901928582601295629, guid: 26f3354afe8434f4a9dabfa873cc4e49, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4901928582601295668, guid: 26f3354afe8434f4a9dabfa873cc4e49, type: 3}
       propertyPath: m_RootOrder
@@ -992,7 +992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1433817826848751032, guid: 0c704eb240c71044b986d3eb51beae01, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1433817826848751034, guid: 0c704eb240c71044b986d3eb51beae01, type: 3}
       propertyPath: RepelLevel
@@ -1112,7 +1112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3225716065019334450, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5268391203614287234, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: RepelLevel
@@ -1290,7 +1290,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3225716065019334450, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5268391203614287234, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: RepelLevel
@@ -1329,7 +1329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4901928582601295629, guid: 26f3354afe8434f4a9dabfa873cc4e49, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4901928582601295668, guid: 26f3354afe8434f4a9dabfa873cc4e49, type: 3}
       propertyPath: m_RootOrder
@@ -3826,6 +3826,7 @@ GameObject:
   - component: {fileID: 2100950584}
   - component: {fileID: 2100950587}
   - component: {fileID: 2100950588}
+  - component: {fileID: 2100950589}
   m_Layer: 0
   m_Name: GameAssetsAndEvents
   m_TagString: Untagged
@@ -3885,6 +3886,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75ed16de428f8e14fb72060fe99badbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2100950589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100950583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb7e468225d13c498f1de02c6800875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UnitsList:
+  - {fileID: 4901928582601295629, guid: 26f3354afe8434f4a9dabfa873cc4e49, type: 3}
+  - {fileID: 6700585675703060482, guid: b587b5db50739de4c8ceafd09db97d41, type: 3}
+  - {fileID: 3225716065019334450, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
+  - {fileID: 1433817826848751032, guid: 0c704eb240c71044b986d3eb51beae01, type: 3}
+  - {fileID: 2804150803784253034, guid: 08f5641cdbc42254ea14f5c77130f3ae, type: 3}
+  HudCamera: {fileID: 489096206}
+  LockTimer: 0
+  SpawnSpeed: 1
+  Player: {fileID: 0}
 --- !u!1 &2130963997
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,7 +4113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1433817826848751032, guid: 0c704eb240c71044b986d3eb51beae01, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1433817826848751034, guid: 0c704eb240c71044b986d3eb51beae01, type: 3}
       propertyPath: RepelLevel
@@ -4165,7 +4188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4901928582601295629, guid: 26f3354afe8434f4a9dabfa873cc4e49, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4901928582601295668, guid: 26f3354afe8434f4a9dabfa873cc4e49, type: 3}
       propertyPath: m_RootOrder
@@ -4542,7 +4565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2804150803784253034, guid: 08f5641cdbc42254ea14f5c77130f3ae, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -4609,7 +4632,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6700585675703060482, guid: b587b5db50739de4c8ceafd09db97d41, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -4672,7 +4695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3225716065019334450, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5268391203614287234, guid: d3323e7c2c3ac764c8b683c55e9859d8, type: 3}
       propertyPath: RepelLevel

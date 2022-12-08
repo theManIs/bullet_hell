@@ -46,16 +46,17 @@ public class EnemyCoxswain : MonoBehaviour
         _srea = GetComponent<SpriteRendererEffectAdder>();
         _c2d = GetComponent<Collider2D>();
         _oce = FindObjectOfType<OnChangeExperience>();
-
-        if (target != null)
-        {
-            _c2dTarget = target.GetComponent<Collider2D>();
-        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(target);
+        if (target != null)
+        {
+            _c2dTarget = target.GetComponent<Collider2D>();
+        }
+
         _initRot = transform.rotation;
     }
 

@@ -126,8 +126,13 @@ MonoBehaviour:
   target: {fileID: 0}
   ClosingSpeed: 0.5
   ClosingError: 0
-  HealthPoints: 50
+  HealthPoints: 4
   SwingInMoving: 0
+  DirectionLeft: 0
+  LeftAligned: 0
+  DirectionToPlayer: {x: 0, y: 0, z: 0}
+  CastDistance: 0.5
+  ObstacleLayer: Environment
 --- !u!50 &8765892332891449671
 Rigidbody2D:
   serializedVersion: 4
