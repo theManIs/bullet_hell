@@ -12,24 +12,53 @@ public class PerkPanel : UIBase
     public event Action<PerkType> OnPerkLocked;
     public event Action<PerkType> OnPerkMax;
 
+    public string PerkHud = "PerkHUD";
+    public string PerkImage = "PerkImage";
+    public string PointsFrame = "PointsFrame";
+
     private PickingPerkPanel _ppp;
     private readonly List<Transform> _pickedPerks = new List<Transform>();
     private readonly List<PerkScriptableObject> _psoObjects = new List<PerkScriptableObject>();
+    private readonly List<List<Transform>> _llt = new List<List<Transform>>();
 
     public override void Start()
     {
         base.Start();
         gameObject.SetActive(true);
 
-        _ppp = FindObjectOfType<PickingPerkPanel>();
-        _ppp.OnPerkUp += AbilityUp;
+        
 
+        FillTheLists();
+
+        PerkLimit = GetPerkHud().childCount;
+    }
+
+    public void OnEnable()
+    {
+        _ppp = FindObjectOfType<PickingPerkPanel>();
+        // Debug.Log(FindObjectOfType<PickingPerkPanel>());
+
+        if (_ppp)
+        {
+            _ppp.OnPerkUp += AbilityUp;
+        }
+    }
+
+    private void FillTheLists()
+    {
         for (int i = 0; i < GetPerkHud().childCount; i++)
         {
             _pickedPerks.Add(GetPerkHud().GetChild(i));
-        }
+            GetPerkHud().GetChild(i).gameObject.SetActive(false);
+            List<Transform> lt = new List<Transform>();
 
-        PerkLimit = GetPerkHud().childCount;
+            for (int j = 0; j < GetPerkFrame(i).childCount; j++)
+            {
+                lt.Add(GetPerkFrame(i).GetChild(j));
+            }
+
+            _llt.Add(lt);
+        }
     }
 
     private void AbilityUp(PerkType pt)
@@ -69,18 +98,19 @@ public class PerkPanel : UIBase
             PerkScriptableObject psoOne = _psoObjects[i];
             // Debug.Log(_pickedPerks.Count);
             _pickedPerks[i].gameObject.SetActive(true);
-            
 
             GetPerkImage(i).GetComponent<Image>().sprite = psoOne.PerkImage;
 
-            for (int j = 0; j < GetPerkFrame(i).childCount; j++)
-            {
-                GetPerkFrame(i).GetChild(j).gameObject.SetActive(j < (int)psoOne.PerkLevel);
-            }
+            _llt[i].ForEach(item => item.gameObject.SetActive(item.GetSiblingIndex() < (int)psoOne.PerkLevel));
+
+            // for (int j = 0; j < GetPerkFrame(i).childCount; j++)
+            // {
+            //     GetPerkFrame(i).GetChild(j).gameObject.SetActive(j < (int)psoOne.PerkLevel);
+            // }
         }
     }
 
-    public Transform GetPerkHud() => transform.Find("PerkHUD");
-    public Transform GetPerkImage(int index) => _pickedPerks[index].Find("PerkImage");
-    public Transform GetPerkFrame(int index) => _pickedPerks[index].Find("PointsFrame");
+    public Transform GetPerkHud() => transform.Find(PerkHud);
+    public Transform GetPerkImage(int index) => _pickedPerks[index].Find(PerkImage);
+    public Transform GetPerkFrame(int index) => _pickedPerks[index].Find(PointsFrame);
 }

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9315d66f3aa88a84b8c83e8162a61751, type: 3}
   m_Name: HealthRegeneration
   m_EditorClassIdentifier: 
-  PerkImage: {fileID: 21300000, guid: 349a2c62bbc1f5e49ade036e4e02fa8f, type: 3}
+  PerkImage: {fileID: 570031965, guid: 4318b2bc3c27a9a4a81f4d3a323ee864, type: 3}
   PerkType: 5
   PerkLevel: 0
+  PerkDescription: "\u0420\u0435\u0433\u0435\u043D\u0435\u0440\u0430\u0446\u0438\u044F
+    \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u044F"

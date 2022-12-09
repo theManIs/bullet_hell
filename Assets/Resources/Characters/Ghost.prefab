@@ -106,8 +106,13 @@ MonoBehaviour:
   target: {fileID: 0}
   ClosingSpeed: 0.5
   ClosingError: 0
-  HealthPoints: 100
+  HealthPoints: 5
   SwingInMoving: 0
+  DirectionLeft: 0
+  LeftAligned: 0
+  DirectionToPlayer: {x: 0, y: 0, z: 0}
+  CastDistance: 0.5
+  ObstacleLayer: Environment
 --- !u!114 &3828184870449428034
 MonoBehaviour:
   m_ObjectHideFlags: 0
