@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5405632589959563983}
   - component: {fileID: 7259104870834413518}
   - component: {fileID: -4448636690745699997}
-  m_Layer: 4
+  m_Layer: 9
   m_Name: Dart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 5224596940974243110}
   - component: {fileID: 3262713012542382695}
   - component: {fileID: 2299717442552573933}
-  m_Layer: 4
+  m_Layer: 9
   m_Name: ArrowPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5070632210489247823}
   - component: {fileID: 7446108632058770965}
-  m_Layer: 4
+  m_Layer: 9
   m_Name: TracePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

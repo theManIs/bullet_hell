@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7549409062289009306}
   - component: {fileID: -5987596361345113043}
   - component: {fileID: -782509056320746263}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +129,7 @@ MonoBehaviour:
   FlightSpeed: 5
   WeaponLayer: DamageEnemy
   EnvironmentLayer: Environment
+  CollectiblesLayer: Collectibles
   DirectionVector3: {x: 0, y: 0, z: 0}
   PlayerLayer: Player
   EnemyPosition: {x: 0, y: 0, z: 0}

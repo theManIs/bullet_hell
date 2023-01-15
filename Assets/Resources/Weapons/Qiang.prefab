@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6400139996432352964}
   - component: {fileID: 1521621088710520755}
   - component: {fileID: -299963488687525185}
-  m_Layer: 4
+  m_Layer: 9
   m_Name: Qiang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8979491384865807975}
   - component: {fileID: 7720031571332979985}
-  m_Layer: 4
+  m_Layer: 9
   m_Name: PivotPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

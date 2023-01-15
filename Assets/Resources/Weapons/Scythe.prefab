@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6065732739213518531}
   - component: {fileID: 3193412877763741502}
-  m_Layer: 4
+  m_Layer: 9
   m_Name: Scythe Pivot Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 639207887289220735}
   - component: {fileID: 7234419495941235771}
   - component: {fileID: 5975338692448608717}
-  m_Layer: 4
+  m_Layer: 9
   m_Name: Scythe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
