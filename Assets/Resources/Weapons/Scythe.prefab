@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6065732739213518531}
   - component: {fileID: 3193412877763741502}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Scythe Pivot Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 639207887289220735}
   - component: {fileID: 7234419495941235771}
   - component: {fileID: 5975338692448608717}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Scythe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,14 +136,15 @@ MonoBehaviour:
   FlightSpeed: 100
   WeaponLayer: DamageEnemy
   EnvironmentLayer: Environment
+  CollectiblesLayer: Collectibles
   DirectionVector3: {x: 0, y: 0, z: 0}
-  IgnoreDestroyLayer: Player
-  EffectDuration: 1
+  PlayerLayer: Player
   EnemyPosition: {x: 0, y: 0, z: 0}
+  TransformOfOrigin: {fileID: 0}
   LastAxis: -1
+  IgnoreList: 
+  EffectDuration: 1
   RotationAngle: 45
-  TimedEffectAnimationDuration: 0.5
-  EffectColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!61 &7234419495941235771
 BoxCollider2D:
   m_ObjectHideFlags: 0

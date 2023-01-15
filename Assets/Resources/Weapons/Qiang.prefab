@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6400139996432352964}
   - component: {fileID: 1521621088710520755}
   - component: {fileID: -299963488687525185}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Qiang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -76,12 +76,16 @@ MonoBehaviour:
   WeaponCooldown: 1
   FlightSpeed: 5
   WeaponLayer: DamageEnemy
+  EnvironmentLayer: Environment
+  CollectiblesLayer: Collectibles
   DirectionVector3: {x: 0, y: 0, z: 0}
-  IgnoreDestroyLayer: Player
+  PlayerLayer: Player
+  EnemyPosition: {x: 0, y: 0, z: 0}
+  TransformOfOrigin: {fileID: 0}
+  LastAxis: -1
+  IgnoreList: 
   EffectDuration: 1
   MovementStage: 0
-  EnemyPosition: {x: 0, y: 0, z: 0}
-  StartPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &2239628980887043455
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,7 +96,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8979491384865807975}
   - component: {fileID: 7720031571332979985}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: PivotPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

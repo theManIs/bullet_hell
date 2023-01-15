@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2644378973937977562}
   - component: {fileID: 3996027706482346943}
   - component: {fileID: 6948175185210887716}
-  m_Layer: 9
+  m_Layer: 4
   m_Name: Swipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,11 +140,12 @@ MonoBehaviour:
   FlightSpeed: 5
   WeaponLayer: DamageEnemy
   EnvironmentLayer: Environment
+  CollectiblesLayer: Collectibles
   DirectionVector3: {x: 0, y: 0, z: 0}
-  IgnoreDestroyLayer: Player
+  PlayerLayer: Player
   EnemyPosition: {x: 0, y: 0, z: 0}
   TransformOfOrigin: {fileID: 0}
   LastAxis: -1
-  EffectDuration: 0.5
   IgnoreList: 
+  EffectDuration: 0.5
   RepelLevel: 0.5

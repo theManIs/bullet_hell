@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5550630925841059068}
   - component: {fileID: 6364439106823873003}
   - component: {fileID: 7115373170193455613}
-  m_Layer: 9
+  m_Layer: 4
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,10 +49,18 @@ MonoBehaviour:
   WeaponRange: 5
   WeaponCooldown: 2
   FlightSpeed: 5
-  TargetPosition: {x: 0, y: 0, z: 0}
+  WeaponLayer: DamageEnemy
+  EnvironmentLayer: Environment
+  CollectiblesLayer: Collectibles
   DirectionVector3: {x: 0, y: 0, z: 0}
+  PlayerLayer: Player
+  EnemyPosition: {x: 0, y: 0, z: 0}
+  TransformOfOrigin: {fileID: 0}
+  LastAxis: -1
+  IgnoreList: 
   Lifespan: 3
   ProjectileLife: 0
+  PiercingCount: 3
 --- !u!61 &7115373170193455613
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -90,7 +98,7 @@ GameObject:
   - component: {fileID: 5657110903892605717}
   - component: {fileID: 3117646986887521364}
   - component: {fileID: 1867124178444937694}
-  m_Layer: 9
+  m_Layer: 4
   m_Name: ArrowPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,7 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4638116599365160572}
   - component: {fileID: 7013937513820090406}
-  m_Layer: 9
+  m_Layer: 4
   m_Name: TracePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
