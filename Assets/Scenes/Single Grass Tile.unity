@@ -2890,7 +2890,7 @@ GameObject:
   - component: {fileID: 1813783168}
   - component: {fileID: 1813783167}
   - component: {fileID: 1813783166}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Archer_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

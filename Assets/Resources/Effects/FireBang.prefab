@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8357630206433474929}
   - component: {fileID: 3437243669942879338}
   - component: {fileID: 2920483645290330662}
-  m_Layer: 9
+  m_Layer: 4
   m_Name: FireBang
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EffectDuration: 1
+  PlayerLayer: Player
 --- !u!58 &2920483645290330662
 CircleCollider2D:
   m_ObjectHideFlags: 0
