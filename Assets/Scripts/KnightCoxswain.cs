@@ -5,9 +5,9 @@ using Assets.Scripts.Types;
 using UnityEngine;
 using UnityEngine.UI;
 
+//TODO Перевести использование гейобжекта на скриптабл обжект
 public class KnightCoxswain : MonoBehaviour
-{
-    // //todo
+{   
     // public GameObject SwordSwipeGo;
     // public float SwipeFrequency = 1f;
     // public float EffectDuration = 1f;
@@ -87,6 +87,8 @@ public class KnightCoxswain : MonoBehaviour
             // InvokeRepeating(nameof(GoWeaponGo), 0, 2f);
             //InvokeRepeating(nameof(SwipeWithSword), SwipeFrequency, SwipeFrequency);
         // }
+
+        transform.position = Vector3.zero;
     }
 
     // Update is called once per frame

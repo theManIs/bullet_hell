@@ -4,11 +4,12 @@ using UnityEngine;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
+//TODO Перевести на использование скриптабл обжекта
 public class EnemyCoxswain : MonoBehaviour
 {
     public event Action<int> AddExperience;
 
-    //todo
+    //TODO Сделать так, чтобы враги автоматически искали игрока
     public GameObject target;
 
     [Space]

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO Разнести по разным файлам
 public class AddPoisonDamage : AddTimedDamage
 {
     public override Color GetColor() => Color.green;
@@ -18,7 +19,7 @@ public class AddBloodDamage : AddTimedDamage
 
 public class AddFireDamage : AddTimedDamage
 {
-    public override Color GetColor() => Color.yellow;
+    public override Color GetColor() => Color.red;
     public override float GetAnimationDuration() => .5f;
     public override GameObject AnimationAsset() => GameAssets.GroundFire;
 }

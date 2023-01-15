@@ -24,4 +24,6 @@ public class GameAssets
     public static PerkScriptableObject WeaponDamage => Resources.Load<PerkScriptableObject>("Scriptables/Perks/WeaponDamage");
     public static PerkScriptableObject WeaponRange => Resources.Load<PerkScriptableObject>("Scriptables/Perks/WeaponRange");
     public static PerkScriptableObject WeaponAoe => Resources.Load<PerkScriptableObject>("Scriptables/Perks/WeaponAoe");
+    public static ScriptableTile MyFirstScriptableTile => Resources.Load<ScriptableTile>("Scriptables/Tiles/MyFirstScriptableTile");
+    public static ScriptableTileObstacle ObstacleTile => Resources.Load<ScriptableTileObstacle>("Scriptables/Tiles/ObstacleTile");
 }
