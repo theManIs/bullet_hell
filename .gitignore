@@ -401,5 +401,5 @@ sysinfo.txt
 crashlytics-build.properties
 
 # User settings
-[Uu]serSettings/*
-UserSettings/Layouts
+# [Uu]serSettings/*
+# UserSettings/Layouts
