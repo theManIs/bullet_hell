@@ -6,6 +6,8 @@ public abstract class RangedWeaponFrame : WeaponFrame
 {
     public float Lifespan = 3f;
     public float ProjectileLife = 0;
+    public float SeekTargetWindow = .1f;
+
     // public bool Go = false;
 
     // // Start is called before the first frame update
@@ -41,13 +43,15 @@ public abstract class RangedWeaponFrame : WeaponFrame
     {
         TransformOfOrigin = transformOfOrigin;
 
-        InvokeRepeating(nameof(BeforeSetup), 0, WeaponCooldown);
+        // InvokeRepeating(nameof(BeforeSetup), 0, WeaponCooldown);
+        Invoke(nameof(BeforeSetup), SeekTargetWindow);
 
         return this;
     }
 
     public void BeforeSetup()
     {
+        // Debug.Log("BeforeSetup");
         if (FindEnemyPosition(WeaponRange, null) != Vector3.zero)
         {
             WeaponFrame wpf = Setup(Instantiate(GetAsset(), TransformOfOrigin.position, Quaternion.identity));
@@ -55,7 +59,14 @@ public abstract class RangedWeaponFrame : WeaponFrame
             wpf.EnemyPosition = FindEnemyPosition(WeaponRange, null);
             wpf.DirectionVector3 = (wpf.EnemyPosition - wpf.transform.position).normalized;
             wpf.transform.rotation = wpf.CalculateRotation(wpf.DirectionVector3);
+
+            Invoke(nameof(BeforeSetup), WeaponCooldown);
         }
+        else
+        {
+            Invoke(nameof(BeforeSetup), SeekTargetWindow);
+        }
+
 
         // if (wpf.EnemyPosition == Vector3.zero)
         // {

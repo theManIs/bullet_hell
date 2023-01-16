@@ -15,7 +15,7 @@ public class ScriptableTileObstacle : TileBase
     {
         //TODO убрать обработчик весов в родительский класс
         int weight = new List<GameObjectFrequency>(GameObjects).Aggregate(0, (carrier, gmf) => carrier += gmf.Frequency);
-        int pickValue = Random.Range(1, weight);
+        int pickValue = Random.Range(1, weight + 1);
         int accumulator = 0;
         // Debug.Log(weight + " " + pickValue);
         foreach (GameObjectFrequency gof in GameObjects)

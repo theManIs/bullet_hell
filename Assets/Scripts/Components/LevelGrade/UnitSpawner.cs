@@ -38,6 +38,7 @@ public class UnitSpawner : MonoBehaviour
             }
 
             Vector3 pointOfTouch = HudCamera.ViewportToWorldPoint(new Vector3(xPoint, yPoint));
+            pointOfTouch.z = 0;
             // GameObject gm = new GameObject(pointOfTouch.ToString());
             // gm.transform.position = pointOfTouch;
             GameObject newEnemy = Instantiate(UnitsList[Random.Range(0, UnitsList.Length)], pointOfTouch, Quaternion.identity);

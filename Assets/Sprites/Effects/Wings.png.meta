@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c0a38d29565cecb4698481a1cc2d042d
+guid: 446e1994dbc0aa24c9283337e9b458ff
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,148 +107,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sprite-ALL in One v2_0
+      name: Wings_0
       rect:
         serializedVersion: 2
-        x: 498
-        y: 513
-        width: 92
-        height: 28
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7cf23c6fde193c4499d8f6a418405926
-      internalID: -261451718
+      spriteID: 028dcef2dfe4fbb4abecbb1792e4a82d
+      internalID: -192396786
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ALL in One v2_1
+      name: Wings_1
       rect:
         serializedVersion: 2
-        x: 494
-        y: 465
-        width: 97
-        height: 37
+        x: 32
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1709d4d1b6f5864a892314fa46ff829
-      internalID: -197648454
+      spriteID: aae64d8686abb6f4e95a708db642415b
+      internalID: -1911712185
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ALL in One v2_2
+      name: Wings_2
       rect:
         serializedVersion: 2
-        x: 566
-        y: 432
-        width: 20
-        height: 19
+        x: 64
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7cd514485a0f63449733e028d6adcaf
-      internalID: -1453853486
+      spriteID: c7f01078f8203da4780dcad8e6102dcf
+      internalID: 2142325518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ALL in One v2_3
+      name: Wings_3
       rect:
         serializedVersion: 2
-        x: 518
-        y: 352
-        width: 96
-        height: 43
+        x: 96
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b57a9610b7b9f246b01642f1d4af7bd
-      internalID: 611648805
+      spriteID: 6292f42d665768c4090db05b106654e3
+      internalID: -290891751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sprite-ALL in One v2_4
+      name: Wings_4
       rect:
         serializedVersion: 2
-        x: 630
-        y: 320
-        width: 93
-        height: 93
+        x: 128
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 816edd23824b1f84cb34e27bff5cbb45
-      internalID: 1076572803
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprite-ALL in One v2_5
-      rect:
-        serializedVersion: 2
-        x: 515
-        y: 256
-        width: 87
-        height: 66
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 00c287e1306112d42b8226ac5be52708
-      internalID: 1734314020
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Sprite-ALL in One v2_6
-      rect:
-        serializedVersion: 2
-        x: 647
-        y: 256
-        width: 61
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c3079d1a9a65aeb45a700917c206b2fe
-      internalID: -848998824
+      spriteID: 8fd0d29358d00334b8b95ba10ed68665
+      internalID: -457186774
       vertices: []
       indices: 
       edges: []
@@ -256,7 +214,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 59e93c9ec3fee964f89925e06f5d50ae
+    spriteID: 6d24b5da0aca90445927c2c197e366b0
     internalID: 0
     vertices: []
     indices: 
@@ -264,13 +222,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Sprite-ALL in One v2_2: -1453853486
-      Sprite-ALL in One v2_6: -848998824
-      Sprite-ALL in One v2_5: 1734314020
-      Sprite-ALL in One v2_4: 1076572803
-      Sprite-ALL in One v2_0: -261451718
-      Sprite-ALL in One v2_1: -197648454
-      Sprite-ALL in One v2_3: 611648805
+      Wings_1: -1911712185
+      Wings_4: -457186774
+      Wings_0: -192396786
+      Wings_2: 2142325518
+      Wings_3: -290891751
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

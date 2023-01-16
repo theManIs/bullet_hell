@@ -70,11 +70,18 @@ public abstract class WeaponFrame : MonoBehaviour
     
     public virtual Vector3 PickEnemy(Vector3[] targetPositions, Vector3 sourcePosition, float customRange)
     {
+        // foreach (Vector3 vector3 in targetPositions)
+        // {
+        //     Debug.Log(sourcePosition + " " + vector3 + " " + Vector3.Distance(vector3, sourcePosition) + " < " + customRange
+        //               + " magnitude " + (vector3 - sourcePosition).sqrMagnitude + " < " + Mathf.Pow(customRange, 2));
+        // }
+
         Vector3 targetPosition =
-            // new List<Vector3>(targetPositions).Find(targetPosition => Vector3.Distance(targetPosition, sourcePosition) <= WeaponRange);
+            // new List<Vector3>(targetPositions).Find(targetPosition => Vector3.Distance(targetPosition, sourcePosition) <= customRange);
             new List<Vector3>(targetPositions).Find(targetPosition => (targetPosition - sourcePosition).sqrMagnitude <= Mathf.Pow(customRange, 2));
-            // Debug.Log(sourcePosition + " " + Vector3.Distance(targetPosition, sourcePosition));
+            // Debug.Log(sourcePosition + " " + Vector3.Distance(targetPosition, sourcePosition) + " < " + customRange);
             // DebugEx.LogList(new List<Vector3>(targetPositions));
+            // print(targetPosition);
         return targetPosition;
     }
 

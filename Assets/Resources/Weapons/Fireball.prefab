@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a875fbfedd76e754c8057bb7d79a312d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponRange: 5
+  WeaponRange: 4
   WeaponCooldown: 2
   FlightSpeed: 10
   WeaponLayer: DamageEnemy

@@ -91,6 +91,16 @@ public class KnightCoxswain : MonoBehaviour
         transform.position = Vector3.zero;
     }
 
+    public void OnDrawGizmos()
+    {
+        // Gizmos.color = Color.yellow;
+        if (_wp)
+        {
+            Gizmos.DrawWireSphere(transform.position, _wp.WeaponRange);
+        }
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
