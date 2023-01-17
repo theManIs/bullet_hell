@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Assets.Scripts.Types;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -22,6 +23,8 @@ public class PickingPerkPanel : UIBase, OnPerkUpInterface
     public List<PerkType> LockedPerks;
     public List<PerkType> PerpetualBlockedPerks = new List<PerkType>();
     public List<int> PerpetualBlockedIds = new List<int>();
+
+    private readonly List<Action> _buttonActions = new List<Action>(3);
 
     private GameInputController _gic;
     private ExperienceBarFade _ebe;
@@ -75,6 +78,24 @@ public class PickingPerkPanel : UIBase, OnPerkUpInterface
 
         gameObject.SetActive(false);
         _gic.Play();
+
+        //TODO Придумать как заменить это циклом
+        if (_buttonActions.Count > 0)
+        {
+            _gic.On1 -= _buttonActions[0];
+        }
+
+        if (_buttonActions.Count > 1)
+        {
+            _gic.On2 -= _buttonActions[1];
+        }
+        
+        if (_buttonActions.Count > 2)
+        {
+            _gic.On3 -= _buttonActions[2];
+        }
+        //TODO Придумать как обращаться к индексам, а не стирать весь объект
+        _buttonActions.Clear();
 
         if (PanelOn && PreStartLimit > 0)
         {
@@ -162,6 +183,16 @@ public class PickingPerkPanel : UIBase, OnPerkUpInterface
                 // Debug.Log(PerkCards[i].transform.parent);
                 // Debug.Log(PerkCards[i].transform.parent.Find("PerkText"));
                 PerkButtons[i].transform.parent.Find(PerkTextName).GetComponent<TextMeshProUGUI>().text = perk1.PerkDescription;
+                
+                Action perkCallback = () => PerkUp(perk1.PerkType);
+                _buttonActions.Add(perkCallback);
+                
+                switch (i)
+                {
+                    case 0: _gic.On1 += _buttonActions[0]; break;
+                    case 1: _gic.On2 += _buttonActions[1]; break;
+                    case 2: _gic.On3 += _buttonActions[2]; break; 
+                }
             }
         }
         else

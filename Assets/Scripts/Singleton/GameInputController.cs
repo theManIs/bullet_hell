@@ -4,6 +4,10 @@ using UnityEngine;
 public class GameInputController : MonoBehaviour
 {
     public event Action OnEsc;
+    public event Action On1;
+    public event Action On2;
+    public event Action On3;
+
 
     // public void OnEnable() => OnEsc += TestSubscription;
 
@@ -11,8 +15,23 @@ public class GameInputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Esc down");
+            // Debug.Log("Esc down");
             OnEsc?.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            On1?.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            On2?.Invoke();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            On3?.Invoke();
         }
     }
 
