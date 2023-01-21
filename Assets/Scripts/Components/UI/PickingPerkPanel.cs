@@ -38,6 +38,7 @@ public class PickingPerkPanel : UIBase, OnPerkUpInterface
         {
             ShowUp();
         }
+        // print(Time.time);
     }
 
     public void Awake()

@@ -10,6 +10,7 @@ public class ScriptableTileObstacle : TileBase
 {
     public Vector3 CellSize;
     public GameObjectFrequency[] GameObjects;
+    public List<GameObject> TileObstacles = new List<GameObject>();
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
@@ -26,7 +27,7 @@ public class ScriptableTileObstacle : TileBase
             {
                 if (gof.GameObject)
                 {
-                    Instantiate(gof.GameObject, (Vector3)position * CellSize.x, Quaternion.identity);
+                    TileObstacles.Add(Instantiate(gof.GameObject, (Vector3)position * CellSize.x, Quaternion.identity));
                 }
 
                 break;

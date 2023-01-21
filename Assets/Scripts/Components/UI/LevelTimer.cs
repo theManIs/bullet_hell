@@ -47,4 +47,9 @@ public class LevelTimer : MonoBehaviour
         int seconds = LevelDurationSeconds % (int)OneMinute;
         TextMesh.text = $"{minutes:00}" + ":" + $"{seconds:00}";
     }
+
+    public void TimeUpInvoke()
+    {
+        OnTimeUp?.Invoke();
+    }
 }

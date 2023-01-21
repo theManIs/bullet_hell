@@ -10,15 +10,36 @@ public class UnitSpawner : MonoBehaviour
     public float LockTimer = 0;
     public float SpawnSpeed = 1f;
     public GameObject Player;
+    public bool IsUpdate = false;
+    public LevelTimer LevelTimer;
+
+    private List<GameObject> _lgo = new List<GameObject>();
+
+    public void Awake()
+    {
+        LevelTimer = FindObjectOfType<LevelTimer>();
+    }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
+    {
+        LevelTimer.OnTimeUp += () => gameObject.SetActive(false);
+    }
+
+    public void OnEnable()
     {
         Player = FindObjectOfType<KnightCoxswain>().gameObject;
+        IsUpdate = true;
+    }
+
+    public void OnDisable()
+    {
+        _lgo.ForEach(Destroy);
+        IsUpdate = false;
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if (LockTimer <= 0)
         {
@@ -43,6 +64,7 @@ public class UnitSpawner : MonoBehaviour
             // gm.transform.position = pointOfTouch;
             GameObject newEnemy = Instantiate(UnitsList[Random.Range(0, UnitsList.Length)], pointOfTouch, Quaternion.identity);
             newEnemy.GetComponent<EnemyCoxswain>().target = Player;
+            _lgo.Add(newEnemy);
 
             LockTimer = SpawnSpeed;
         }

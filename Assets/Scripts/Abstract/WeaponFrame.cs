@@ -56,7 +56,14 @@ public abstract class WeaponFrame : MonoBehaviour
 
     public Vector3 FindEnemyPosition(float weaponRange, List<int> ignoreList)
     {
-        return PickEnemy(FetchVector3FromEnemyCoxswain(ignoreList), TransformOfOrigin.position, weaponRange);
+        if (TransformOfOrigin)
+        {
+            return PickEnemy(FetchVector3FromEnemyCoxswain(ignoreList), TransformOfOrigin.position, weaponRange);
+        }
+        else
+        {
+            return PickEnemy(FetchVector3FromEnemyCoxswain(ignoreList), Vector3.zero, weaponRange);
+        }
     }
 
     public Quaternion CalculateRotation(Vector3 direction)

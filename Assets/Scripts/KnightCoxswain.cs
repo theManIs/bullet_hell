@@ -46,7 +46,7 @@ public class KnightCoxswain : MonoBehaviour
         _srea = GetComponent<SpriteRendererEffectAdder>();
         _dc = FindObjectOfType<DisplayControl>();
         _knightSp = GetComponent<SpriteRenderer>();
-        PerkProcessor = new PerkProcessor().Subscribe(FindObjectOfType<PickingPerkPanel>());
+        // PerkProcessor = new PerkProcessor().Subscribe(FindObjectOfType<PickingPerkPanel>());
         _ebf = FindObjectOfType<ExperienceBarFade>();
     }
 
@@ -229,7 +229,8 @@ public class KnightCoxswain : MonoBehaviour
 
                 if (_hs.IsDead)
                 {
-                    Destroy(gameObject, 0f);
+                    // Destroy(gameObject, 0f);
+                    FindObjectOfType<LevelTimer>().TimeUpInvoke();
                 }
             }
         }
