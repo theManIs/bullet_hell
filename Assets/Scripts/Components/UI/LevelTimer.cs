@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LevelTimer : MonoBehaviour
 {
+    public event Action OnTimeUp;
+
     public const float OneMinute = 60.0f;
 
     public TextMeshProUGUI TextMesh;
@@ -31,6 +33,11 @@ public class LevelTimer : MonoBehaviour
             ShowTimer();
             LevelDurationSeconds--;
             yield return new WaitForSeconds(1);
+        }
+
+        if (LevelDurationSeconds <= 0)
+        {
+            OnTimeUp?.Invoke();
         }
     }
 

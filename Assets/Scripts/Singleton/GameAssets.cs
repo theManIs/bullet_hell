@@ -26,4 +26,5 @@ public class GameAssets
     public static PerkScriptableObject WeaponAoe => Resources.Load<PerkScriptableObject>("Scriptables/Perks/WeaponAoe");
     public static ScriptableTile MyFirstScriptableTile => Resources.Load<ScriptableTile>("Scriptables/Tiles/MyFirstScriptableTile");
     public static ScriptableTileObstacle ObstacleTile => Resources.Load<ScriptableTileObstacle>("Scriptables/Tiles/ObstacleTile");
+    public static FinalScreenScriptableObject FinalScreenScriptableObject => Resources.Load<FinalScreenScriptableObject>("Scriptables/Texts/FinalPanel");
 }

@@ -7,6 +7,8 @@ using Vector3 = UnityEngine.Vector3;
 
 public class DamageText : MonoBehaviour
 {
+    public static readonly Color StartColor = Color.white;
+
     [Range(0, 100)]
     public float MoveSpeed = 1f;
     [Range(0, 100)]
@@ -67,7 +69,7 @@ public class DamageText : MonoBehaviour
         }
     }
 
-    public static void Setup(Vector3 position, int amount, bool crit, int xSign)
+    public static void Setup(Vector3 position, int amount, bool crit, int xSign, Color color, int fontSize)
     {
         DamageText resource = GameAssets.DamageText;
         TextMeshPro _textMeshPro = Instantiate(resource.GetComponent<TextMeshPro>(), position, Quaternion.identity);
@@ -78,13 +80,19 @@ public class DamageText : MonoBehaviour
 
         if (crit)
         {
-            _textMeshPro.color = instance.CritColor;
-            _textMeshPro.fontSize = instance.CritSize;
+            _textMeshPro.color = color;
+            // _textMeshPro.fontSize = instance.CritSize;
             _textMeshPro.rectTransform.sizeDelta *= instance.CritSize / (float)instance.FontSize;
         }
         else
         {
-            _textMeshPro.color = instance.TextColor;
+            _textMeshPro.fontSize = fontSize;
+            _textMeshPro.color = color;
         }
+    }
+
+    public static void Setup(Vector3 position, int amount, bool crit, int xSign)
+    {
+        Setup(position, amount, crit, xSign, StartColor, 4);
     }
 }

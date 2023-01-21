@@ -34,7 +34,7 @@ public abstract class AddTimedDamage : MonoBehaviour
         {
             eCox.GotHit(transform);
 
-            DamageText.Setup(transform.position, Mathf.CeilToInt(Random.value * 2), Random.value > .7f, (int)Mathf.Sign(Random.value - .5f));
+            DamageText.Setup(transform.position, Mathf.CeilToInt(Random.value * 2), false, (int)Mathf.Sign(Random.value - .5f), GetColor(), 3);
 
             // if (eCox.IsDead)
             // {

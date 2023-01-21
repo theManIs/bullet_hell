@@ -19,7 +19,10 @@ public class AddBloodDamage : AddTimedDamage
 
 public class AddFireDamage : AddTimedDamage
 {
-    public override Color GetColor() => Color.red;
+    public readonly Color SalmonOrange = new Color(229/256f, 81/256f, 55/256f);
+
+    public override Color GetColor() => SalmonOrange;
+
     public override float GetAnimationDuration() => .5f;
     public override GameObject AnimationAsset() => GameAssets.GroundFire;
 }

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49426e7ffbbb2374884b384303b7e26d, type: 3}
+  m_Name: FinalPanel
+  m_EditorClassIdentifier: 
+  Bonuses:
+  - BonusTitle: Dirty Game Bonus
+    BonusEffect: 2
+    BonusActive: 1
+  - BonusTitle: Mission Bonus
+    BonusEffect: 2
+    BonusActive: 1
+  - BonusTitle: Leathal Damage Bonus
+    BonusEffect: 3
+    BonusActive: 1
+  - BonusTitle: Flawles Victory Bonus
+    BonusEffect: 3
+    BonusActive: 0
+  - BonusTitle: First Win Bonus
+    BonusEffect: 2
+    BonusActive: 0
+  - BonusTitle: Killing Spree Bonus
+    BonusEffect: 2
+    BonusActive: 0
+  - BonusTitle: Remaining Time Bonus
+    BonusEffect: 2
+    BonusActive: 0
+  - BonusTitle: Regular Win Bonus
+    BonusEffect: 2
+    BonusActive: 0
+  TimeSpent: Time spent
+  KillingMade: Kills
+  WeaponOneDamage: Weapon One Damage
+  WeaponTwoDamage: Weapon Two Damage
+  SummaryPrompt: Summary
+  GoldText: "100 \u0445 20 = 2000 gold"
+  GameOver: Complete
+  RestartText: Restart

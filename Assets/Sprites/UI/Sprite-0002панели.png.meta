@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_0"
+      name: Panel_0
       rect:
         serializedVersion: 2
         x: 48
@@ -128,7 +128,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_1"
+      name: Panel_1
       rect:
         serializedVersion: 2
         x: 864
@@ -149,7 +149,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_2"
+      name: Panel_2
       rect:
         serializedVersion: 2
         x: 864
@@ -157,7 +157,7 @@ TextureImporter:
         width: 480
         height: 496
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_3"
+      name: Panel_3
       rect:
         serializedVersion: 2
         x: 640
@@ -178,7 +178,7 @@ TextureImporter:
         width: 192
         height: 384
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,15 +191,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_4"
+      name: Panel_4
       rect:
         serializedVersion: 2
-        x: 384
+        x: 382
         y: 32
         width: 112
         height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -212,7 +212,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_5"
+      name: Panel_5
       rect:
         serializedVersion: 2
         x: 240
@@ -220,7 +220,7 @@ TextureImporter:
         width: 112
         height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -233,7 +233,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_6"
+      name: Panel_6
       rect:
         serializedVersion: 2
         x: 32
@@ -241,7 +241,7 @@ TextureImporter:
         width: 32
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -254,7 +254,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_7"
+      name: Panel_7
       rect:
         serializedVersion: 2
         x: 80
@@ -262,7 +262,7 @@ TextureImporter:
         width: 32
         height: 63
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -275,7 +275,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_8"
+      name: Panel_8
       rect:
         serializedVersion: 2
         x: 32
@@ -283,7 +283,7 @@ TextureImporter:
         width: 144
         height: 80
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -296,7 +296,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_9"
+      name: Panel_9
       rect:
         serializedVersion: 2
         x: 32
@@ -304,7 +304,7 @@ TextureImporter:
         width: 144
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -317,15 +317,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_10"
+      name: Panel_10
       rect:
         serializedVersion: 2
         x: 32
-        y: 49
+        y: 48
         width: 144
         height: 47
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -348,17 +348,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_2": 1001459518
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_7": -10507457
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_1": 1869035637
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_5": 2127771794
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_3": -1518197818
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_9": -1649643126
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_0": -1945816676
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_6": 2003389519
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_10": -1515136896
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_8": -1980210065
-      "Sprite-0002\u043F\u0430\u043D\u0435\u043B\u0438_4": 157573298
+      Panel_7: -10507457
+      Panel_9: -1649643126
+      Panel_2: 1001459518
+      Panel_10: -1515136896
+      Panel_4: 157573298
+      Panel_6: 2003389519
+      Panel_8: -1980210065
+      Panel_3: -1518197818
+      Panel_1: -2082001893
+      Panel_0: 2092495924
+      Panel_5: 2127771794
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
