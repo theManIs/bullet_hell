@@ -42,6 +42,8 @@ public class SpriteRendererEffectAdder : MonoBehaviour
         
     }
 
+    public Vector3 GetBounds() => _affectedSpriteRenderer.bounds.extents;
+
     public void SetInitialColor(Color c) => _initialColor = c;
     public Color GetInitialColor() => _initialColor;
 

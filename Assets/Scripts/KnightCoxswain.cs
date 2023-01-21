@@ -34,6 +34,8 @@ public class KnightCoxswain : MonoBehaviour
     private DisplayControl _dc;
     private RectangleBar _healthBar;
     private WeaponFrame _wp;
+    private ExperienceBarFade _ebf;
+    private GameObject _wings;
 
     public void Awake()
     {
@@ -45,6 +47,7 @@ public class KnightCoxswain : MonoBehaviour
         _dc = FindObjectOfType<DisplayControl>();
         _knightSp = GetComponent<SpriteRenderer>();
         PerkProcessor = new PerkProcessor().Subscribe(FindObjectOfType<PickingPerkPanel>());
+        _ebf = FindObjectOfType<ExperienceBarFade>();
     }
 
     // Start is called before the first frame update
@@ -129,9 +132,26 @@ public class KnightCoxswain : MonoBehaviour
         }
     }
 
-    public void OnEnable() => _hs.OnHealthChanged += WhenGetHit;
+    public void CreateLevelUpWings()
+    {
+        _wings = Instantiate(GameAssets.LevelUp, transform);
+        _wings.transform.position = _wings.transform.position + new Vector3(0, _srea.GetBounds().y, 0);
+        Invoke(nameof(RemoveWings), .8f);
+    }
 
-    public void OnDisable() => _hs.OnHealthChanged -= WhenGetHit;
+    public void RemoveWings() => Destroy(_wings);
+
+    public void OnEnable()
+    {
+        _ebf.LevelUp += CreateLevelUpWings;
+        _hs.OnHealthChanged += WhenGetHit;
+    }
+
+    public void OnDisable()
+    {
+        _ebf.LevelUp -= CreateLevelUpWings;
+        _hs.OnHealthChanged -= WhenGetHit;
+    }
 
     // public void GoWeaponGo()
     // {
