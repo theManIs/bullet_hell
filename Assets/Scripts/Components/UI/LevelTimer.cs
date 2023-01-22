@@ -12,14 +12,19 @@ public class LevelTimer : MonoBehaviour
     public TextMeshProUGUI TextMesh;
     public int LevelDurationSeconds = 60;
 
+    public void Awake()
+    {
+        FindObjectOfType<PickingCharacterScreen>().OnGo += () => Invoke(nameof(StartCoroutineAfterStart), .0001f);
+    }
+
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         TextMesh = GetComponent<TextMeshProUGUI>();
         // print(TextMesh);
 
         // StartCoroutine(UpdateTimer());
-        Invoke(nameof(StartCoroutineAfterStart), .0001f);
+        // Invoke(nameof(StartCoroutineAfterStart), .0001f);
         // StartCoroutineAfterStart();
     }
 

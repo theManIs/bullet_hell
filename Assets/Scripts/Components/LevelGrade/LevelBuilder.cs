@@ -28,12 +28,14 @@ public class LevelBuilder : MonoBehaviour
     {
         _ppp = FindObjectOfType<PickingPerkPanel>();
         LevelTimer = FindObjectOfType<LevelTimer>();
+        FindObjectOfType<PickingCharacterScreen>().OnGo += () => gameObject.SetActive(true);
     }
 
     // Start is called before the first frame update
     void Start()
     {
         LevelTimer.OnTimeUp += () => gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public void OnEnable()

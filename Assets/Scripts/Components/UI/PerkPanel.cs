@@ -21,16 +21,21 @@ public class PerkPanel : UIBase
     private readonly List<PerkScriptableObject> _psoObjects = new List<PerkScriptableObject>();
     private readonly List<List<Transform>> _llt = new List<List<Transform>>();
 
+    public void Awake()
+    {
+        FindObjectOfType<PickingCharacterScreen>().OnGo += () => gameObject.SetActive(true);
+    }
+
     public override void Start()
     {
         base.Start();
-        gameObject.SetActive(true);
-
-        
+        // gameObject.SetActive(true);
 
         FillTheLists();
 
         PerkLimit = GetPerkHud().childCount;
+
+        
     }
 
     public void OnEnable()

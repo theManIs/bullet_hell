@@ -18,11 +18,13 @@ public class UnitSpawner : MonoBehaviour
     public void Awake()
     {
         LevelTimer = FindObjectOfType<LevelTimer>();
+        FindObjectOfType<PickingCharacterScreen>().OnGo += () => gameObject.SetActive(true);
     }
 
     // Start is called before the first frame update
     public void Start()
     {
+        gameObject.SetActive(false);
         LevelTimer.OnTimeUp += () => gameObject.SetActive(false);
     }
 
