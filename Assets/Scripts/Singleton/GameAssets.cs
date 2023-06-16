@@ -28,4 +28,5 @@ public class GameAssets
     public static ScriptableTile MyFirstScriptableTile => Resources.Load<ScriptableTile>("Scriptables/Tiles/MyFirstScriptableTile");
     public static ScriptableTileObstacle ObstacleTile => Resources.Load<ScriptableTileObstacle>("Scriptables/Tiles/ObstacleTile");
     public static FinalScreenScriptableObject FinalScreenScriptableObject => Resources.Load<FinalScreenScriptableObject>("Scriptables/Texts/FinalPanel");
+    public static ProfileScriptableObject ProfileScriptableObject => Resources.Load<ProfileScriptableObject>("Scriptables/Profiles/Default");
 }

@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PickingCharacterScreen : UIBase
 {
@@ -31,8 +33,16 @@ public class PickingCharacterScreen : UIBase
     public RectTransform RightHandWeapon;
     public RectTransform LeftHand;
     public RectTransform LeftHandWeapon;
+    public TextMeshProUGUI TotalPot;
+    [Header("WeaponUpgrade")]
+    public List<RectTransform> WeaponStat;
+    public RectTransform HighlighterUpgrade;
+    // private RectTransform _currentSelectedStat;
+    public Button UpgradeButton;
     [Header("Miscellaneous")]
     public Button GoButton;
+
+    private ProfileScriptableObject _profileScriptableObject;
 
 
     // Start is called before the first frame update
@@ -63,6 +73,13 @@ public class PickingCharacterScreen : UIBase
 
         TakeButton.onClick.AddListener(SpawnWeapon);
         DropButton.onClick.AddListener(EraseWeapon);
+
+        SetHighlighter(WeaponStat, HighlighterUpgrade);
+
+        _profileScriptableObject = GameAssets.ProfileScriptableObject;
+
+        UpgradeButton.gameObject.SetActive(false);
+        HighlighterUpgrade.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -71,6 +88,51 @@ public class PickingCharacterScreen : UIBase
         RollWeaponCarousel();
         RollCharacterCarousel();
         MoveFrame(WeaponPositions[CurrentIndex], CurrentIndex);
+        TotalPot.text = _profileScriptableObject.TotalPot.ToString();
+    }
+
+    public void StatUpgrade(RectTransform rt)
+    {
+        string[] weaponStat = rt.Find("WeaponStat").GetComponent<TextMeshProUGUI>().text.Split(" ");
+        string upgradeModifier = rt.Find("WeaponModifier").GetComponent<TextMeshProUGUI>().text.Replace("+", "");
+        weaponStat[1] = (Convert.ToInt32(weaponStat[1]) + Convert.ToInt32(upgradeModifier)).ToString("D");
+        rt.Find("WeaponStat").GetComponent<TextMeshProUGUI>().text = weaponStat[0] + " " + weaponStat[1];
+    }
+
+    public void SetHighlighter(List<RectTransform> list, RectTransform hightlighter)
+    {
+        foreach (RectTransform rt in list)
+        {
+            rt.GetComponent<Button>().onClick.AddListener(() => HighlightItem(rt, hightlighter));
+        }
+    }
+
+    public void HighlightItem(RectTransform item, RectTransform highlighter)
+    {
+        // print(item + " " + _currentSelectedStat);
+        if (item == highlighter)
+        {
+            // _currentSelectedStat = null;
+            highlighter.gameObject.SetActive(false);
+            UpgradeButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            int upgradeCost = Random.Range(0, 100);
+            highlighter.anchoredPosition = item.anchoredPosition;
+            // _currentSelectedStat = item;
+            highlighter.gameObject.SetActive(true);
+            UpgradeButton.GetComponent<RectTransform>().Find("UpgradePrice").GetComponent<TextMeshProUGUI>().text = upgradeCost.ToString("D");
+            UpgradeButton.gameObject.SetActive(true);
+            UpgradeButton.onClick.RemoveAllListeners();
+            UpgradeButton.onClick.AddListener(() => SpendMoney(upgradeCost));
+            UpgradeButton.onClick.AddListener(() => StatUpgrade(item));
+        }
+    }
+
+    public void SpendMoney(int amount)
+    {
+        _profileScriptableObject.TotalPot -= amount;
     }
 
     public void SpawnWeapon()
