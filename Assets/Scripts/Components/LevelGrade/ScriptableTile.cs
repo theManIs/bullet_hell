@@ -8,14 +8,18 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "Assets/Resources/Scriptables/Tiles/Tile-0", menuName = "Scriptables/Tile/Background", order = 1), Serializable]
 public class ScriptableTile : TileBase
 {
+    private ServiceRegistry _sr;
     public SpriteFrequency[] Sprites;
+    public SmartTile LastSmartTile;
 
     public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
     {
+        List<SpriteFrequency> spriteList = new List<SpriteFrequency>(Sprites);
         //TODO убрать обработчик весов в родительский класс
         int weight = new List<SpriteFrequency>(Sprites).Aggregate(0, (carrier, sf) => carrier += sf.Frequency);
         int pickValue = Random.Range(1, weight);
         int accumulator = 0;
+        SpriteFrequency spriteFrequency = default;
         // Debug.Log(weight + " " + pickValue);
         foreach (SpriteFrequency sf in Sprites)
         {
@@ -24,14 +28,22 @@ public class ScriptableTile : TileBase
             if (accumulator >= pickValue)
             {
                 tileData.sprite = sf.Sprite;
-
+                spriteFrequency = sf;
                 break;
             }
         }
 
-        // // bool evenCell = Mathf.Abs(position.y + position.x) % 2 > 0;
-        
-        // tileData.sprite = Sprites[Random.Range(0, Sprites.Length)].Sprite;
+        _sr = FindObjectOfType<ServiceRegistry>();
+        SmartTile st = new SmartTile
+        {
+            SpriteFrequencyIndex = spriteList.IndexOf(spriteFrequency),
+            TilePosition = position
+        };
+
+        LastSmartTile = st;
+
+        //_sr.NetworkLevel.SetSpawnedTile(st);
+        //_sr.NetworkLevel.SpawnTileClientRpc(st);
     }
 }
 

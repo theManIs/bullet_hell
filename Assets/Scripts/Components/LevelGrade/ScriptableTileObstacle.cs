@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -27,7 +28,14 @@ public class ScriptableTileObstacle : TileBase
             {
                 if (gof.GameObject)
                 {
-                    TileObstacles.Add(Instantiate(gof.GameObject, (Vector3)position * CellSize.x, Quaternion.identity));
+                    GameObject obstacleInstance = Instantiate(gof.GameObject, (Vector3)position * CellSize.x,
+                        Quaternion.identity);
+                    TileObstacles.Add(obstacleInstance);
+
+                    if (obstacleInstance.GetComponent<NetworkObject>() is { } netOnj)
+                    {
+                        netOnj.Spawn(true);
+                    }
                 }
 
                 break;

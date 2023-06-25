@@ -34,3 +34,18 @@ MonoBehaviour:
     Frequency: 1
     Sprite: {fileID: 21300000, guid: 4731cba9804d54541ba946fb418eab57, type: 3}
     Possibility: 1
+  TileObstacles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

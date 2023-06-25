@@ -26,7 +26,14 @@ public class GameAssets
     public static PerkScriptableObject WeaponRange => Resources.Load<PerkScriptableObject>("Scriptables/Perks/WeaponRange");
     public static PerkScriptableObject WeaponAoe => Resources.Load<PerkScriptableObject>("Scriptables/Perks/WeaponAoe");
     public static ScriptableTile MyFirstScriptableTile => Resources.Load<ScriptableTile>("Scriptables/Tiles/MyFirstScriptableTile");
+    public static ScriptableTile PlainGrassTile => Resources.Load<ScriptableTile>("Scriptables/Tiles/PlainGrassTile");
+    public static ScriptableChosenTile ScriptableChosenTile => Resources.Load<ScriptableChosenTile>("Scriptables/Tiles/ScriptableChosenTile");
     public static ScriptableTileObstacle ObstacleTile => Resources.Load<ScriptableTileObstacle>("Scriptables/Tiles/ObstacleTile");
     public static FinalScreenScriptableObject FinalScreenScriptableObject => Resources.Load<FinalScreenScriptableObject>("Scriptables/Texts/FinalPanel");
     public static ProfileScriptableObject ProfileScriptableObject => Resources.Load<ProfileScriptableObject>("Scriptables/Profiles/Default");
+    
+    public static KnightCoxswain CursedKnight => Resources.Load<KnightCoxswain>("Characters/CursedKnight_1");
+
+    // Multiplayer
+    public static NetworkLevel NetworkLevel => Resources.Load<NetworkLevel>("Multiplayer/NetworkLevel");
 }

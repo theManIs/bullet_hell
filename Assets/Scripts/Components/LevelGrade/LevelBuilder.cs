@@ -1,25 +1,25 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class LevelBuilder : MonoBehaviour
+public class LevelBuilder : NetworkBehaviour
 {
     public readonly Vector3Int LeftBottomCorner = new Vector3Int(1, 1);
 
+    public GameObject GridPrefab;
     public Grid Grid;
+    public Tilemap FieldTilemap;
     public Camera HudCamera;
     public Grid ObstacleGrid;
     public bool UpdateLevel = false;
     public LevelTimer LevelTimer;
-
-    // public Sprite A;
-    // public Sprite B;
-    // public ScriptableTile ScriptableTile;
     public KnightCoxswain KnightCoxswain;
 
+    private ServiceRegistry _sr;
     private PickingPerkPanel _ppp;
     private KnightCoxswain _kc;
     private List<GameObject> _listCScriptableTileObstacles = new List<GameObject>();
@@ -28,40 +28,112 @@ public class LevelBuilder : MonoBehaviour
     {
         _ppp = FindObjectOfType<PickingPerkPanel>();
         LevelTimer = FindObjectOfType<LevelTimer>();
-        FindObjectOfType<PickingCharacterScreen>().OnGo += () => gameObject.SetActive(true);
+        _sr = FindObjectOfType<ServiceRegistry>();
+        _sr.LevelBuilder = this;
+
+        //FindObjectOfType<PickingCharacterScreen>().OnGo += () => gameObject.SetActive(true);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        LevelTimer.OnTimeUp += () => gameObject.SetActive(false);
-        gameObject.SetActive(false);
+        //LevelTimer.OnTimeUp += () => gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        //MultiplayerController.OnServer += OnServer;
+        //MultiplayerController.OnClient += OnClient;
+
     }
 
-    public void OnEnable()
+    public void OnClient()
     {
-        // _gc = FindObjectOfType<GameController>();
+        
+    }
 
-        if (!FindObjectOfType<KnightCoxswain>())
+
+
+    public void Update()
+    {
+        if (UpdateLevel && NetworkManager.Singleton.IsServer)
         {
-            _kc = Instantiate(KnightCoxswain, Vector3.zero, Quaternion.identity);
-            _kc.PerkProcessor = new PerkProcessor().Subscribe(_ppp);
+            UpdateEveryFrame();
+            BuildObstacleLayer();
+
         }
 
-        if (!GetTilemapFromGrid(Grid))
+    }
+
+    public void OnServer()
+    {
+        //if (Grid == null)
+        //{
+        //    GameObject tilemapGridGoGameObject = new GameObject("FieldGrid", typeof(Grid), typeof(NetworkObject));
+        //    tilemapGridGoGameObject.transform.parent = gameObject.transform.parent;
+
+        //    if (tilemapGridGoGameObject.GetComponent<Grid>() is { } localTilemapGrid)
+        //    {
+        //        Grid = localTilemapGrid;
+        //        Grid.cellSize = new Vector3(1, 1, 0);
+        //    }
+
+        ////if (tilemapGridGoGameObject.GetComponent<NetworkObject>() is { } localFieldNetManager)
+        ////{
+        ////    //NetworkManager.Singleton.AddNetworkPrefab(tilemapGridGoGameObject);
+        ////    //localFieldNetManager.Spawn();
+        ////}
+        //}
+
+        //if (!GetTilemapFromGrid(Grid))
+        //{
+        //    GameObject fieldTilemap = new GameObject("FieldTilemap", typeof(Tilemap), typeof(TilemapRenderer));
+        //    fieldTilemap.transform.parent = Grid.transform;
+
+        //    if (fieldTilemap.GetComponent<TilemapRenderer>() is { } fieldRender)
+        //    {
+        //        fieldRender.sortingOrder = -10;
+        //    }
+        //}
+
+        if (GridPrefab != null)
         {
-            GameObject BackgroundT = new GameObject("BackgroundT", typeof(Tilemap), typeof(TilemapRenderer));
-            BackgroundT.transform.parent = Grid.transform;
+            GameObject fieldGridGoGameObject = Instantiate(GridPrefab);
+
+            if (fieldGridGoGameObject.GetComponent<NetworkObject>() is { } localFieldNetManager)
+            {
+                localFieldNetManager.Spawn();
+            }
+
+            if (fieldGridGoGameObject.GetComponent<Grid>() is { } localFieldGrid)
+            {
+                Grid = localFieldGrid;
+            }
+        }
+
+        if (ObstacleGrid == null)
+        {
+            GameObject obstacleGridGoGameObject = new GameObject("ObstacleGrid", typeof(Grid));
+            obstacleGridGoGameObject.transform.parent = gameObject.transform.parent;
+
+            if (obstacleGridGoGameObject.GetComponent<Grid>() is { } localGrid)
+            {
+                ObstacleGrid = localGrid;
+                ObstacleGrid.cellSize = new Vector3(.5f, .5f, 0);
+            }
         }
 
         if (!GetTilemapFromGrid(ObstacleGrid))
         {
-            GameObject ObstacleT = new GameObject("ObstacleT", typeof(Tilemap), typeof(TilemapRenderer));
-            ObstacleT.transform.parent = ObstacleGrid.transform;
+            GameObject obstacleTilemap = new GameObject("ÎbstacleTilemap", typeof(Tilemap), typeof(TilemapRenderer));
+            obstacleTilemap.transform.parent = ObstacleGrid.transform;
+
+            if (obstacleTilemap.GetComponent<TilemapRenderer>() is { } obstacleRenderer)
+            {
+                obstacleRenderer.sortingOrder = -9;
+            }
         }
 
         UpdateLevel = true;
     }
+
 
     public void OnDisable()
     {
@@ -72,19 +144,11 @@ public class LevelBuilder : MonoBehaviour
             Destroy(sto);
         }
 
-        Destroy(_kc.gameObject);
+        //Destroy(_kc.gameObject);
         UpdateLevel = false;
-        Destroy(GetTilemapFromGrid(Grid).gameObject);
-        Destroy(GetTilemapFromGrid(ObstacleGrid).gameObject);
+        //Destroy(GetTilemapFromGrid(Grid).gameObject);
+        //Destroy(GetTilemapFromGrid(ObstacleGrid).gameObject);
         new List<CoinOperator>(FindObjectsOfType<CoinOperator>()).ForEach(co => Destroy(co.gameObject));
-    }
-
-    public void Update()
-    {
-        if (UpdateLevel)
-        {
-            UpdateEveryFrame();
-        }
     }
 
     public void UpdateEveryFrame()
@@ -126,8 +190,11 @@ public class LevelBuilder : MonoBehaviour
                             // print("tilePosition " + tilePosition);
                             // print("leftBottom " + leftBottom);
                             // print("rightUpper " + rightUpper);
-
+                            //print(tilemap + " " + tilePosition + " " + st);
                             tilemap.SetTile(tilePosition, st);
+                            //print("SpawnTitle " + st.LastSmartTile.TilePosition);
+                            _sr.NetworkLevel.SetSpawnedTile(st.LastSmartTile);
+                            _sr.NetworkLevel.SpawnTileClientRpc(st.LastSmartTile);
                         }
                     }
 
@@ -145,11 +212,6 @@ public class LevelBuilder : MonoBehaviour
         }
         // EditorApplication.isPaused = true;
 
-        Vector3 playerPos = _kc.transform.position;
-        playerPos.z = HudCamera.transform.position.z;
-        HudCamera.transform.position = playerPos;
-
-        BuildObstacleLayer();
     }
 
     public Vector3 GetLeftBottom() => HudCamera.ViewportToWorldPoint(HudCamera.rect.min);

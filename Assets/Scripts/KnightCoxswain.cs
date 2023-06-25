@@ -48,26 +48,20 @@ public class KnightCoxswain : MonoBehaviour
         _knightSp = GetComponent<SpriteRenderer>();
         // PerkProcessor = new PerkProcessor().Subscribe(FindObjectOfType<PickingPerkPanel>());
         _ebf = FindObjectOfType<ExperienceBarFade>();
+        // Debug.Log(FindObjectOfType<ExperienceBarFade>());
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _healthBar = HealthBar switch
-        {
-            HealthBarsSet.HealthBarCut => _dc.HealthBars.HealthBarCut,
-            HealthBarsSet.HealthBarShrink => _dc.HealthBars.HealthBarShrink,
-            HealthBarsSet.HealthBarFade => _dc.HealthBars.HealthBarFade,
-            _ => _healthBar
-        };
-        _healthBar.gameObject.SetActive(true);
-        // _dc.HealthBars.HealthBarShrink.ResetSystem(HealthPoints);
-
-        // if (SwordSwipeGo)
-        // {
-        //     _swordSwipe = Instantiate(SwordSwipeGo, transform);
-        //     _swordSwipe.SetActive(false);
-        //     _swipeSp = _swordSwipe.GetComponent<SpriteRenderer>();
+        //_healthBar = HealthBar switch
+        //{
+        //    HealthBarsSet.HealthBarCut => _dc.HealthBars.HealthBarCut,
+        //    HealthBarsSet.HealthBarShrink => _dc.HealthBars.HealthBarShrink,
+        //    HealthBarsSet.HealthBarFade => _dc.HealthBars.HealthBarFade,
+        //    _ => _healthBar
+        //};
+        //_healthBar.gameObject.SetActive(true);
 
         _wp = RightHand switch
         {
@@ -107,28 +101,34 @@ public class KnightCoxswain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float xAxis = Input.GetAxis("Horizontal");
-        float yAxis = Input.GetAxis("Vertical");
+//        float xAxis = Input.GetAxis("Horizontal");
+//        float yAxis = Input.GetAxis("Vertical");
 
-//        Debug.Log(xAxis + " " + yAxis);
+////        Debug.Log(xAxis + " " + yAxis);
 
-        if (!xAxis.Equals(0) || !yAxis.Equals(0))
+//        if (!xAxis.Equals(0) || !yAxis.Equals(0))
+//        {
+//            transform.position += Vector3.right * Time.deltaTime * MoveSpeed * xAxis + Vector3.up * Time.deltaTime * MoveSpeed * yAxis;
+
+//            _knightSp.flipX = !(xAxis > 0);
+//            LastDirectionLeft = !(xAxis > 0); 
+
+//            if (_swipeSp)
+//            {
+//                _swipeSp.flipX = !(xAxis > 0);
+//            }
+
+//            _srea.Move();
+//        }
+//        else
+//        {
+//            _srea.Stop();
+//        }
+
+        if (_ebf == null && FindObjectOfType<ExperienceBarFade>() != null)
         {
-            transform.position += Vector3.right * Time.deltaTime * MoveSpeed * xAxis + Vector3.up * Time.deltaTime * MoveSpeed * yAxis;
-
-            _knightSp.flipX = !(xAxis > 0);
-            LastDirectionLeft = !(xAxis > 0); 
-
-            if (_swipeSp)
-            {
-                _swipeSp.flipX = !(xAxis > 0);
-            }
-
-            _srea.Move();
-        }
-        else
-        {
-            _srea.Stop();
+            _ebf = FindObjectOfType<ExperienceBarFade>();
+            _ebf.LevelUp += CreateLevelUpWings;
         }
     }
 
@@ -143,13 +143,14 @@ public class KnightCoxswain : MonoBehaviour
 
     public void OnEnable()
     {
-        _ebf.LevelUp += CreateLevelUpWings;
+        // Debug.Log(FindObjectOfType<ExperienceBarFade>());
+        //_ebf.LevelUp += CreateLevelUpWings;
         _hs.OnHealthChanged += WhenGetHit;
     }
 
     public void OnDisable()
     {
-        _ebf.LevelUp -= CreateLevelUpWings;
+        //_ebf.LevelUp -= CreateLevelUpWings;
         _hs.OnHealthChanged -= WhenGetHit;
     }
 
@@ -224,8 +225,7 @@ public class KnightCoxswain : MonoBehaviour
             {
                 // Debug.Log(hsea.DamageAmount);
                 _srea.BlinkOnce();
-                // _healthBar.SetDamage((int)((float)hsea.DamageAmount / HealthPoints * 100));
-                _healthBar.SetDamage(hsea.DamageAmount);
+                //_healthBar.SetDamage(hsea.DamageAmount);
 
                 if (_hs.IsDead)
                 {

@@ -1,10 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Types;
-using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.WSA;
 
 [RequireComponent(typeof(Collider2D))]
 public abstract class WeaponFrame : MonoBehaviour
