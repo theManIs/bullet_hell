@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8663782575607018529}
   - component: {fileID: 5164124401689552385}
   m_Layer: 0
-  m_Name: BackgroundGrid
+  m_Name: FieldGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

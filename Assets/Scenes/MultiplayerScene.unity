@@ -310,6 +310,11 @@ MonoBehaviour:
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
+    - Override: 0
+      Prefab: {fileID: 7813315102854839496, guid: 5e8a0ef3760bdb244bfdc5a1ae228843, type: 3}
+      SourcePrefabToOverride: {fileID: 0}
+      SourceHashToOverride: 0
+      OverridingTargetPrefab: {fileID: 0}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -616,6 +621,14 @@ PrefabInstance:
       propertyPath: ObstacleGrid
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
+      propertyPath: FieldGridPrefab
+      value: 
+      objectReference: {fileID: 8663782575607018528, guid: bc4e8f579def7a6479e5a077b6ba618a, type: 3}
+    - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
+      propertyPath: ObstacleGridPrefab
+      value: 
+      objectReference: {fileID: 7813315102854839496, guid: 5e8a0ef3760bdb244bfdc5a1ae228843, type: 3}
     - target: {fileID: 9152053211675248968, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -662,7 +675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9152053211675248969, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: m_Name
-      value: Level
+      value: LevelBuilder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 [CreateAssetMenu(fileName = "Assets/Resources/Scriptables/Tiles/Obstacle", menuName = "Scriptables/Tile/Obstacle", order = 1), Serializable]
 public class ScriptableTileObstacle : TileBase
 {
+    public Transform Host;
     public Vector3 CellSize;
     public GameObjectFrequency[] GameObjects;
     public List<GameObject> TileObstacles = new List<GameObject>();
@@ -36,6 +37,11 @@ public class ScriptableTileObstacle : TileBase
                     {
                         netOnj.Spawn(true);
                     }
+
+                    if (Host is { })
+                    {
+                        obstacleInstance.transform.parent = Host;
+                    }
                 }
 
                 break;
@@ -53,6 +59,8 @@ public class ScriptableTileObstacle : TileBase
         //
         // // tileData.sprite = GameObjects[Random.Range(0, GameObjects.Length)].Sprite;
     }
+
+    public void SetHost(Transform host) => Host = host;
 }
 
 //TODO Âûםוסעט ג מעהוכüםûי פאיכ

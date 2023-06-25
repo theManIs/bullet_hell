@@ -10,7 +10,8 @@ public class LevelBuilder : NetworkBehaviour
 {
     public readonly Vector3Int LeftBottomCorner = new Vector3Int(1, 1);
 
-    public GameObject GridPrefab;
+    public GameObject FieldGridPrefab;
+    public GameObject ObstacleGridPrefab;
     public Grid Grid;
     public Tilemap FieldTilemap;
     public Camera HudCamera;
@@ -133,9 +134,9 @@ public class LevelBuilder : NetworkBehaviour
         //    }
         //}
 
-        if (GridPrefab != null)
+        if (FieldGridPrefab != null)
         {
-            GameObject fieldGridGoGameObject = Instantiate(GridPrefab);
+            GameObject fieldGridGoGameObject = Instantiate(FieldGridPrefab);
 
             if (fieldGridGoGameObject.GetComponent<NetworkObject>() is { } localFieldNetManager)
             {
@@ -147,33 +148,48 @@ public class LevelBuilder : NetworkBehaviour
                 Grid = localFieldGrid;
                 FieldTilemap = GetTilemapFromGrid(Grid);
             }
-
         }
 
-        if (ObstacleGrid == null)
+        if (ObstacleGridPrefab is { })
         {
-            GameObject obstacleGridGoGameObject = new GameObject("ObstacleGrid", typeof(Grid));
-            obstacleGridGoGameObject.transform.parent = gameObject.transform.parent;
+            GameObject obstacleGridGoGameObject = Instantiate(ObstacleGridPrefab);
 
-            if (obstacleGridGoGameObject.GetComponent<Grid>() is { } localGrid)
+            if (obstacleGridGoGameObject.GetComponent<NetworkObject>() is { } localObstacleNetManager)
             {
-                ObstacleGrid = localGrid;
-                ObstacleGrid.cellSize = new Vector3(.5f, .5f, 0);
+                localObstacleNetManager.Spawn();
+            }
+
+            if (obstacleGridGoGameObject.GetComponent<Grid>() is { } localObstacleGrid)
+            {
+                ObstacleGrid = localObstacleGrid;
+                ObstacleTilemap = GetTilemapFromGrid(ObstacleGrid);
             }
         }
 
-        if (!GetTilemapFromGrid(ObstacleGrid))
-        {
-            GameObject obstacleTilemap = new GameObject("ÎbstacleTilemap", typeof(Tilemap), typeof(TilemapRenderer));
-            obstacleTilemap.transform.parent = ObstacleGrid.transform;
+        //if (ObstacleGrid == null)
+        //{
+        //    GameObject obstacleGridGoGameObject = new GameObject("ObstacleGrid", typeof(Grid));
+        //    obstacleGridGoGameObject.transform.parent = gameObject.transform.parent;
 
-            if (obstacleTilemap.GetComponent<TilemapRenderer>() is { } obstacleRenderer)
-            {
-                obstacleRenderer.sortingOrder = -9;
-            }
+        //    if (obstacleGridGoGameObject.GetComponent<Grid>() is { } localGrid)
+        //    {
+        //        ObstacleGrid = localGrid;
+        //        ObstacleGrid.cellSize = new Vector3(.5f, .5f, 0);
+        //    }
+        //}
 
-            ObstacleTilemap = GetTilemapFromGrid(ObstacleGrid);
-        }
+        //if (!GetTilemapFromGrid(ObstacleGrid))
+        //{
+        //    GameObject obstacleTilemap = new GameObject("ÎbstacleTilemap", typeof(Tilemap), typeof(TilemapRenderer));
+        //    obstacleTilemap.transform.parent = ObstacleGrid.transform;
+
+        //    if (obstacleTilemap.GetComponent<TilemapRenderer>() is { } obstacleRenderer)
+        //    {
+        //        obstacleRenderer.sortingOrder = -9;
+        //    }
+
+        //    ObstacleTilemap = GetTilemapFromGrid(ObstacleGrid);
+        //}
 
         UpdateLevel = true;
     }
@@ -270,6 +286,7 @@ public class LevelBuilder : NetworkBehaviour
         Vector3 rightUpper = corners[1];
         Tilemap tm = ObstacleTilemap;
         ScriptableTileObstacle st = GameAssets.ObstacleTile;
+        st.SetHost(ObstacleGrid.transform);
         // print(st);
         int xStart = Mathf.CeilToInt(leftBottom.x / tm.cellSize.x);
         int yStart = Mathf.CeilToInt(leftBottom.y / tm.cellSize.y);
