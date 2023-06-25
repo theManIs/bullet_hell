@@ -15,6 +15,7 @@ public class LevelBuilder : NetworkBehaviour
     public Tilemap FieldTilemap;
     public Camera HudCamera;
     public Grid ObstacleGrid;
+    public Tilemap ObstacleTilemap;
     public bool UpdateLevel = false;
     public LevelTimer LevelTimer;
     public KnightCoxswain KnightCoxswain;
@@ -50,16 +51,55 @@ public class LevelBuilder : NetworkBehaviour
     }
 
 
-
     public void Update()
     {
         if (UpdateLevel && NetworkManager.Singleton.IsServer)
         {
-            UpdateEveryFrame();
-            BuildObstacleLayer();
+            Vector3[] corners = FindEdges();
+            UpdateEveryFrame(corners);
+            BuildObstacleLayer(corners);
+        }
+
+    }
+
+    private Vector3[] FindEdges()
+    {
+        Vector3  leftBottom = Vector3.zero;
+        Vector3  rightUpper = Vector3.zero;
+        List<Vector3> playerPositions = new List<KnightCoxswain>(FindObjectsOfType<KnightCoxswain>())
+            .ConvertAll(kc => kc.transform.position);
+
+        if (playerPositions.Count != 0)
+        {
+            foreach (Vector3 pos in playerPositions)
+            {
+                if (leftBottom.x > pos.x)
+                {
+                    leftBottom.x = pos.x;
+                }
+
+                if (leftBottom.y > pos.y)
+                {
+                    leftBottom.y = pos.y;
+                }
+
+                if (pos.x > rightUpper.x)
+                {
+                    rightUpper.x = pos.x;
+                }
+
+                if (pos.y > rightUpper.y)
+                {
+                    rightUpper.y = pos.y;
+                }
+            }
 
         }
 
+        leftBottom += new Vector3(-5, -5);
+        rightUpper += new Vector3(5, 5);
+
+        return new Vector3[] { leftBottom, rightUpper };
     }
 
     public void OnServer()
@@ -105,7 +145,9 @@ public class LevelBuilder : NetworkBehaviour
             if (fieldGridGoGameObject.GetComponent<Grid>() is { } localFieldGrid)
             {
                 Grid = localFieldGrid;
+                FieldTilemap = GetTilemapFromGrid(Grid);
             }
+
         }
 
         if (ObstacleGrid == null)
@@ -129,6 +171,8 @@ public class LevelBuilder : NetworkBehaviour
             {
                 obstacleRenderer.sortingOrder = -9;
             }
+
+            ObstacleTilemap = GetTilemapFromGrid(ObstacleGrid);
         }
 
         UpdateLevel = true;
@@ -151,7 +195,7 @@ public class LevelBuilder : NetworkBehaviour
         new List<CoinOperator>(FindObjectsOfType<CoinOperator>()).ForEach(co => Destroy(co.gameObject));
     }
 
-    public void UpdateEveryFrame()
+    public void UpdateEveryFrame(Vector3[] corners)
     {
         // Debug.Log(HudCamera.rect.max + " " + HudCamera.rect.center + " " + HudCamera.transform.position);
         // print(HudCamera.ViewportToWorldPoint(HudCamera.rect.min) + " " + HudCamera.ViewportToWorldPoint(HudCamera.rect.max));
@@ -159,10 +203,12 @@ public class LevelBuilder : NetworkBehaviour
         // print(Tilemap.cellBounds.center);
         // print(Tilemap.cellBounds.max);
 
-        Tilemap tilemap = GetTilemapFromGrid(Grid);
-        Vector3 leftBottom = HudCamera.ViewportToWorldPoint(HudCamera.rect.min);
-        Vector3 rightUpper = HudCamera.ViewportToWorldPoint(HudCamera.rect.max);
-        
+        Tilemap tilemap = FieldTilemap;
+        //Vector3 leftBottom = HudCamera.ViewportToWorldPoint(HudCamera.rect.min);
+        Vector3 leftBottom = corners[0];
+        Vector3 rightUpper = corners[1];
+        //Vector3 rightUpper = HudCamera.ViewportToWorldPoint(HudCamera.rect.max);
+
         Vector3 cellSize = tilemap.cellSize;
         ScriptableTile st = GameAssets.MyFirstScriptableTile;
         Vector3Int leftBottomCorner = new Vector3Int(1, 1);
@@ -214,15 +260,15 @@ public class LevelBuilder : NetworkBehaviour
 
     }
 
-    public Vector3 GetLeftBottom() => HudCamera.ViewportToWorldPoint(HudCamera.rect.min);
-    public Vector3 GetRightUpper() => HudCamera.ViewportToWorldPoint(HudCamera.rect.max);
+    //public Vector3 GetLeftBottom() => HudCamera.ViewportToWorldPoint(HudCamera.rect.min);
+    //public Vector3 GetRightUpper() => HudCamera.ViewportToWorldPoint(HudCamera.rect.max);
     public Tilemap GetTilemapFromGrid(Grid grid) => grid.GetComponentInChildren<Tilemap>();
 
-    public void BuildObstacleLayer()
+    public void BuildObstacleLayer(Vector3[] corners)
     {
-        Vector3 leftBottom = GetLeftBottom();
-        Vector3 rightUpper = GetRightUpper();
-        Tilemap tm = GetTilemapFromGrid(ObstacleGrid);
+        Vector3 leftBottom = corners[0];
+        Vector3 rightUpper = corners[1];
+        Tilemap tm = ObstacleTilemap;
         ScriptableTileObstacle st = GameAssets.ObstacleTile;
         // print(st);
         int xStart = Mathf.CeilToInt(leftBottom.x / tm.cellSize.x);

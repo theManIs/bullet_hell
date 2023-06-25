@@ -171,7 +171,7 @@ MonoBehaviour:
   FieldTilemap: {fileID: 0}
   NetworkLevel: {fileID: 0}
   LevelBuilder: {fileID: 0}
-  TestList: {fileID: 0}
+  KnightCoxswain: {fileID: 0}
 --- !u!1 &655520712
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,11 +310,6 @@ MonoBehaviour:
       SourcePrefabToOverride: {fileID: 0}
       SourceHashToOverride: 0
       OverridingTargetPrefab: {fileID: 0}
-    - Override: 0
-      Prefab: {fileID: 6857085574034181666, guid: 73b9579eb706e624e9e73696cb608cdd, type: 3}
-      SourcePrefabToOverride: {fileID: 0}
-      SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 0}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -381,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6daced1be7b3c544bb46ee2a48d6de10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TestList: {fileID: 6857085574034181664, guid: 73b9579eb706e624e9e73696cb608cdd, type: 3}
+  NetworkLevel: {fileID: 4572243720614016091, guid: 8b076c5414ae93a41ae5960d8a2c6e7b, type: 3}
 --- !u!4 &930571719
 Transform:
   m_ObjectHideFlags: 0

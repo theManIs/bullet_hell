@@ -6,14 +6,17 @@ using UnityEngine.Tilemaps;
 
 public class NetworkLevel : NetworkBehaviour
 {
-    private List<SmartTile> _spawnedBeforeConnectionTiles = new List<SmartTile>();
+    private NetworkList<SmartTile> _spawnedBeforeConnectionTiles;
     private ServiceRegistry _sr;
 
+    private void Awake()
+    {
+        _spawnedBeforeConnectionTiles = new NetworkList<SmartTile>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //_spawnedBeforeConnectionTiles = new NetworkList<SmartTile>();
         _sr = FindObjectOfType<ServiceRegistry>();
         _sr.NetworkLevel = this;
 
@@ -67,7 +70,7 @@ public class NetworkLevel : NetworkBehaviour
             //print(_spawnedBeforeConnectionTiles);
             //print(_sr.TestList.SmartThings.Count);
 
-            foreach (SmartTile spawnedBeforeConnectionTile in _sr.TestList.SmartThings)
+            foreach (SmartTile spawnedBeforeConnectionTile in _spawnedBeforeConnectionTiles)
             {
                 //print(spawnedBeforeConnectionTile);
                 SpawnTileByIndex(spawnedBeforeConnectionTile.TilePosition, spawnedBeforeConnectionTile.SpriteFrequencyIndex);
@@ -105,8 +108,6 @@ public class NetworkLevel : NetworkBehaviour
         //print("_spawnedBeforeConnectionTiles " + _spawnedBeforeConnectionTiles);
         if (NetworkManager.Singleton.IsServer)
         {
-            _sr.TestList.AddElement(smartTile.SpriteFrequencyIndex);
-            _sr.TestList.SmartThings.Add(smartTile);
             _spawnedBeforeConnectionTiles.Add(smartTile);
             //_spawnedBeforeConnectionTilesIndexes.Add(smartTile.SpriteFrequencyIndex);
             //print(_sr.TestList.SmartThings.Count);

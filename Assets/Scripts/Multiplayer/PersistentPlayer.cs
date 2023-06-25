@@ -24,6 +24,8 @@ public class PersistentPlayer : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _sr = FindObjectOfType<ServiceRegistry>();
+
         if (IsOwner)
         {
             OnClientServerRpc();
@@ -43,7 +45,7 @@ public class PersistentPlayer : NetworkBehaviour
         //{
             _kc = Instantiate(GetKnightCoxswain(), Vector3.zero, Quaternion.identity);
         //_kc.PerkProcessor = new PerkProcessor().Subscribe(_ppp);
-        print(_kc);
+        //print(_kc);
 
         if (_kc.GetComponent<NetworkObject>() is { } knightCoxswainNetworkObject)
         {
@@ -80,6 +82,7 @@ public class PersistentPlayer : NetworkBehaviour
                 {
                     //print(networkId + " " + (knightCoxswainNetworkObject.NetworkObjectId == networkId));
                     _kc = knightCoxswain;
+                    _sr.KnightCoxswain = _kc;
                 }
             }
         }
@@ -132,7 +135,7 @@ public class PersistentPlayer : NetworkBehaviour
 
         //if (IsAnyMovement(xAxis, yAxis))
         //{
-        print(_kc);
+        //print(_kc);
         Vector3 playerPos = _kc.transform.position;
         playerPos.z = Camera.main.transform.position.z;
         Camera.main.transform.position = playerPos;
@@ -141,7 +144,7 @@ public class PersistentPlayer : NetworkBehaviour
         //_lastXAxis = xAxis;
         //_lastYAxis = yAxis;
 
-        MoveCameraForPlayerServerRpc();
+        //MoveCameraForPlayerServerRpc();
         //}
     }
 

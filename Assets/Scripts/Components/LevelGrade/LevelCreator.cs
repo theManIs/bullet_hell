@@ -6,7 +6,7 @@ using UnityEngine;
 public class LevelCreator : NetworkBehaviour
 {
     private ServiceRegistry _sr;
-    public TestList TestList;
+    public NetworkLevel NetworkLevel;
 
     // Start is called before the first frame update
     void Start()
@@ -32,23 +32,11 @@ public class LevelCreator : NetworkBehaviour
 
     public void StartLevel()
     {
-        NetworkLevel nl = Instantiate(GameAssets.NetworkLevel);
+        NetworkLevel nl = Instantiate(NetworkLevel);
 
         if (nl.GetComponent<NetworkObject>() is { } localNetworkObject)
         {
             localNetworkObject.Spawn();
-        }
-
-        GameObject tl = Instantiate(TestList.gameObject);
-
-        if (tl.GetComponent<NetworkObject>() is { } tlNetworkObject)
-        {
-            tlNetworkObject.Spawn();
-        }
-
-        for (int i = 0; i < 10; i++)
-        {
-            tl.GetComponent<TestList>().AddElement(i);
         }
 
         //print(tl.GetComponent<TestList>().m_ints.Count);
