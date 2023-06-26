@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class PersistentPlayer : NetworkBehaviour
 {
     private ServiceRegistry _sr;
-    private NetworkLevel _nl; 
     public KnightCoxswain _kc;
     private float _lastXAxis;
     private float _lastYAxis;
@@ -25,6 +23,7 @@ public class PersistentPlayer : NetworkBehaviour
     void Start()
     {
         _sr = FindObjectOfType<ServiceRegistry>();
+        _sr.PersistentPlayer = this;
 
         if (IsOwner)
         {
@@ -32,9 +31,10 @@ public class PersistentPlayer : NetworkBehaviour
         }
     }
 
-    private void SpawnNetworkLevel()
+    public override void OnDestroy()
     {
-        Instantiate(_nl);
+        Destroy(_kc.gameObject);
+        base.OnDestroy();
     }
 
     [ServerRpc]

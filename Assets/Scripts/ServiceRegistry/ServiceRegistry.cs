@@ -9,6 +9,7 @@ public class ServiceRegistry : MonoBehaviour
     public NetworkLevel NetworkLevel;
     public LevelBuilder LevelBuilder;
     public KnightCoxswain KnightCoxswain;
+    public PersistentPlayer PersistentPlayer;
 
     // Start is called before the first frame update
     void Start()
