@@ -8,11 +8,13 @@ using UnityEngine.Tilemaps;
 
 public class LevelBuilder : NetworkBehaviour
 {
+    public readonly Vector3 MovingShiftLeft = new Vector3(-15, -10);
+    public readonly Vector3 MovingShiftRight = new Vector3(15, 10);
     public readonly Vector3Int LeftBottomCorner = new Vector3Int(1, 1);
 
     public GameObject FieldGridPrefab;
     public GameObject ObstacleGridPrefab;
-    public Grid Grid;
+    public Grid FieldGrid;
     public Tilemap FieldTilemap;
     public Camera HudCamera;
     public Grid ObstacleGrid;
@@ -97,8 +99,8 @@ public class LevelBuilder : NetworkBehaviour
 
         }
 
-        leftBottom += new Vector3(-5, -5);
-        rightUpper += new Vector3(5, 5);
+        leftBottom += MovingShiftLeft;
+        rightUpper += MovingShiftRight;
 
         return new Vector3[] { leftBottom, rightUpper };
     }
@@ -145,8 +147,8 @@ public class LevelBuilder : NetworkBehaviour
 
             if (fieldGridGoGameObject.GetComponent<Grid>() is { } localFieldGrid)
             {
-                Grid = localFieldGrid;
-                FieldTilemap = GetTilemapFromGrid(Grid);
+                FieldGrid = localFieldGrid;
+                FieldTilemap = GetTilemapFromGrid(FieldGrid);
             }
         }
 
@@ -230,7 +232,7 @@ public class LevelBuilder : NetworkBehaviour
         Vector3Int leftBottomCorner = new Vector3Int(1, 1);
         int xStart = Mathf.CeilToInt(leftBottom.x / cellSize.x);
         int yStart = Mathf.CeilToInt(leftBottom.y / cellSize.y);
-        
+        // print(corners[0].x + " " + xStart);
         //TODO установиь правильные границы для генерации карты
         for (int x = xStart; x < 100; x++)
         {
@@ -252,7 +254,7 @@ public class LevelBuilder : NetworkBehaviour
                             // print("tilePosition " + tilePosition);
                             // print("leftBottom " + leftBottom);
                             // print("rightUpper " + rightUpper);
-                            //print(tilemap + " " + tilePosition + " " + st);
+                            // print(tilemap + " " + tilePosition + " " + st);
                             tilemap.SetTile(tilePosition, st);
                             //print("SpawnTitle " + st.LastSmartTile.TilePosition);
                             _sr.NetworkLevel.SetSpawnedTile(st.LastSmartTile);

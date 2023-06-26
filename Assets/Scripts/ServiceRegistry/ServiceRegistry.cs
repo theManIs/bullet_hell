@@ -6,14 +6,9 @@ using UnityEngine.Tilemaps;
 
 public class ServiceRegistry : MonoBehaviour
 {
-    public Grid FieldGrid;
-    public Tilemap FieldTilemap;
     public NetworkLevel NetworkLevel;
     public LevelBuilder LevelBuilder;
     public KnightCoxswain KnightCoxswain;
-
-    public void RegisterFieldGrid(Grid fieldGrid) => FieldGrid = fieldGrid;
-    public void RegisterFieldTilemap(Tilemap fieldTilemap) => FieldTilemap = fieldTilemap;
 
     // Start is called before the first frame update
     void Start()

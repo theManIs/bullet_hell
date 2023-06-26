@@ -8,6 +8,7 @@ public class NetworkLevel : NetworkBehaviour
 {
     private NetworkList<SmartTile> _spawnedBeforeConnectionTiles;
     private ServiceRegistry _sr;
+    private NetworkVariable<ulong> _fieldGrid = new NetworkVariable<ulong>(0);
 
     private void Awake()
     {
@@ -24,15 +25,14 @@ public class NetworkLevel : NetworkBehaviour
         //NetworkManager.Singleton.OnServerStarted += StartLevel;
         //print(NetworkManager.Singleton.IsServer);
 
-
         if (NetworkManager.Singleton.IsServer)
         {
             StartLevel();
-            CacheValue();
+            CacheValueServer();
         }
         else
         {
-            CacheValue();
+            CacheValuesClient();
             SpawnAtTheStart(NetworkManager.Singleton.LocalClientId);
         }
     }
@@ -43,13 +43,46 @@ public class NetworkLevel : NetworkBehaviour
 
     }
 
-    public void CacheValue()
+    private void CacheValuesClient()
     {
-        _sr = FindObjectOfType<ServiceRegistry>();
-        _sr.FieldGrid = FindObjectOfType<Grid>();
-        _sr.FieldTilemap = FindObjectOfType<Tilemap>();
+        _sr.LevelBuilder.FieldGrid = CacheFieldGrid<Grid>(_fieldGrid.Value);
+        _sr.LevelBuilder.FieldTilemap = _sr.LevelBuilder.GetTilemapFromGrid(_sr.LevelBuilder.FieldGrid);
+    }
+
+    public void CacheValueServer()
+    {
+        _fieldGrid.Value = _sr.LevelBuilder.FieldGrid.GetComponent<NetworkObject>().NetworkObjectId;
 
         //print(_sr.FieldGrid + " " + _sr.FieldTilemap);
+    }
+
+    private T CacheFieldGrid<T>(ulong networkId) where T : Component
+    {
+        List<GameObject> objects = new List<T>(FindObjectsOfType<T>()).ConvertAll(g => g.gameObject);
+        GameObject targetGameObject = FindGameObjectByNetworkId(objects, networkId);
+
+        if (targetGameObject && targetGameObject.GetComponent<T>() is { } endTarget)
+        {
+            return endTarget;
+        }
+
+        return null;
+    }
+
+    private GameObject FindGameObjectByNetworkId(List<GameObject> gameObjects, ulong networkId)
+    {
+        foreach (GameObject go in gameObjects)
+        {
+            if (go.GetComponent<NetworkObject>() is { } networkObject)
+            {
+                if (networkObject.NetworkObjectId == networkId)
+                {
+                    return go;
+                }
+            }
+        }
+
+        return null;
     }
 
     private void StartLevel()
@@ -90,7 +123,7 @@ public class NetworkLevel : NetworkBehaviour
         ScriptableTile st = GameAssets.MyFirstScriptableTile;
         sct.SetSpriteFrequency(st.Sprites[spIndex]);
         //print(_sr.FieldGrid.gameObject + " " + _sr.FieldTilemap.gameObject + " " + tilePosition);
-        _sr.FieldTilemap.SetTile(tilePosition, sct);
+        _sr.LevelBuilder.FieldTilemap.SetTile(tilePosition, sct);
     }
 
     //[ClientRpc]
