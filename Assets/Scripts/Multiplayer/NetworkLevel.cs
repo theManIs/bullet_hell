@@ -22,6 +22,7 @@ public class NetworkLevel : NetworkBehaviour
         _sr.NetworkLevel = this;
 
         NetworkManager.Singleton.OnClientConnectedCallback += SpawnAtTheStart;
+        NetworkManager.Singleton.OnClientConnectedCallback += RecountPlayersClientRpc;
         //NetworkManager.Singleton.OnServerStarted += StartLevel;
         //print(NetworkManager.Singleton.IsServer);
 
@@ -34,6 +35,15 @@ public class NetworkLevel : NetworkBehaviour
         {
             CacheValuesClient();
             SpawnAtTheStart(NetworkManager.Singleton.LocalClientId);
+        }
+    }
+
+    [ClientRpc]
+    private void RecountPlayersClientRpc(ulong uid)
+    {
+        if (IsClient)
+        {
+            _sr.LevelBuilder.RecountPlayers();
         }
     }
 

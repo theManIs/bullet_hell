@@ -6,27 +6,27 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class LevelBuilder : NetworkBehaviour
+public class LevelBuilder : MonoBehaviour
 {
     public readonly Vector3 MovingShiftLeft = new Vector3(-15, -10);
     public readonly Vector3 MovingShiftRight = new Vector3(15, 10);
     public readonly Vector3Int LeftBottomCorner = new Vector3Int(1, 1);
+    private readonly int _generateThreshold = 1;
 
     public GameObject FieldGridPrefab;
     public GameObject ObstacleGridPrefab;
     public Grid FieldGrid;
     public Tilemap FieldTilemap;
-    public Camera HudCamera;
     public Grid ObstacleGrid;
     public Tilemap ObstacleTilemap;
     public bool UpdateLevel = false;
     public LevelTimer LevelTimer;
-    public KnightCoxswain KnightCoxswain;
 
     private ServiceRegistry _sr;
     private PickingPerkPanel _ppp;
-    private KnightCoxswain _kc;
     private List<GameObject> _listCScriptableTileObstacles = new List<GameObject>();
+    private Vector3[] _lastCorners = new Vector3[2];
+    private List<Vector3> _playersGameObjects = new List<Vector3>();
 
     public void Awake()
     {
@@ -43,38 +43,40 @@ public class LevelBuilder : NetworkBehaviour
     {
         //LevelTimer.OnTimeUp += () => gameObject.SetActive(false);
         //gameObject.SetActive(false);
-        //MultiplayerController.OnServer += OnServer;
-        //MultiplayerController.OnClient += OnClient;
-
     }
-
-    public void OnClient()
-    {
-        
-    }
-
 
     public void Update()
     {
         if (UpdateLevel && NetworkManager.Singleton.IsServer)
         {
             Vector3[] corners = FindEdges();
-            UpdateEveryFrame(corners);
-            BuildObstacleLayer(corners);
+            
+            if ((_lastCorners[0] - corners[0]).magnitude > _generateThreshold
+                || (_lastCorners[1] - corners[1]).magnitude > _generateThreshold)
+            {
+                //print((_lastCorners[0] - corners[0]).magnitude + " " + (_lastCorners[1] - corners[1]).magnitude);
+                UpdateEveryFrame(corners);
+                BuildObstacleLayer(corners);
+                _lastCorners = corners;
+            }
         }
+    }
 
+    public void RecountPlayers()
+    {
+        _playersGameObjects = new List<KnightCoxswain>(FindObjectsOfType<KnightCoxswain>())
+            .ConvertAll(kc => kc.transform.position);
+        //print(_playersGameObjects);
     }
 
     private Vector3[] FindEdges()
     {
         Vector3  leftBottom = Vector3.zero;
         Vector3  rightUpper = Vector3.zero;
-        List<Vector3> playerPositions = new List<KnightCoxswain>(FindObjectsOfType<KnightCoxswain>())
-            .ConvertAll(kc => kc.transform.position);
 
-        if (playerPositions.Count != 0)
+        if (_playersGameObjects.Count != 0)
         {
-            foreach (Vector3 pos in playerPositions)
+            foreach (Vector3 pos in _playersGameObjects)
             {
                 if (leftBottom.x > pos.x)
                 {
@@ -96,7 +98,6 @@ public class LevelBuilder : NetworkBehaviour
                     rightUpper.y = pos.y;
                 }
             }
-
         }
 
         leftBottom += MovingShiftLeft;
@@ -107,35 +108,6 @@ public class LevelBuilder : NetworkBehaviour
 
     public void OnServer()
     {
-        //if (Grid == null)
-        //{
-        //    GameObject tilemapGridGoGameObject = new GameObject("FieldGrid", typeof(Grid), typeof(NetworkObject));
-        //    tilemapGridGoGameObject.transform.parent = gameObject.transform.parent;
-
-        //    if (tilemapGridGoGameObject.GetComponent<Grid>() is { } localTilemapGrid)
-        //    {
-        //        Grid = localTilemapGrid;
-        //        Grid.cellSize = new Vector3(1, 1, 0);
-        //    }
-
-        ////if (tilemapGridGoGameObject.GetComponent<NetworkObject>() is { } localFieldNetManager)
-        ////{
-        ////    //NetworkManager.Singleton.AddNetworkPrefab(tilemapGridGoGameObject);
-        ////    //localFieldNetManager.Spawn();
-        ////}
-        //}
-
-        //if (!GetTilemapFromGrid(Grid))
-        //{
-        //    GameObject fieldTilemap = new GameObject("FieldTilemap", typeof(Tilemap), typeof(TilemapRenderer));
-        //    fieldTilemap.transform.parent = Grid.transform;
-
-        //    if (fieldTilemap.GetComponent<TilemapRenderer>() is { } fieldRender)
-        //    {
-        //        fieldRender.sortingOrder = -10;
-        //    }
-        //}
-
         if (FieldGridPrefab != null)
         {
             GameObject fieldGridGoGameObject = Instantiate(FieldGridPrefab);
@@ -167,31 +139,6 @@ public class LevelBuilder : NetworkBehaviour
                 ObstacleTilemap = GetTilemapFromGrid(ObstacleGrid);
             }
         }
-
-        //if (ObstacleGrid == null)
-        //{
-        //    GameObject obstacleGridGoGameObject = new GameObject("ObstacleGrid", typeof(Grid));
-        //    obstacleGridGoGameObject.transform.parent = gameObject.transform.parent;
-
-        //    if (obstacleGridGoGameObject.GetComponent<Grid>() is { } localGrid)
-        //    {
-        //        ObstacleGrid = localGrid;
-        //        ObstacleGrid.cellSize = new Vector3(.5f, .5f, 0);
-        //    }
-        //}
-
-        //if (!GetTilemapFromGrid(ObstacleGrid))
-        //{
-        //    GameObject obstacleTilemap = new GameObject("ÎbstacleTilemap", typeof(Tilemap), typeof(TilemapRenderer));
-        //    obstacleTilemap.transform.parent = ObstacleGrid.transform;
-
-        //    if (obstacleTilemap.GetComponent<TilemapRenderer>() is { } obstacleRenderer)
-        //    {
-        //        obstacleRenderer.sortingOrder = -9;
-        //    }
-
-        //    ObstacleTilemap = GetTilemapFromGrid(ObstacleGrid);
-        //}
 
         UpdateLevel = true;
     }
@@ -278,8 +225,6 @@ public class LevelBuilder : NetworkBehaviour
 
     }
 
-    //public Vector3 GetLeftBottom() => HudCamera.ViewportToWorldPoint(HudCamera.rect.min);
-    //public Vector3 GetRightUpper() => HudCamera.ViewportToWorldPoint(HudCamera.rect.max);
     public Tilemap GetTilemapFromGrid(Grid grid) => grid.GetComponentInChildren<Tilemap>();
 
     public void BuildObstacleLayer(Vector3[] corners)

@@ -7,20 +7,13 @@ using Unity.Netcode.Transports.UTP;
 
 public class MultiplayerController : MonoBehaviour
 {
-    public static event Action OnServer;
-
     private float _connectingTimer = 0;
     private float _connectingTimerDefault = 0;
     private readonly float _msToSec = 0.001f;
 
-    private PickingCharacterScreen _pcs;
-
     // Start is called before the first frame update
     void Start()
     {
-        //StartHost();
-        //_pcs = FindObjectOfType<PickingCharacterScreen>();
-        //Debug.Log(FindObjectOfType<PickingCharacterScreen>());
         UnityTransport ut =  GetComponent<UnityTransport>();
         _connectingTimerDefault = ut.ConnectTimeoutMS * ut.MaxConnectAttempts * _msToSec;
     }
@@ -31,11 +24,6 @@ public class MultiplayerController : MonoBehaviour
         if (_connectingTimer > 0)
         {
             _connectingTimer -= Time.deltaTime;
-
-            if (_connectingTimer <= 0)
-            {
-                
-            }
         }
     }
 
@@ -87,7 +75,6 @@ public class MultiplayerController : MonoBehaviour
     private void StartServer()
     {
         NetworkManager.Singleton.StartServer();
-        OnServer?.Invoke();
     }
 
     private void ResetAndUnsubscribe(ulong uid)
