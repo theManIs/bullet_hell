@@ -56,7 +56,7 @@ public class LevelBuilder : MonoBehaviour
             {
                 //print((_lastCorners[0] - corners[0]).magnitude + " " + (_lastCorners[1] - corners[1]).magnitude);
                 UpdateEveryFrame(corners);
-                //BuildObstacleLayer(corners);
+                BuildObstacleLayer(corners);
                 _lastCorners = corners;
             }
         }
@@ -66,7 +66,7 @@ public class LevelBuilder : MonoBehaviour
     {
         _playersGameObjects = new List<KnightCoxswain>(FindObjectsOfType<KnightCoxswain>())
             .ConvertAll(kc => kc.transform);
-        print(_playersGameObjects.Count);
+        //print(_playersGameObjects.Count);
     }
 
     public void RemovePlayer(Transform t)
@@ -239,6 +239,7 @@ public class LevelBuilder : MonoBehaviour
         Tilemap tm = ObstacleTilemap;
         ScriptableTileObstacle st = GameAssets.ObstacleTile;
         st.SetHost(ObstacleGrid.transform);
+        st.SetTilemap(tm);
         // print(st);
         int xStart = Mathf.CeilToInt(leftBottom.x / tm.cellSize.x);
         int yStart = Mathf.CeilToInt(leftBottom.y / tm.cellSize.y);
@@ -247,23 +248,67 @@ public class LevelBuilder : MonoBehaviour
         _listCScriptableTileObstacles.AddRange(st.TileObstacles);
     }
 
+    //public void FillLayer(int xStart, int yStart, Vector3 leftBottom, Vector3 rightUpper, Tilemap tm, ScriptableTileObstacle st)
+    //{
+    //    int xEnd = Mathf.CeilToInt(rightUpper.x / tm.cellSize.x);
+    //    int yEnd = Mathf.CeilToInt(rightUpper.y / tm.cellSize.y);
+    //    // Debug.Log(xStart + " " + yStart);
+    //    for (int x = xStart; x < xEnd; x++)
+    //    {
+    //        float xCoord = x * tm.cellSize.x - LeftBottomCorner.x * tm.cellSize.x;
+    //        // print(leftBottom.x + " " + xCoord);
+    //        if (leftBottom.x - 1 <= xCoord && rightUpper.x > xCoord)
+    //        {
+    //            for (int y = yStart; y < yEnd; y++)
+    //            {
+    //                // print(curMap.cellBounds.min.y);
+    //                Vector3Int tilePosition = new Vector3Int(x, y) - LeftBottomCorner;
+    //                // float yCoord = tilePosition.y * tm.cellSize.y - leftBottomCorner.y;
+    //                float yCoord = tilePosition.y * tm.cellSize.y;
+    //                // print(leftBottom.y + " " + yCoord);
+    //                if (leftBottom.y - 1 <= yCoord && rightUpper.y > yCoord)
+    //                {
+    //                    if (!tm.HasTile(tilePosition))
+    //                    {
+    //                        // print("tilePosition " + tilePosition);
+    //                        // print("leftBottom " + leftBottom);
+    //                        // print("rightUpper " + rightUpper);
+
+    //                        tm.SetTile(tilePosition, st);
+    //                    }
+    //                }
+
+    //                if (!(rightUpper.y > yCoord))
+    //                {
+    //                    break;
+    //                }
+    //            }
+    //        }
+
+    //        if (!(rightUpper.x > xCoord))
+    //        {
+    //            break;
+    //        }
+    //    }
+    //}    
+    
     public void FillLayer(int xStart, int yStart, Vector3 leftBottom, Vector3 rightUpper, Tilemap tm, ScriptableTileObstacle st)
     {
         int xEnd = Mathf.CeilToInt(rightUpper.x / tm.cellSize.x);
         int yEnd = Mathf.CeilToInt(rightUpper.y / tm.cellSize.y);
         // Debug.Log(xStart + " " + yStart);
-        for (int x = xStart; x < xEnd; x++)
+        for (int y = yStart; y < yEnd; y++)
         {
-            float xCoord = x * tm.cellSize.x - LeftBottomCorner.x * tm.cellSize.x;
+            float yCoord = y * tm.cellSize.x - LeftBottomCorner.y * tm.cellSize.y;
             // print(leftBottom.x + " " + xCoord);
-            if (leftBottom.x - 1 <= xCoord && rightUpper.x > xCoord)
+            if (leftBottom.y - 1 <= yCoord && rightUpper.y > yCoord)
             {
-                for (int y = yStart; y < yEnd; y++)
+                for (int x = xStart; x < xEnd; x++)
                 {
+                    float xCoord = x * tm.cellSize.x - LeftBottomCorner.x * tm.cellSize.x;
                     // print(curMap.cellBounds.min.y);
                     Vector3Int tilePosition = new Vector3Int(x, y) - LeftBottomCorner;
                     // float yCoord = tilePosition.y * tm.cellSize.y - leftBottomCorner.y;
-                    float yCoord = tilePosition.y * tm.cellSize.y;
                     // print(leftBottom.y + " " + yCoord);
                     if (leftBottom.y - 1 <= yCoord && rightUpper.y > yCoord)
                     {
@@ -277,14 +322,14 @@ public class LevelBuilder : MonoBehaviour
                         }
                     }
 
-                    if (!(rightUpper.y > yCoord))
+                    if (!(rightUpper.x > xCoord))
                     {
                         break;
                     }
                 }
             }
 
-            if (!(rightUpper.x > xCoord))
+            if (!(rightUpper.y > yCoord))
             {
                 break;
             }

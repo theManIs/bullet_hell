@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableTile
   Sprites:
   - Sprite: {fileID: -1272687092, guid: 0d91e839829d2f14db190244e2e1068c, type: 3}
-    Frequency: 5
+    Frequency: 2
   - Sprite: {fileID: 936587776, guid: 0d91e839829d2f14db190244e2e1068c, type: 3}
     Frequency: 2
   - Sprite: {fileID: -1577847798, guid: 0d91e839829d2f14db190244e2e1068c, type: 3}
@@ -22,8 +22,9 @@ MonoBehaviour:
   - Sprite: {fileID: -1571301010, guid: 0d91e839829d2f14db190244e2e1068c, type: 3}
     Frequency: 2
   - Sprite: {fileID: 148935083, guid: 0d91e839829d2f14db190244e2e1068c, type: 3}
-    Frequency: 1
+    Frequency: 2
   LastSmartTile:
-    SpriteFrequencyIndex: 1
-    TilePosition: {x: 14, y: 9, z: 0}
+    SpriteFrequencyIndex: 2
+    TilePosition: {x: 24, y: 24, z: 0}
   Scale: 0.1
+  StartingNoiseBlockSize: 35
