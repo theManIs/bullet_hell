@@ -22,14 +22,14 @@ public class NetworkLevel : NetworkBehaviour
         _sr.NetworkLevel = this;
 
         NetworkManager.Singleton.OnClientConnectedCallback += SpawnAtTheStart;
-        NetworkManager.Singleton.OnClientConnectedCallback += RecountPlayersClientRpc;
-        //NetworkManager.Singleton.OnServerStarted += StartLevel;
+        //NetworkManager.Singleton.OnClientConnectedCallback += RecountPlayers;
         //print(NetworkManager.Singleton.IsServer);
 
         if (NetworkManager.Singleton.IsServer)
         {
             StartLevel();
             CacheValueServer();
+
         }
         else
         {
@@ -38,13 +38,15 @@ public class NetworkLevel : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
-    private void RecountPlayersClientRpc(ulong uid)
+    public void RecountPlayers(ulong uid)
     {
-        if (IsClient)
-        {
-            _sr.LevelBuilder.RecountPlayers();
-        }
+        //print("RecountPlayersClientRpc");
+        _sr.LevelBuilder.RecountPlayers();
+    }
+
+    public void RemovePlayer(Transform t)
+    {
+        _sr.LevelBuilder.RemovePlayer(t);
     }
 
     // Update is called once per frame

@@ -8,8 +8,8 @@ using UnityEngine.Tilemaps;
 
 public class LevelBuilder : MonoBehaviour
 {
-    public readonly Vector3 MovingShiftLeft = new Vector3(-15, -10);
-    public readonly Vector3 MovingShiftRight = new Vector3(15, 10);
+    public Vector3 MovingShiftLeft = new Vector3(-100, -100);
+    public Vector3 MovingShiftRight = new Vector3(100, 100);
     public readonly Vector3Int LeftBottomCorner = new Vector3Int(1, 1);
     private readonly int _generateThreshold = 1;
 
@@ -26,7 +26,7 @@ public class LevelBuilder : MonoBehaviour
     private PickingPerkPanel _ppp;
     private List<GameObject> _listCScriptableTileObstacles = new List<GameObject>();
     private Vector3[] _lastCorners = new Vector3[2];
-    private List<Vector3> _playersGameObjects = new List<Vector3>();
+    private List<Transform> _playersGameObjects = new List<Transform>();
 
     public void Awake()
     {
@@ -49,14 +49,14 @@ public class LevelBuilder : MonoBehaviour
     {
         if (UpdateLevel && NetworkManager.Singleton.IsServer)
         {
-            Vector3[] corners = FindEdges();
+            Vector3[] corners = FindEdges(_playersGameObjects.ConvertAll(p => p.position));
             
             if ((_lastCorners[0] - corners[0]).magnitude > _generateThreshold
                 || (_lastCorners[1] - corners[1]).magnitude > _generateThreshold)
             {
                 //print((_lastCorners[0] - corners[0]).magnitude + " " + (_lastCorners[1] - corners[1]).magnitude);
                 UpdateEveryFrame(corners);
-                BuildObstacleLayer(corners);
+                //BuildObstacleLayer(corners);
                 _lastCorners = corners;
             }
         }
@@ -65,18 +65,23 @@ public class LevelBuilder : MonoBehaviour
     public void RecountPlayers()
     {
         _playersGameObjects = new List<KnightCoxswain>(FindObjectsOfType<KnightCoxswain>())
-            .ConvertAll(kc => kc.transform.position);
-        //print(_playersGameObjects);
+            .ConvertAll(kc => kc.transform);
+        print(_playersGameObjects.Count);
     }
 
-    private Vector3[] FindEdges()
+    public void RemovePlayer(Transform t)
+    {
+        _playersGameObjects.Remove(t);
+    }
+
+    private Vector3[] FindEdges(List<Vector3> playersPosition)
     {
         Vector3  leftBottom = Vector3.zero;
         Vector3  rightUpper = Vector3.zero;
 
-        if (_playersGameObjects.Count != 0)
+        if (playersPosition.Count != 0)
         {
-            foreach (Vector3 pos in _playersGameObjects)
+            foreach (Vector3 pos in playersPosition)
             {
                 if (leftBottom.x > pos.x)
                 {
@@ -285,4 +290,6 @@ public class LevelBuilder : MonoBehaviour
             }
         }
     }
+
+
 }

@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class PersistentPlayer : NetworkBehaviour
 {
+    private NetworkLevel _nl;
     private ServiceRegistry _sr;
-    public KnightCoxswain _kc;
+    private KnightCoxswain _kc;
     private float _lastXAxis;
     private float _lastYAxis;
 
@@ -24,6 +25,7 @@ public class PersistentPlayer : NetworkBehaviour
     {
         _sr = FindObjectOfType<ServiceRegistry>();
         _sr.PersistentPlayer = this;
+        _nl = _sr.NetworkLevel;
 
         if (IsOwner)
         {
@@ -33,6 +35,7 @@ public class PersistentPlayer : NetworkBehaviour
 
     public override void OnDestroy()
     {
+        _nl.RemovePlayer(_kc.transform);
         Destroy(_kc.gameObject);
         base.OnDestroy();
     }
@@ -68,6 +71,8 @@ public class PersistentPlayer : NetworkBehaviour
     //}
 
         //}
+
+        _nl.RecountPlayers(NetworkObjectId);
     }
 
     [ClientRpc]
