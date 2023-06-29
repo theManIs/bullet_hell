@@ -6,12 +6,20 @@ using UnityEngine;
 public class LevelCreator : NetworkBehaviour
 {
     private ServiceRegistry _sr;
-    public NetworkLevel NetworkLevel;
+    public NetworkLevel NetworkLevelPrefab;
+
+    public SpriteFrequency[] TileSpriteFrequencies;
+    public GameObjectFrequency[] GameObjectsFrequencies;
+    public float Scale = 0.1f;
+    public int StartingNoiseBlockSize = 10;
+    public int RandomSeed = 100;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _sr = FindObjectOfType<ServiceRegistry>();
+        _sr.LevelCreator = this;
     }
 
     public void OnEnable()
@@ -32,7 +40,7 @@ public class LevelCreator : NetworkBehaviour
 
     public void StartLevel()
     {
-        NetworkLevel nl = Instantiate(NetworkLevel);
+        NetworkLevel nl = Instantiate(NetworkLevelPrefab);
 
         if (nl.GetComponent<NetworkObject>() is { } localNetworkObject)
         {

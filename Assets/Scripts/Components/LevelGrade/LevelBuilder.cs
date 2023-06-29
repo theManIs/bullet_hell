@@ -165,6 +165,14 @@ public class LevelBuilder : MonoBehaviour
         new List<CoinOperator>(FindObjectsOfType<CoinOperator>()).ForEach(co => Destroy(co.gameObject));
     }
 
+    private ScriptableTile PrepareTile()
+    {
+        ScriptableTile st = GameAssets.MyFirstScriptableTile;
+        st.Sprites = _sr.LevelCreator.TileSpriteFrequencies;
+
+        return st;
+    }
+
     public void UpdateEveryFrame(Vector3[] corners)
     {
         // Debug.Log(HudCamera.rect.max + " " + HudCamera.rect.center + " " + HudCamera.transform.position);
@@ -174,14 +182,12 @@ public class LevelBuilder : MonoBehaviour
         // print(Tilemap.cellBounds.max);
 
         Tilemap tilemap = FieldTilemap;
-        //Vector3 leftBottom = HudCamera.ViewportToWorldPoint(HudCamera.rect.min);
         Vector3 leftBottom = corners[0];
         Vector3 rightUpper = corners[1];
-        //Vector3 rightUpper = HudCamera.ViewportToWorldPoint(HudCamera.rect.max);
-
         Vector3 cellSize = tilemap.cellSize;
-        ScriptableTile st = GameAssets.MyFirstScriptableTile;
         Vector3Int leftBottomCorner = new Vector3Int(1, 1);
+        ScriptableTile st = PrepareTile();
+
         int xStart = Mathf.CeilToInt(leftBottom.x / cellSize.x);
         int yStart = Mathf.CeilToInt(leftBottom.y / cellSize.y);
         // print(corners[0].x + " " + xStart);
@@ -238,6 +244,7 @@ public class LevelBuilder : MonoBehaviour
         Vector3 rightUpper = corners[1];
         Tilemap tm = ObstacleTilemap;
         ScriptableTileObstacle st = GameAssets.ObstacleTile;
+        st.GameObjects = _sr.LevelCreator.GameObjectsFrequencies;
         st.SetHost(ObstacleGrid.transform);
         st.SetTilemap(tm);
         // print(st);

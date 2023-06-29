@@ -13,18 +13,10 @@ MonoBehaviour:
   m_Name: MyFirstScriptableTile
   m_EditorClassIdentifier: Assembly-CSharp::ScriptableTile
   Sprites:
-  - Sprite: {fileID: -1272687092, guid: 0d91e839829d2f14db190244e2e1068c, type: 3}
-    Frequency: 2
-  - Sprite: {fileID: 936587776, guid: 0d91e839829d2f14db190244e2e1068c, type: 3}
-    Frequency: 2
-  - Sprite: {fileID: -1577847798, guid: 0d91e839829d2f14db190244e2e1068c, type: 3}
-    Frequency: 2
-  - Sprite: {fileID: -1571301010, guid: 0d91e839829d2f14db190244e2e1068c, type: 3}
-    Frequency: 2
-  - Sprite: {fileID: 148935083, guid: 0d91e839829d2f14db190244e2e1068c, type: 3}
+  - Sprite: {fileID: -1418638336, guid: 7cb89dbf7f9e2fc43b1ee28eb7804e25, type: 3}
     Frequency: 2
   LastSmartTile:
-    SpriteFrequencyIndex: 2
-    TilePosition: {x: 24, y: 24, z: 0}
+    SpriteFrequencyIndex: 0
+    TilePosition: {x: 4, y: 4, z: 0}
   Scale: 0.1
-  StartingNoiseBlockSize: 35
+  StartingNoiseBlockSize: 13
