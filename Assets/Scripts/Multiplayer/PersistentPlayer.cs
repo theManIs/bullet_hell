@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
@@ -97,6 +98,11 @@ public class PersistentPlayer : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    public void FixedUpdate()
+    {
         if (IsOwner)
         {
             InterceptKeyInput();
@@ -149,7 +155,7 @@ public class PersistentPlayer : NetworkBehaviour
         //_lastXAxis = xAxis;
         //_lastYAxis = yAxis;
 
-        //MoveCameraForPlayerServerRpc();
+        MoveCameraForPlayerServerRpc();
         //}
     }
 
@@ -167,8 +173,18 @@ public class PersistentPlayer : NetworkBehaviour
     {
         if (!xAxis.Equals(0) || !yAxis.Equals(0))
         {
-            _kc.transform.position += Vector3.right * Time.deltaTime * MoveSpeed * xAxis +
-                                      Vector3.up * Time.deltaTime * MoveSpeed * yAxis;
+            if (!xAxis.Equals(0))
+            {
+                _kc.transform.position += Vector3.right * Time.fixedDeltaTime * MoveSpeed * Mathf.Sign(xAxis);
+            }
+            
+            if (!yAxis.Equals(0))
+            {
+                _kc.transform.position += Vector3.up * Time.fixedDeltaTime * MoveSpeed * Mathf.Sign(yAxis);
+            }
+            //print(_kc.transform.position);
+            //_kc.transform.position += Vector3.right * Time.deltaTime * MoveSpeed * Mathf.Sign(xAxis) +
+            //                          Vector3.up * Time.deltaTime * MoveSpeed * Mathf.Sign(yAxis);
 
             if (_kc.GetComponent<SpriteRenderer>() is { } knightCoxswainSpriteRenderer)
             {

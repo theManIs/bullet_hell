@@ -605,19 +605,19 @@ PrefabInstance:
       objectReference: {fileID: 8663782575607018528, guid: bc4e8f579def7a6479e5a077b6ba618a, type: 3}
     - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: MovingShiftLeft.x
-      value: -25
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: MovingShiftLeft.y
-      value: -25
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: MovingShiftRight.x
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: MovingShiftRight.y
-      value: 25
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: ObstacleGridPrefab
