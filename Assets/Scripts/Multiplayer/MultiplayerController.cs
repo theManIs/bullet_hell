@@ -16,6 +16,7 @@ public class MultiplayerController : MonoBehaviour
     {
         UnityTransport ut =  GetComponent<UnityTransport>();
         _connectingTimerDefault = ut.ConnectTimeoutMS * ut.MaxConnectAttempts * _msToSec;
+        ConfigureAny(ut);
     }
 
     // Update is called once per frame
@@ -88,5 +89,14 @@ public class MultiplayerController : MonoBehaviour
         NetworkManager.Singleton.StartClient();
         _connectingTimer = _connectingTimerDefault;
         NetworkManager.Singleton.OnClientConnectedCallback += ResetAndUnsubscribe;
+    }
+
+    private void ConfigureAny(UnityTransport unityTransport)
+    {
+        unityTransport.SetConnectionData(
+            "192.168.1.53",  // The IP address is a string
+            (ushort)7777, // The port number is an unsigned short
+            "0.0.0.0" // The server listen address is a string.
+        );
     }
 }

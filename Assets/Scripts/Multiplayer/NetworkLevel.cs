@@ -187,7 +187,7 @@ public class NetworkLevel : NetworkBehaviour
 
     private void OnObstacleListChanged(NetworkListEvent<SmartTile> eventNetworkList)
     {
-        print(eventNetworkList);
+        //print(eventNetworkList);
         SpawnObstacleClient(eventNetworkList.Value);
     }
   
