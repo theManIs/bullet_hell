@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
-[CreateAssetMenu(fileName = "Assets/Resources/Scriptables/Tiles/Obstacle", menuName = "Scriptables/Tile/Obstacle", order = 1), Serializable]
+[CreateAssetMenu(fileName = "Assets/Resources/Scriptables/Tiles/Obstacle", menuName = "Scriptables/Tile/Obstacle", order = 3), Serializable]
 public class ScriptableTileObstacle : TileBase
 {
     public Transform Host;

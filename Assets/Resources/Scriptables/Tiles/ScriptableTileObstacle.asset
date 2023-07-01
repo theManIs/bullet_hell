@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df7174883b3c29942a74cf8462ad8b3d, type: 3}
-  m_Name: ObstacleTile
+  m_Name: ScriptableTileObstacle
   m_EditorClassIdentifier: 
   Host: {fileID: 0}
   CellSize: {x: 0.5, y: 0.5, z: 0}

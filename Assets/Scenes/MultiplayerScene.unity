@@ -371,9 +371,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NetworkLevelPrefab: {fileID: 4572243720614016091, guid: 8b076c5414ae93a41ae5960d8a2c6e7b, type: 3}
-  TileSpriteFrequencies:
-  - Sprite: {fileID: -1418638336, guid: 7cb89dbf7f9e2fc43b1ee28eb7804e25, type: 3}
+  TerrainTilePackage:
+  - TerrainTile: {fileID: 11400000, guid: 38ff5c8efa4894444a8411fb0dd73802, type: 2}
     Frequency: 1
+  - TerrainTile: {fileID: 11400000, guid: fff78e6bcb7e93042a3e847cd558f426, type: 2}
+    Frequency: 2
+  ObstacleTilePackage:
+  - ObstacleTile: {fileID: 11400000, guid: a57c728fab50e3b47a1c8c2a674c98aa, type: 2}
+    Frequency: 2
+  - ObstacleTile: {fileID: 0}
+    Frequency: 10
   GameObjectsFrequencies:
   - GameObject: {fileID: 5327758518656020912, guid: 929929d920f84c345ac498471c5428f7, type: 3}
     Frequency: 3
@@ -566,7 +573,7 @@ PrefabInstance:
       objectReference: {fileID: 8663782575607018528, guid: bc4e8f579def7a6479e5a077b6ba618a, type: 3}
     - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: MovingShiftLeft.x
-      value: -10
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: MovingShiftLeft.y
@@ -574,7 +581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: MovingShiftRight.x
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9152053211675248967, guid: 331ecc169f060d74ea887ee9c7d733fb, type: 3}
       propertyPath: MovingShiftRight.y

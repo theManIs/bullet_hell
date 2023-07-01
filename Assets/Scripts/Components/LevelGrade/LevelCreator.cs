@@ -1,14 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LevelCreator : NetworkBehaviour
 {
     private ServiceRegistry _sr;
     public NetworkLevel NetworkLevelPrefab;
 
-    public SpriteFrequency[] TileSpriteFrequencies;
+    public TerrainTilePackage[] TerrainTilePackage;
+    public ObstacleTilePackage[] ObstacleTilePackage;
     public GameObjectFrequency[] GameObjectsFrequencies;
     public float Scale = 0.1f;
     public int StartingNoiseBlockSize = 10;
@@ -20,6 +22,7 @@ public class LevelCreator : NetworkBehaviour
     {
         _sr = FindObjectOfType<ServiceRegistry>();
         _sr.LevelCreator = this;
+        StartingNoiseBlockSize = Convert.ToInt32(Random.value * RandomSeed);
     }
 
     public void OnEnable()

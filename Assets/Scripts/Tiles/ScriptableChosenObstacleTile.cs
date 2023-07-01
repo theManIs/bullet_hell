@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
-[CreateAssetMenu(fileName = "Assets/Resources/Scriptables/Tiles/Tile-1", menuName = "Scriptables/Tile/OneObstacle", order = 1), Serializable]
+[CreateAssetMenu(fileName = "Assets/Resources/Scriptables/Tiles/Tile-1", menuName = "Scriptables/Tile/OneObstacle", order = 5), Serializable]
 public class ScriptableChosenObstacleTile : TileBase
 {
-    public Vector3 CellSize;
+    public float CellSize;
     public Transform Host;
 
     private GameObjectFrequency GameObjects;
@@ -17,7 +17,7 @@ public class ScriptableChosenObstacleTile : TileBase
     {
         // Instantiate absolutely nothing
         //Debug.Log(position);
-        //Vector3 obstaclePos = (Vector3)position * CellSize.x;
+        //Vector3 obstaclePos = (Vector3)position * CellSize;
         //GameObject point = new GameObject("Take position");
         //point.transform.position = obstaclePos;
         //point.transform.parent = Host;

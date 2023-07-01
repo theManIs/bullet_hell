@@ -7,12 +7,15 @@ using UnityEngine.Tilemaps;
 public class NetworkLevel : NetworkBehaviour
 {
     private NetworkList<SmartTile> _spawnedBeforeConnectionTiles;
+    private NetworkList<SmartTile> _spawnedBeforeConnectionObstacles;
     private ServiceRegistry _sr;
     private NetworkVariable<ulong> _fieldGrid = new NetworkVariable<ulong>(0);
+    private NetworkVariable<ulong> _obstacleGrid = new NetworkVariable<ulong>(0);
 
     private void Awake()
     {
         _spawnedBeforeConnectionTiles = new NetworkList<SmartTile>();
+        _spawnedBeforeConnectionObstacles = new NetworkList<SmartTile>();
     }
 
     // Start is called before the first frame update
@@ -21,7 +24,7 @@ public class NetworkLevel : NetworkBehaviour
         _sr = FindObjectOfType<ServiceRegistry>();
         _sr.NetworkLevel = this;
 
-        NetworkManager.Singleton.OnClientConnectedCallback += SpawnAtTheStart;
+        //NetworkManager.Singleton.OnClientConnectedCallback += SpawnAtTheStart;
         //NetworkManager.Singleton.OnClientConnectedCallback += RecountPlayers;
         //print(NetworkManager.Singleton.IsServer);
 
@@ -35,6 +38,8 @@ public class NetworkLevel : NetworkBehaviour
         {
             CacheValuesClient();
             SpawnAtTheStart(NetworkManager.Singleton.LocalClientId);
+            SpawnObstaclesAtTheStart();
+            _spawnedBeforeConnectionObstacles.OnListChanged += OnObstacleListChanged;
         }
     }
 
@@ -59,11 +64,15 @@ public class NetworkLevel : NetworkBehaviour
     {
         _sr.LevelBuilder.FieldGrid = CacheFieldGrid<Grid>(_fieldGrid.Value);
         _sr.LevelBuilder.FieldTilemap = _sr.LevelBuilder.GetTilemapFromGrid(_sr.LevelBuilder.FieldGrid);
+        _sr.LevelBuilder.ObstacleGrid = CacheFieldGrid<Grid>(_obstacleGrid.Value);
+        _sr.LevelBuilder.ObstacleTilemap = _sr.LevelBuilder.GetTilemapFromGrid(_sr.LevelBuilder.ObstacleGrid);
+        //print(_sr.LevelBuilder.ObstacleGrid + " " + _sr.LevelBuilder.ObstacleTilemap);
     }
 
     public void CacheValueServer()
     {
         _fieldGrid.Value = _sr.LevelBuilder.FieldGrid.GetComponent<NetworkObject>().NetworkObjectId;
+        _obstacleGrid.Value = _sr.LevelBuilder.ObstacleGrid.GetComponent<NetworkObject>().NetworkObjectId;
 
         //print(_sr.FieldGrid + " " + _sr.FieldTilemap);
     }
@@ -128,14 +137,22 @@ public class NetworkLevel : NetworkBehaviour
             //    });
         //}
     }
+    
+    private void SpawnObstaclesAtTheStart()
+    {
+        foreach (SmartTile smartTile in _spawnedBeforeConnectionObstacles)
+        {
+            //print(smartTile);
+            SpawnObstacleByIndex(smartTile.TilePosition, smartTile.SpriteFrequencyIndex);
+        }
+    }
 
     private void SpawnTileByIndex(Vector3Int tilePosition, int spIndex)
     {
-        ScriptableChosenTile sct = GameAssets.ScriptableChosenTile;
-        ScriptableTile st = GameAssets.MyFirstScriptableTile;
-        sct.SetSpriteFrequency(st.Sprites[spIndex]);
-        //print(_sr.FieldGrid.gameObject + " " + _sr.FieldTilemap.gameObject + " " + tilePosition);
-        _sr.LevelBuilder.FieldTilemap.SetTile(tilePosition, sct);
+        _sr.LevelBuilder.FieldTilemap.SetTile(
+            tilePosition,
+            _sr.LevelCreator.TerrainTilePackage[spIndex].TerrainTile
+        );
     }
 
     //[ClientRpc]
@@ -162,4 +179,26 @@ public class NetworkLevel : NetworkBehaviour
     [ClientRpc]
     public void SpawnTileClientRpc(SmartTile smartTile) =>
         SpawnTileByIndex(smartTile.TilePosition, smartTile.SpriteFrequencyIndex);
+
+    public void SetSpawnedObstacle(SmartTile smartTile)
+    {
+        _spawnedBeforeConnectionObstacles.Add(smartTile);
+    }
+
+    private void OnObstacleListChanged(NetworkListEvent<SmartTile> eventNetworkList)
+    {
+        print(eventNetworkList);
+        SpawnObstacleClient(eventNetworkList.Value);
+    }
+  
+    public void SpawnObstacleClient(SmartTile smartTile) =>
+        SpawnObstacleByIndex(smartTile.TilePosition, smartTile.SpriteFrequencyIndex);
+
+    private void SpawnObstacleByIndex(Vector3Int tilePosition, int spIndex)
+    {
+        ObstacleTile ot = _sr.LevelCreator.ObstacleTilePackage[spIndex].ObstacleTile;
+        ot.SetTilemap(_sr.LevelBuilder.ObstacleTilemap);
+
+        _sr.LevelBuilder.ObstacleTilemap.SetTile(tilePosition, ot);
+    }
 }

@@ -5,6 +5,7 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class LevelBuilder : MonoBehaviour
 {
@@ -27,13 +28,12 @@ public class LevelBuilder : MonoBehaviour
     private List<GameObject> _listCScriptableTileObstacles = new List<GameObject>();
     private Vector3[] _lastCorners = new Vector3[2];
     private List<Transform> _playersGameObjects = new List<Transform>();
+    private LevelCreator _lc;
 
     public void Awake()
     {
         _ppp = FindObjectOfType<PickingPerkPanel>();
         LevelTimer = FindObjectOfType<LevelTimer>();
-        _sr = FindObjectOfType<ServiceRegistry>();
-        _sr.LevelBuilder = this;
 
         //FindObjectOfType<PickingCharacterScreen>().OnGo += () => gameObject.SetActive(true);
     }
@@ -41,6 +41,9 @@ public class LevelBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _sr = FindObjectOfType<ServiceRegistry>();
+        _sr.LevelBuilder = this;
+        _lc = FindObjectOfType<LevelCreator>();
         //LevelTimer.OnTimeUp += () => gameObject.SetActive(false);
         //gameObject.SetActive(false);
     }
@@ -165,14 +168,6 @@ public class LevelBuilder : MonoBehaviour
         new List<CoinOperator>(FindObjectsOfType<CoinOperator>()).ForEach(co => Destroy(co.gameObject));
     }
 
-    private ScriptableTile PrepareTile()
-    {
-        ScriptableTile st = GameAssets.MyFirstScriptableTile;
-        st.Sprites = _sr.LevelCreator.TileSpriteFrequencies;
-
-        return st;
-    }
-
     public void UpdateEveryFrame(Vector3[] corners)
     {
         // Debug.Log(HudCamera.rect.max + " " + HudCamera.rect.center + " " + HudCamera.transform.position);
@@ -186,7 +181,6 @@ public class LevelBuilder : MonoBehaviour
         Vector3 rightUpper = corners[1];
         Vector3 cellSize = tilemap.cellSize;
         Vector3Int leftBottomCorner = new Vector3Int(1, 1);
-        ScriptableTile st = PrepareTile();
 
         int xStart = Mathf.CeilToInt(leftBottom.x / cellSize.x);
         int yStart = Mathf.CeilToInt(leftBottom.y / cellSize.y);
@@ -209,14 +203,12 @@ public class LevelBuilder : MonoBehaviour
                     {
                         if (!tilemap.HasTile(tilePosition))
                         {
-                            // print("tilePosition " + tilePosition);
-                            // print("leftBottom " + leftBottom);
-                            // print("rightUpper " + rightUpper);
-                            // print(tilemap + " " + tilePosition + " " + st);
-                            tilemap.SetTile(tilePosition, st);
-                            //print("SpawnTitle " + st.LastSmartTile.TilePosition);
-                            _sr.NetworkLevel.SetSpawnedTile(st.LastSmartTile);
-                            _sr.NetworkLevel.SpawnTileClientRpc(st.LastSmartTile);
+                            //tilemap.SetTile(tilePosition, st);
+
+                            SmartTile smartTile = SpawnTileWithinDomain(tilePosition, GetTerrainDomain());
+                            tilemap.SetTile(tilePosition, _sr.LevelCreator.TerrainTilePackage[smartTile.SpriteFrequencyIndex].TerrainTile);
+                            _sr.NetworkLevel.SetSpawnedTile(smartTile);
+                            _sr.NetworkLevel.SpawnTileClientRpc(smartTile);
                         }
                     }
 
@@ -236,6 +228,12 @@ public class LevelBuilder : MonoBehaviour
 
     }
 
+    public int[] GetTerrainDomain()
+    {
+        List<TerrainTilePackage> terrainTilePackages = new List<TerrainTilePackage>(_sr.LevelCreator.TerrainTilePackage);
+        return terrainTilePackages.ConvertAll(s => s.Frequency).ToArray();
+    }
+
     public Tilemap GetTilemapFromGrid(Grid grid) => grid.GetComponentInChildren<Tilemap>();
 
     public void BuildObstacleLayer(Vector3[] corners)
@@ -243,16 +241,12 @@ public class LevelBuilder : MonoBehaviour
         Vector3 leftBottom = corners[0];
         Vector3 rightUpper = corners[1];
         Tilemap tm = ObstacleTilemap;
-        ScriptableTileObstacle st = GameAssets.ObstacleTile;
-        st.GameObjects = _sr.LevelCreator.GameObjectsFrequencies;
-        st.SetHost(ObstacleGrid.transform);
-        st.SetTilemap(tm);
-        // print(st);
+
         int xStart = Mathf.CeilToInt(leftBottom.x / tm.cellSize.x);
         int yStart = Mathf.CeilToInt(leftBottom.y / tm.cellSize.y);
         // print(tm.cellSize);
-        FillLayer(xStart, yStart, leftBottom, rightUpper, tm, st);
-        _listCScriptableTileObstacles.AddRange(st.TileObstacles);
+        FillLayer(xStart, yStart, leftBottom, rightUpper, tm);
+        //_listCScriptableTileObstacles.AddRange(st.TileObstacles);
     }
 
     //public void FillLayer(int xStart, int yStart, Vector3 leftBottom, Vector3 rightUpper, Tilemap tm, ScriptableTileObstacle st)
@@ -299,7 +293,7 @@ public class LevelBuilder : MonoBehaviour
     //    }
     //}    
     
-    public void FillLayer(int xStart, int yStart, Vector3 leftBottom, Vector3 rightUpper, Tilemap tm, ScriptableTileObstacle st)
+    public void FillLayer(int xStart, int yStart, Vector3 leftBottom, Vector3 rightUpper, Tilemap tm)
     {
         int xEnd = Mathf.CeilToInt(rightUpper.x / tm.cellSize.x);
         int yEnd = Mathf.CeilToInt(rightUpper.y / tm.cellSize.y);
@@ -321,11 +315,15 @@ public class LevelBuilder : MonoBehaviour
                     {
                         if (!tm.HasTile(tilePosition))
                         {
-                            // print("tilePosition " + tilePosition);
-                            // print("leftBottom " + leftBottom);
-                            // print("rightUpper " + rightUpper);
+                            //tm.SetTile(tilePosition, st);
 
-                            tm.SetTile(tilePosition, st);
+                            SmartTile smartTile = SpawnTileWithinDomain(tilePosition, GetObstacleDomain());
+                            if (_lc.ObstacleTilePackage[smartTile.SpriteFrequencyIndex].ObstacleTile is { } ot)
+                            {
+                                ot.SetTilemap(tm);
+                                tm.SetTile(tilePosition, ot);
+                                _sr.NetworkLevel.SetSpawnedObstacle(smartTile);
+                            }
                         }
                     }
 
@@ -343,5 +341,18 @@ public class LevelBuilder : MonoBehaviour
         }
     }
 
+    private int[] GetObstacleDomain()
+    {
+        List<ObstacleTilePackage> terrainTilePackages = new List<ObstacleTilePackage>(_lc.ObstacleTilePackage);
+        return terrainTilePackages.ConvertAll(s => s.Frequency).ToArray();
+    }
 
+
+    private SmartTile SpawnTileWithinDomain(Vector3Int position, int[] domain)
+    {
+        PerlinNoiseGenerator png = new PerlinNoiseGenerator(_lc.Scale, domain, _lc.StartingNoiseBlockSize, _lc.StartingNoiseBlockSize);
+        int spriteIndex = png.GetIndexWeighted(position.x, position.y);
+
+        return new SmartTile { SpriteFrequencyIndex = spriteIndex, TilePosition = position };
+    }
 }

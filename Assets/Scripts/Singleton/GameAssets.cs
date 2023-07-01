@@ -28,7 +28,9 @@ public class GameAssets
     public static ScriptableTile MyFirstScriptableTile => Resources.Load<ScriptableTile>("Scriptables/Tiles/MyFirstScriptableTile");
     public static ScriptableTile PlainGrassTile => Resources.Load<ScriptableTile>("Scriptables/Tiles/PlainGrassTile");
     public static ScriptableChosenTile ScriptableChosenTile => Resources.Load<ScriptableChosenTile>("Scriptables/Tiles/ScriptableChosenTile");
-    public static ScriptableTileObstacle ObstacleTile => Resources.Load<ScriptableTileObstacle>("Scriptables/Tiles/ObstacleTile");
+    public static ScriptableTileObstacle ScriptableTileObstacle => Resources.Load<ScriptableTileObstacle>("Scriptables/Tiles/ObstacleTile");
+    public static ObstacleTile ObstacleTile => Resources.Load<ObstacleTile>("Scriptables/Tiles/ObstacleTile");
+    public static TerrainTile SimpleTile => Resources.Load<TerrainTile>("Scriptables/Tiles/SimpleTile");
     public static ScriptableChosenObstacleTile ScriptableChosenObstacleTile => Resources.Load<ScriptableChosenObstacleTile>("Scriptables/Tiles/ScriptableChosenObstacleTile");
     public static FinalScreenScriptableObject FinalScreenScriptableObject => Resources.Load<FinalScreenScriptableObject>("Scriptables/Texts/FinalPanel");
     public static ProfileScriptableObject ProfileScriptableObject => Resources.Load<ProfileScriptableObject>("Scriptables/Profiles/Default");

@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 
-[CreateAssetMenu(fileName = "Assets/Resources/Scriptables/Tiles/Tile-0", menuName = "Scriptables/Tile/Background", order = 1), Serializable]
+[CreateAssetMenu(fileName = "Assets/Resources/Scriptables/Tiles/Tile-0", menuName = "Scriptables/Tile/Background", order = 2), Serializable]
 public class ScriptableTile : TileBase
 {
     private ServiceRegistry _sr;
