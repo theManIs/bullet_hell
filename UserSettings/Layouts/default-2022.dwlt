@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 661
-    y: 53
+    x: 110
+    y: 79
     width: 1246
     height: 1021
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -298,8 +298,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1599
-    y: 83
+    x: 1048
+    y: 109
     width: 307
     height: 950
   m_ViewDataDictionary: {fileID: 0}
@@ -333,8 +333,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 890
-    y: 83
+    x: 339
+    y: 109
     width: 707
     height: 565
   m_ViewDataDictionary: {fileID: 0}
@@ -604,9 +604,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 6.581977, y: -2.1199682, z: -1.7580435}
+    m_Target: {x: 1.4548438, y: -1.6369755, z: 1.4622791}
     speed: 2
-    m_Value: {x: 6.581977, y: -2.1199682, z: -1.7580435}
+    m_Value: {x: 1.4548438, y: -1.6369755, z: 1.4622791}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -656,9 +656,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 30.70326
+    m_Target: 27.703743
     speed: 2
-    m_Value: 30.70326
+    m_Value: 27.703743
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -703,8 +703,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 661
-    y: 83
+    x: 110
+    y: 109
     width: 228
     height: 565
   m_ViewDataDictionary: {fileID: 0}
@@ -714,9 +714,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 00600000
-      m_LastClickedID: 24576
-      m_ExpandedIDs: 2afbffff16600000
+      m_SelectedIDs: 54660000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1140,8 +1140,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 661
-    y: 669
+    x: 110
+    y: 695
     width: 937
     height: 364
   m_ViewDataDictionary: {fileID: 0}
@@ -1161,21 +1161,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Stan/NewTille
+    - Assets/Stan
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Stan/NewTille
+  - Assets/Stan
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\GitProekt\bullet_hell
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 82620000
-    m_LastClickedID: 25218
+    m_SelectedIDs: 92610000
+    m_LastClickedID: 24978
     m_ExpandedIDs: 00000000906100009261000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1231,22 +1231,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300005e8700004c870000cc8c00008c600000206100003461000006ac000032fd0000d6750000000000003a6e0000826700009e690000766400003e680000802b030092650000c6650000d0430100bc1a0100106200003a68000076800000bc630000be6100001e7e0000147900006c7500002466000010990000229900003a74000068a4000010a400008ca400008a9f00004aaa000088a800002a9d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Abiliti
+      m_OriginalName: Abiliti
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 26158
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
@@ -1256,7 +1256,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 62.5}
+    m_ScrollPosition: {x: 0, y: 540}
     m_GridSize: 16
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 291
