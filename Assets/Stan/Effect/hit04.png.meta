@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 636ab44a4299a5646957d99fc2202b24
+guid: 5e7c2239b79041b40b3b941aa73d32d9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,13 +107,118 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Thunder_0
+      name: hit04_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9977974b7e2511f49a4c5fa115af3ad7
+      internalID: -1688038746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hit04_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6912e210dffd44f49a3c06ea4fb89ba3
+      internalID: 76674210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hit04_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a26e7d369f488324297ea1010f1c0609
+      internalID: -404278055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hit04_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4b9ba0e104e4342a2229ce8310f426
+      internalID: -174398972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hit04_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf2f016efb52c984b926019816c36acd
+      internalID: -1790289986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hit04_5
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
-        height: 256
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +226,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a2b6ae2397f6094d838f7c138920bf1
-      internalID: -1076687444
+      spriteID: 50660b48d08573540af12a73ebc7ac5d
+      internalID: 463234162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunder_1
+      name: hit04_6
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 64
-        height: 256
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +247,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aee3bb6e8fc961e4daa0c8164f17c4b8
-      internalID: -1805553529
+      spriteID: d56de7205dcfffb4085d08b580492d10
+      internalID: -410169788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunder_2
+      name: hit04_7
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 64
-        height: 256
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +268,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 423688d0eb784294dbedfe31c8005a4e
-      internalID: 1631241311
+      spriteID: 76c396042068d55498fc5469ab21a58a
+      internalID: -937378362
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunder_3
+      name: hit04_8
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 64
-        height: 256
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +289,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da5dbde1b142fce4e90f87fcd3e072a9
-      internalID: 1087231257
+      spriteID: 76f1a329773ce344fb9c34f6591de373
+      internalID: -866418286
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Thunder_4
+      name: hit04_9
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 64
-        height: 256
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,50 +310,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad1b7061b2962d041a17e583c3e649a7
-      internalID: -364407608
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Thunder_5
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 64
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d136efdd168c93f45921d9cc0cc90406
-      internalID: -1527971575
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Thunder_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 256
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a03f767f0faec3642bdd77a52cceec8b
-      internalID: 1136688090
+      spriteID: c02b03f0cdb57c647a129cfb873a3f4d
+      internalID: 24320579
       vertices: []
       indices: 
       edges: []
@@ -256,7 +319,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a79f107c64cde58488f0351392106fcb
+    spriteID: f01066f35282dae4ab7c0fff244d8122
     internalID: 0
     vertices: []
     indices: 
@@ -264,13 +327,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Thunder_4: -364407608
-      Thunder_0: -1076687444
-      Thunder_2: 1631241311
-      Thunder_1: -1805553529
-      Thunder_3: 1087231257
-      Thunder_6: 1136688090
-      Thunder_5: -1527971575
+      hit04_6: -410169788
+      hit04_1: 76674210
+      hit04_2: -404278055
+      hit04_4: -1790289986
+      hit04_0: -1688038746
+      hit04_9: 24320579
+      hit04_7: -937378362
+      hit04_3: -174398972
+      hit04_5: 463234162
+      hit04_8: -866418286
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
