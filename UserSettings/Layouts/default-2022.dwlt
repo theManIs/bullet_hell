@@ -1161,21 +1161,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Stan/Effect
+    - Assets/Stan/Weapon
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Stan/Effect
+  - Assets/Stan/Weapon
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\GitProekt\bullet_hell
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 68620000
-    m_LastClickedID: 25192
+    m_SelectedIDs: be620000
+    m_LastClickedID: 25278
     m_ExpandedIDs: 00000000906100009261000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1231,22 +1231,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c62300005e8700004c870000cc8c00008c600000206100003461000006ac000032fd0000d6750000000000003a6e0000826700009e690000766400003e680000802b030092650000c6650000d0430100bc1a0100106200003a68000076800000bc630000be6100001e7e0000147900006c7500002466000010990000229900003a74000068a4000010a400008ca400008a9f00004aaa000088a800002a9d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Effect
-      m_OriginalName: Effect
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 25192
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
