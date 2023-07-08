@@ -379,6 +379,8 @@ MonoBehaviour:
   ObstacleTilePackage:
   - ObstacleTile: {fileID: 11400000, guid: a57c728fab50e3b47a1c8c2a674c98aa, type: 2}
     Frequency: 2
+  - ObstacleTile: {fileID: 11400000, guid: ceaccd7bdb1192c45b5d77e8dc579e44, type: 2}
+    Frequency: 2
   - ObstacleTile: {fileID: 0}
     Frequency: 10
   GameObjectsFrequencies:
